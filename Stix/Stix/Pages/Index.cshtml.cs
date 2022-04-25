@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Globalization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Stix.Pages
@@ -14,7 +15,8 @@ namespace Stix.Pages
 
         public void OnGet()
         {
-
+            string dateTime = DateTime.Now.ToString("d", new CultureInfo("en-NL"));
+            ViewData["TimeStamp"] = dateTime;
         }
     }
 }
