@@ -4,8 +4,17 @@
     ViewData["Title"] = "Incident";
 }
 
+<head>
+<style>
+body {
+  background: rgb(13,81,109);
+  background: radial-gradient(circle, rgba(13,81,109,1) 0%, rgba(9,51,70,1) 51%, rgba(3,16,22,1) 91%);
+}
+</style>
+</head>
 
-<div class="d-flex flex-column flex-center container mh-100 mw-100">
+
+<div class="d-flex flex-column flex-center container mh-100 mw-100 text-light">
     <div class="mt-2 d-flex flex-row mh-25 mw-100 justify-content-between">
         <h4>@ViewData["IncidentName"]</h4>
         <button class="btn mb-2 rounded- btn-primary bg-info">Export as...</button>
