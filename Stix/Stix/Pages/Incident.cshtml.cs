@@ -19,7 +19,7 @@ namespace Stix.Pages
             ViewData["IncidentName"] = "Example Incident";
             ViewData["IncidentDate"] = dateTime;
             ViewData["IncidentAdded"] = dateTime;
-            ViewData["IncidentSource"] = "";
+            ViewData["IncidentSource"] = "https://www.definitely-a-valid-source.com/incident";
         }
     }
 }
