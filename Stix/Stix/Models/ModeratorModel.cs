@@ -5,12 +5,17 @@ using System.Threading.Tasks;
 
 namespace Stix.Models
 {
-    public class UserModel
+    public class ModeratorModel
     {
+        public string firstName { get; set; }
+
+        public string lastName { get; set; }
         public string username { get; set; }
 
         public string email { get; set; }
 
         public string password { get; set; }
+
+        public string reason { get; set; }
     }
 }
