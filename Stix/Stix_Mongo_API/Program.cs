@@ -1,4 +1,5 @@
 using Stix_Mongo_API.Models;
+using Stix_Mongo_API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.Configure<StixDatabaseSettings>(
     builder.Configuration.GetSection("StixDatabase"));
 
-builder.Services.AddSingleton<StixDatabaseSettings>();
+builder.Services.AddSingleton<UserService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
