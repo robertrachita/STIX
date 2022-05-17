@@ -13,21 +13,32 @@
 
 <body>
     <header>
+            <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+        <div class="container">
+            <a href="#" class="navbar-brand">STIX Database</a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"> 
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="navbar">
-		    <div class="container flex">
-                <a class="stixDb" href="">STIX Database</a>
-			    <nav>
-				    <ul>
-					    <li><a href="">Add New Incident</a></li>
-					    <li><a href="">Import</a></li>
-					    <li><a href="">About</a></li>
-					    <li><a href="">My Account</a></li>
-				    </ul>
-			    </nav>
-		    </div>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="" class="nav-link">Add new incident</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link">Import</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item log-out">
+                        <a class="nav-link" asp-for="./login/LoginUser">Log Out</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-
+    </nav>
     </header>
 
     <div class="horizontalBreak flex"></div>
