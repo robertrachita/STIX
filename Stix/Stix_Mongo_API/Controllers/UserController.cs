@@ -12,9 +12,9 @@ namespace Stix_Mongo_API.Controllers
     {
         private readonly UserService _userService;
 
-        public UserController(UserService userService)
+        public UserController()
         {
-            _userService = userService;
+            _userService = new Services.UserService();
         }
 
 
