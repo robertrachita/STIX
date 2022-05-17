@@ -67,17 +67,35 @@ In some cases, when opening Docker for the first time, the service will enter a 
 
    or alternatively use Docker Desktop and press on Start. Make sure to never delete the container, just stop it.
 
-5. 
+5. In order to run commands inside the container, you have to use this command
 
-6. 
+    `docker exec -it Stix-Mongo /bin/bash`
 
-7. 
+    or alternatively, from Docker Desktop, select CLI on the Stix-Mongo container.
 
-8. 
+6. Run the mongo shell by typing 
 
-9. 
+    `mongo`
 
-10. 
+7. To get a list of all databases, type
+
+    `show databases`
+
+8. To create a new database, as well as using an existing one, type
+
+    `use Stix`
+
+    Once a collection or an document is uploaded to a newly created database, mongo will save it.
+
+9. To display existing collections inside the selected database, run
+
+    `show collections`
+
+10. Similarly with creating/using a database, in order to create a collection run
+
+    `use Users`
+
+    this will select the Users collection. exchange 
 
 11. 
 
