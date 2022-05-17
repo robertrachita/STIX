@@ -91,32 +91,36 @@ In some cases, when opening Docker for the first time, the service will enter a 
 
     `show collections`
 
-10. Similarly with creating/using a database, in order to create a collection run
+10. In order to create a collection run
 
-    `use Users`
+    `db.createCollection("CollectionName")`
 
-    this will select the Users collection. exchange 
+    this will select the "CollectionName" collection. Exchange the second parameter with whatever table you need.
 
-11. 
+11. To see all the collections :
 
-12. 
+     `show collections`
 
-13. 
+12. To insert in the database, use :
 
-14. 
+     `db.CollectionName.insert(`
 
-15. 
+     ​	`{`
 
-16. 
+     ​			`"_id" : "1234",`
 
-17. 
+     ​			`"Name" : "Namy McNameFace"`
 
-18. 
+     ​	`})`
 
-19. 
+     You can also insert multiple items at once with the `.insertMany([])`command.
 
-20. 
+13. To get a list of all elements in a collection use
 
-    
+     `db.CollectionName.find().pretty()`
 
-    
+     
+
+     
+
+     
