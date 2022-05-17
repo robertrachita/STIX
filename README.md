@@ -6,7 +6,7 @@
 
 
 
-### Installation Guide (Windows 10 & 11)
+### Docker and Project Installation Guide (Windows 10 & 11)
 
 1. IDE - Visual Studio 2022 (recommended)  [Get from here](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false)
 
@@ -30,7 +30,6 @@
 
 10. On the ubuntu terminal window, enter a new UNIX username and password of your choosing, and then exit the terminal when configuration completes.
 
-    
 
 **Congrats!** You have finished installing the required dependencies and software.
 
@@ -40,11 +39,66 @@ Click on the tab left of the Start Without Debugging (should be names Stix with 
 
 NOTE! First time running you will have to set up your own web certificate. To do so, just confirm on the popup asking you to accept in Visual Studio. Some browsers may display a Warning page where you have to click "Accept the risks and continue" to accept the unknown certificate.
 
-
-
 ### Troubleshooting
 
 In some cases, when opening Docker for the first time, the service will enter a loop of starting and stopping the engine, and trying to access the settings will result in a loading animation. To solve this, run Docker Desktop as admin, click on the Troubleshoot button and then click on Clean/Purge Data. Proceed and select all the items and then restart Docker. This should fix the problem.
 
 
 
+**Database and Docker Installation**
+
+1. Assuming Docker is installed, open any terminal and run
+
+   `docker images`
+
+2. If MongoDB is not listed, run
+
+    `docker pull mongo`. This will pull the latest Mongo library
+
+3. Create a Docker container
+
+   `docker run -d -p 27017:27017 --name Stix-Mongo mongo`
+
+   This will create a new container on port 27017 with the mongo image. 
+
+4. (Important - run only after setting up steps 1 to 3 first time if the container was stopped)
+
+   `docker restart Stix-Mongo`
+
+   or alternatively use Docker Desktop and press on Start. Make sure to never delete the container, just stop it.
+
+5. 
+
+6. 
+
+7. 
+
+8. 
+
+9. 
+
+10. 
+
+11. 
+
+12. 
+
+13. 
+
+14. 
+
+15. 
+
+16. 
+
+17. 
+
+18. 
+
+19. 
+
+20. 
+
+    
+
+    
