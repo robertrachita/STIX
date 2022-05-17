@@ -7,14 +7,15 @@ using Stix_Mongo_API.Services;
 namespace Stix_Mongo_API.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class UserController : ControllerBase
     {
         private readonly UserService _userService;
 
-        public UserController()
+
+        public UserController(UserService userService)
         {
-            _userService = new Services.UserService();
+            _userService = userService;
         }
 
 

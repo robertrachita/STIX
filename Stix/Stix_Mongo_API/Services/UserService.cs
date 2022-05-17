@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Options;
+using MongoDB.Bson;
 using MongoDB.Driver;
 using Stix_Mongo_API.Models;
 
@@ -14,12 +15,12 @@ namespace Stix_Mongo_API.Services
             var mongoClient = new MongoClient(stixDatabaseSettings.Value.ConnectionString);
 
             var mongoDatabase = mongoClient.GetDatabase(stixDatabaseSettings.Value.DatabaseName);
-
-            _usersCollection = mongoDatabase.GetCollection<User>(stixDatabaseSettings.Value.CollectionName);
+            
+            _usersCollection = mongoDatabase.GetCollection<User>(stixDatabaseSettings.Value.UsersCollectionName);
         }
 
         public async Task<List<User>> GetAllUsersAsync() =>
-            await _usersCollection.Find(user => true).ToListAsync();
+            await _usersCollection.Find(new BsonDocument()).ToListAsync();
 
         public async Task<User?> GetUserAsync(string id) =>
             await _usersCollection.Find(user => user.Id == id).FirstOrDefaultAsync();
