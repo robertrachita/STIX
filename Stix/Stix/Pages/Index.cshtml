@@ -4,8 +4,28 @@
     ViewData["Title"] = "STIX";
 }
 
-<div class="text-center">
-    <h1 class="display-4">STIX Database</h1>
-    <h3 class="display-4">Welcome</h3>
-    <p>This page is under construction as of @ViewData["Timestamp"]</p>
-</div>
+    <div class="filterSortContainer">
+        <a href=""><button type="button">Sort</button></a>
+        <a href=""><button type="button">Filter</button></a>
+    </div>
+    
+    <div class="overviewTableContainer flex">
+        <table class="overviewTable">
+            <tr>
+              <th class="incidentHeader">Incident Name</th>
+              <th class="descriptionHeader">Description</th>
+              <th class="addedOnHeader">Added On</th>
+              <th class="viewMoreHeader">View More</th>
+            </tr>
+        <!-- loop, can change it to just grab everything from a db-->
+        @for (int i = 0; i < 15 ; i++)
+        {
+           <tr>
+              <td class="leftTableCell">@Model.incidentName</td>
+              <td class="centerTableCell">@Model.description</td>
+              <td class="centerTableCell">@Model.addedOn</td>
+              <td class="rightTableCell">"x"</td>
+            </tr> 
+        }
+          </table>
+    </div>
