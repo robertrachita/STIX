@@ -1,17 +1,17 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Stix.Models;
 
 namespace Stix.Pages
 {
-    public class LoginUser : PageModel
+    public class LoginModel : PageModel
     {
         public void OnGet()
         {
         }
 
-        public void OnPost()
+        public IActionResult OnPost()
         {
+            return RedirectToPage("Index");
         }
     }
 }

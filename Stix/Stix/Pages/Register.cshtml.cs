@@ -4,8 +4,12 @@ using Stix.Models;
 
 namespace Stix.Pages
 {
-    public class RegisterUser : PageModel
+    public class RegisterModel : PageModel
     {
+        public void OnGet()
+        {
+        }
+
         [BindProperty]
         public UserModel User { get; set; }
 
