@@ -23,8 +23,7 @@ namespace Stix_Mongo_API.Controllers
         public async Task<List<User>> Get() =>
             await _userService.GetAllUsersAsync();
 
-        //TODO - change the template id length to match the one used in the db
-        [HttpGet("{id:length(4)}")]
+        [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<User>> Get(string id)
         {
             var user = await _userService.GetUserAsync(id);
@@ -52,7 +51,7 @@ namespace Stix_Mongo_API.Controllers
             return CreatedAtAction(nameof(Get), new { id = user.Id }, user);
         }
 
-        [HttpDelete("{id:length(4)}")]
+        [HttpDelete("{id:length(24)}")]
         public async Task<IActionResult> Delete(String id)
         {
             var user = await _userService.GetUserAsync(id);
@@ -67,7 +66,7 @@ namespace Stix_Mongo_API.Controllers
             return NoContent();
         }
 
-        [HttpPut("{id:length(4)}")]
+        [HttpPut("{id:length(24)}")]
         public async Task<IActionResult> Update(string id, User updatedUser)
         {
             var user = await _userService.GetUserAsync(id);
