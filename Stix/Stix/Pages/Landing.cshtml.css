@@ -1,8 +1,0 @@
-﻿* {
-    background-color: pink;
-    background-image: url("../resources/ship.jpg");
-}
-::deep body {
-    background-color: blue;
-    background-image: url("../resources/ship.jpg");
-}
