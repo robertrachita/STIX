@@ -1,0 +1,17 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #030f1d;
+    background-image: url("../resources/Maritime-Cybersecurity-Solutions.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height:10%;
+}
+
+
