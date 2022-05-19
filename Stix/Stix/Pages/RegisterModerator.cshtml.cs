@@ -4,8 +4,12 @@ using Stix.Models;
 
 namespace Stix.Pages
 {
-    public class RegisterModerator : PageModel
+    public class RegisterModeratorModel : PageModel
     {
+        public void OnGet()
+        {
+        }
+
         [BindProperty]
         public ModeratorModel Moderator { get; set; }
 
