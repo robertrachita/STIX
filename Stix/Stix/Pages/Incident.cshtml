@@ -1,5 +1,5 @@
 @page
-@model IncidentModel
+@model Stix.Pages.IncidentModel
 @{
     ViewData["Title"] = "Incident";
 }
@@ -17,7 +17,13 @@ body {
 <div class="d-flex flex-column flex-center container mh-100 mw-100 textcolour">
     <div class="mt-2 d-flex flex-row mh-25 mw-100 justify-content-between">
         <h4>@ViewData["IncidentName"]</h4>
-        <button class="btn btn-sm mb-2 rounded- btn-primary buttoncolour">Export as...</button>
+        <form method="post">
+            <select name="file-formats" asp-for="FileFormatType">
+                <option value="pdf">PDF</option>
+                <option value="xlsx">Excel</option>
+            </select>
+            <button type="submit" class="btn btn-sm mb-2 rounded- btn-primary buttoncolour">Export as...</button>
+        </form>
     </div> 
     <p class="mt-4 text-left text-justify mh-50 text-wrap">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
     <div class="container mt-4  w-50 h-50 d-flex p-55 border border-dark"> . </div>
