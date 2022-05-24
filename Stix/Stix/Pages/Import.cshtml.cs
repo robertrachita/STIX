@@ -20,7 +20,6 @@ namespace Stix.Pages
                 var workBook = new Workbook("input.xlsx");
                 workBook.Save("Output.json");
                 return RedirectToPage("Index");
-
             }
 
             return Page();
