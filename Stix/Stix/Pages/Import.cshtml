@@ -4,6 +4,7 @@
 }
 
 <form method="post" enctype="multipart/form-data">
+    <label asp-for="ExcelFile" class="col-sm-2 col-form-label">Upload an excel file</label>
     <input type="file" asp-for="ExcelFile" />
-    <input type="submit" />
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
