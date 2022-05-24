@@ -25,6 +25,7 @@ namespace Stix.Pages
 
                     // Create a Workbook object based on the imported file of type EXCEL(.xlsx)
                     // Display successful conversion and save message with the file name in console
+                    /* {TO DO}: MAKE IMPORT GLOBAL(NOT LOCAL DIRECTORY) */
                     var workBook = new Workbook(fileNameWithoutExtension + ".xlsx");
                     workBook.Save("Output.json");
                     ViewData["ConvertedToJson"] = string.Format("Successfuly converted {0} and saved file to a JSON file", fileNameWithExtension);
