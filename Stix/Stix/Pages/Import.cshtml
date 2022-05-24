@@ -7,4 +7,15 @@
     <label asp-for="ExcelFile" class="col-sm-2 col-form-label">Upload an excel file</label>
     <input type="file" asp-for="ExcelFile" />
     <button type="submit" class="btn btn-primary">Submit</button>
+
+    @if (ViewData["Message"] != null)
+    {
+        <script type="text/javascript">
+            window.onload = function () {
+                alert("@ViewData["Message"]");
+                console.log("@ViewData["Error"]");
+                console.log("@ViewData["ConvertedToJson"]");
+            };
+        </script>
+    }
 </form>
