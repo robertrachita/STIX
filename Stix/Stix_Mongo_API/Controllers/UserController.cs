@@ -39,12 +39,12 @@ namespace Stix_Mongo_API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(User user)
         {
-            var check = await _userService.GetUserAsync(user.Id);
+            //var check = await _userService.GetUserAsync(user.Id);
 
-            if(check.Equals(user))
-            {
-                return Conflict("User exists");
-            }
+            //if(check.Equals(user))
+            //{
+            //    return Conflict("User exists");
+            //}
 
             await _userService.CreateUserAsync(user);
 
