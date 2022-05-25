@@ -26,8 +26,12 @@ namespace Stix.Pages
         [BindProperty]
         public string FileFormatType { get; set; }
 
+        [BindProperty]
+        public string FileLocation { get; set; }
+
         public IActionResult OnPost()
         {
+            ViewData["yes"] = FileLocation;
             // {TO DO} Add try-catch blocks
 
             // Store file format based on selected option
@@ -60,7 +64,7 @@ namespace Stix.Pages
             // Save filled in file in the selected format
             void saveWorkBook(Workbook filledInFile)
             {
-                filledInFile.Save("D:\\Incidents." + format);
+                filledInFile.Save("D:\\Incident" + "." + format);
             }
 
             // Check if format is not null (If post was successful)
@@ -69,7 +73,7 @@ namespace Stix.Pages
             {
                 saveWorkBook(addIncidentInfoToExcelSpreadSheet());
 
-                return RedirectToPage("Index");
+                return Page();
             }
 
             return Page();
