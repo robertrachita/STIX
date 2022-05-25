@@ -1,0 +1,49 @@
+﻿html{
+    height:100%;
+    width:100%;
+    overflow:hidden;
+}
+body {
+    background-image: url("/Resources/Maritime-Cybersecurity-Solutions.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width:100%;
+    height:100%;
+}
+
+#content {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+    height: 80%;
+    border-radius: 5px;
+    border-color: red;
+    margin-top: 17%;  
+}
+
+#stixHeader {
+    color: white;
+    font-size: 2rem;
+    align-self: flex-end;
+}
+
+#stixParagraph {
+    color: white;
+    align-self: flex-end;
+    margin-top: 5%;
+    margin-bottom: 3.5%;
+    margin-right: 20%;
+}
+
+#logRegButt {
+    background-color: skyblue;
+    border-radius: 6px;
+    width: 18%;
+    align-self: flex-end;
+    font-size:20px;
+    color:grey;
+   
+}
+
+@media only screen and (min-width: 600px) {
+}
