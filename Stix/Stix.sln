@@ -8,6 +8,7 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Stix_Mongo_API", "Stix_Mongo_API\Stix_Mongo_API.csproj", "{C80A3EBF-0421-4ABF-B39C-5F986AD2012A}"
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{72FF543B-4AAE-4173-88E4-763988139CDB}"
+
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

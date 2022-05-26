@@ -7,6 +7,9 @@
 
 
 ### Docker and Project Installation Guide (Windows 10 & 11)
+=======
+### Installation Guide (Windows 10 & 11)
+
 
 1. IDE - Visual Studio 2022 (recommended)  [Get from here](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false)
 
@@ -38,6 +41,7 @@ To run the docker image, open Docker Desktop and open the .sln file using Visual
 Click on the tab left of the Start Without Debugging (should be names Stix with a green arrow) and select Docker. Start the service and wait for it to complete configuration
 
 NOTE! First time running you will have to set up your own web certificate. To do so, just confirm on the popup asking you to accept in Visual Studio. Some browsers may display a Warning page where you have to click "Accept the risks and continue" to accept the unknown certificate.
+
 
 ### Troubleshooting
 
@@ -124,3 +128,9 @@ In some cases, when opening Docker for the first time, the service will enter a 
      
 
      
+
+
+### Troubleshooting
+
+In some cases, when opening Docker for the first time, the service will enter a loop of starting and stopping the engine, and trying to access the settings will result in a loading animation. To solve this, run Docker Desktop as admin, click on the Troubleshoot button and then click on Clean/Purge Data. Proceed and select all the items and then restart Docker. This should fix the problem.
+
