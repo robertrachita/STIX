@@ -12,11 +12,25 @@ namespace Stix.Pages
         {
             _logger = logger;
         }
+        
+        [BindProperty]
+        public string incidentName { get; set; } = "Default name";
+        [BindProperty]
+        public string description { get; set; } = "This section describes the incident";
+        [BindProperty]
+        public string addedOn { get; set; } = "2022-02-22\n" +
+            "T69:42:00";
+        [BindProperty]
+        public string viewMore { get; set; } = "";
 
         public void OnGet()
         {
-            string dateTime = DateTime.Now.ToString("d", new CultureInfo("en-NL"));
-            ViewData["TimeStamp"] = dateTime;
+            
+        }
+
+        public void OnPost() 
+        { 
+            
         }
     }
 }
