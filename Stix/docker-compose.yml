@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+
+  stix:
+    image: ${DOCKER_REGISTRY-}stix
+    build:
+      context: .
+      dockerfile: Stix/Dockerfile
+      
+  stix_mongo_api:
+    image: ${DOCKER_REGISTRY-}stixmongoapi
+    build:
+      context: .
+      dockerfile: Stix_Mongo_API/Dockerfile
+    depends_on:
+      - "mongodb"
+
+  mongodb:
+    image: mongo:latest
+    container_name: Stix-Mongo
+    ports:
+      - "27017:27017"
+    depends_on:
+      - "stix"
+
