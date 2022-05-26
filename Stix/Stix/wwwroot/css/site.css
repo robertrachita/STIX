@@ -16,3 +16,11 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+.textcolour {
+    color: #c0c0c0;
+}
+
+.buttoncolour {
+    background-color: #3f729d;
+}
