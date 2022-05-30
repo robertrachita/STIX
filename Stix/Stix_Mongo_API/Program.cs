@@ -9,6 +9,7 @@ builder.Services.Configure<StixDatabaseSettings>(
     builder.Configuration.GetSection("StixDatabase"));
 
 builder.Services.AddSingleton<UserService>();
+builder.Services.AddSingleton<IncidentService>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
