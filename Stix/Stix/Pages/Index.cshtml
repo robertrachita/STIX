@@ -16,6 +16,7 @@
               <th class="descriptionHeader">Description</th>
               <th class="addedOnHeader">Added On</th>
               <th class="viewMoreHeader">View More</th>
+              <th class="approveDelete"></th>
             </tr>
         <!-- loop, can change it to just grab everything from a db-->
         @for (int i = 0; i < 15 ; i++)
@@ -25,6 +26,15 @@
               <td class="centerTableCell">@Model.description</td>
               <td class="centerTableCell">@Model.addedOn</td>
               <td class="rightTableCell">"x"</td>
+              <td class="approveDelete"> <button>Review </button></td>
+              
+   <!-- Function depending on  what rights what to show not sure if should be done like this
+            if(administation level == "admin")
+            {
+                     <td class="approveDelete"> <button>Review </button></td>
+
+            }
+   -->
             </tr> 
         }
           </table>

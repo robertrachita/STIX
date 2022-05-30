@@ -23,6 +23,8 @@ namespace Stix.Pages
         [BindProperty]
         public string viewMore { get; set; } = "";
 
+        public string administrationLevel { get; set; } = "admin"; 
+
         public void OnGet()
         {
             
