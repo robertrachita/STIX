@@ -1,0 +1,56 @@
+﻿* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+html {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    font-family: Arial, Helvetica, sans-serif;
+    color:lightgray;
+}
+body {
+    
+    background-image: url("/Resources/Maritime-Cybersecurity-Solutions.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+
+    width: 100%;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.container-fluid{
+    width:100%;
+    height:100%;
+}
+.push {
+    height: 32%;
+}
+.my-custom-col{
+    height: calc(100vh);
+}
+.content{
+    height:68%
+}
+#stixHeader {
+    padding: 0;
+    margin-bottom: 15%;
+    font-size: 70px;
+    color: #c0c0be;
+}
+#stixParagraph {
+    margin-bottom: 15%;
+    color: #c0c0be;
+    font-size: 25px;
+}
+#logRegButt {
+    font-size: 35px;
+    color: #c0c0be;
+    background-color: #3f729d;
+    border-radius: 12px;
+    border: 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    padding:10px;
+}
