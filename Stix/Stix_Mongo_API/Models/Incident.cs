@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Stix_Mongo_API.Models
 {
-    [BsonIgnoreExtraElements]
+    //[BsonIgnoreExtraElements]
     public class Incident
     {
         [BsonId]
@@ -17,15 +17,16 @@ namespace Stix_Mongo_API.Models
         public List<string>? Sources { get; set; }
 
         //this doesnt break the api, but it doesn't send the correct data to the database and GET will crash
-        
+
         //[BsonElement("Additional")]
         //public dynamic? Additional { get; set; }
 
 
         //this freezes the api
         //TODO: figure out how to get this to work
-        
-        //[BsonExtraElements]        
-        //public BsonDocument? ExtraElements { get; set; }
+        //https://mongodb.github.io/mongo-csharp-driver/2.8/examples/mixing_static_and_dynamic/
+
+        [BsonExtraElements]
+        public BsonDocument? ExtraElements { get; set; }
     }
 }
