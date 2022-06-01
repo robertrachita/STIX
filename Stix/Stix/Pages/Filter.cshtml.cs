@@ -5,14 +5,16 @@ namespace Stix.Pages
 {
     public class FilterModel : PageModel
     {
-        public List<string> checkList { get; set; }  
+        [BindProperty]
+        public string referenceValue { get; set; }
         public void OnGet()
         {
+
         }
 
-        public void onPost()
+        public async Task<IActionResult> OnPost(string referenceNumber)
         {
-            
+            return RedirectToPage("/Index", new {referenceNumber = referenceNumber});    
         }
     }
 }

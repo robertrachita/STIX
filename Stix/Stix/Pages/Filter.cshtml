@@ -10,7 +10,7 @@
                 <h5 class="text-uppercase text-white">Date</h5>
                 <div class="form-check">
                     <label class="form-check-label text-white" >Reference Number</label>
-                    <input class="form-check-input" type="checkbox" name="checkList" value="Reference Number">
+                    <input class="form-check-input" type="checkbox" name="checkList" value="referenceNumber">
                 </div>
                 <div class="form-check">
                     <label class="form-check-label text-white" >Month</label>
@@ -122,11 +122,11 @@
 </form>
 <div class="text-white"></div>
 
-<script>
-document.getElementsByName("checkList")[0].addEventListener('change', doThing);
-
-function doThing() {
-    alert(this.value);
-}
-
-</script>
+<p class="text-white">
+    @if(!string.IsNullOrEmpty(Model.referenceValue))
+    {
+        <script> 
+alert(@Model.referenceValue);
+        </script>
+    }
+</p>

@@ -18,6 +18,7 @@ namespace Stix.Pages
 
         public string query = "SELECT * FROM incidents";
 
+        public string referenceNumber { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger)
         {
