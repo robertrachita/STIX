@@ -41,7 +41,7 @@ namespace Stix_Mongo_API.Controllers
         {
             //var check = await _userService.GetUserAsync(user.Id);
 
-            //if(check.Equals(user))
+            //if (check.Equals(user))
             //{
             //    return Conflict("User exists");
             //}
