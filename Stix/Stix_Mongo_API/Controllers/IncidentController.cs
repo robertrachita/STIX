@@ -37,6 +37,7 @@ namespace Stix_Mongo_API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(Incident incident)
         {
+            //incident.ExtraElements = new MongoDB.Bson.BsonDocument();
             await _incidentService.CreateIncident(incident);
 
             return CreatedAtAction(nameof(Get), new { id = incident.Id.ToString() }, incident);
