@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Stix_Mongo_API.Models
 {
-    
+    [BsonIgnoreExtraElements]
     public class Incident
     {
         [BsonId]
@@ -13,7 +13,19 @@ namespace Stix_Mongo_API.Models
         [BsonElement("Name")] 
         public string? Name { get; set; }
 
-        [BsonExtraElements]
-        public BsonDocument? Additional { get; set; }
+        [BsonElement("Sources")]
+        public List<string>? Sources { get; set; }
+
+        //this doesnt break the api, but it doesn't send the correct data to the database and GET will crash
+        
+        //[BsonElement("Additional")]
+        //public dynamic? Additional { get; set; }
+
+
+        //this freezes the api
+        //TODO: figure out how to get this to work
+        
+        //[BsonExtraElements]        
+        //public BsonDocument? ExtraElements { get; set; }
     }
 }
