@@ -7,12 +7,10 @@ namespace Stix.Pages
     public class LandingModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        private readonly IncidentController controller;
 
-        public IndexModel(ILogger<IndexModel> logger, IncidentController _controller)
+        public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
-            controller = _controller;
         }
 
         [BindProperty]
