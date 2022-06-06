@@ -27,6 +27,6 @@ namespace Stix_Mongo_API.Models
         //https://mongodb.github.io/mongo-csharp-driver/2.8/examples/mixing_static_and_dynamic/
 
         //[BsonExtraElements]
-        public BsonDocument? ExtraElements { get; set; }
+        //public BsonDocument? ExtraElements { get; set; }
     }
 }
