@@ -83,17 +83,27 @@ namespace Stix_Mongo_API.Models
 
     }
 
+    //public class Incident
+    //{
+    //    [BsonId]
+    //    [BsonRepresentation(BsonType.ObjectId)]
+    //    public string? Id { get; set; }
 
-    //this doesnt break the api, but it doesn't send the correct data to the database and GET will crash
+    //    [BsonIgnoreIfNull]
+    //    [BsonElement("name")]
+    //    public string? Name { get; set; }
+    //}
 
-    //[BsonElement("Additional")]
-    //public dynamic? Additional { get; set; }
+        //this doesnt break the api, but it doesn't send the correct data to the database and GET will crash
+
+        //[BsonElement("Additional")]
+        //public dynamic? Additional { get; set; }
 
 
-    //this freezes the api
-    //TODO: figure out how to get this to work
-    //https://mongodb.github.io/mongo-csharp-driver/2.8/examples/mixing_static_and_dynamic/
+        //this freezes the api
+        //TODO: figure out how to get this to work
+        //https://mongodb.github.io/mongo-csharp-driver/2.8/examples/mixing_static_and_dynamic/
 
-    //[BsonExtraElements]
-    //public BsonDocument? ExtraElements { get; set; }
-}
+        //[BsonExtraElements]
+        //public BsonDocument? ExtraElements { get; set; }
+    }
