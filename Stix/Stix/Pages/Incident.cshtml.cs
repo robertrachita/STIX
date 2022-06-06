@@ -9,7 +9,7 @@ namespace Stix.Pages
     public class IncidentModel : PageModel
     {
         [BindProperty]
-        public IncidentInfoModel Incident { get; set; }
+        public Models.IncidentModel Incident { get; set; }
 
         private readonly ILogger<IncidentModel> _logger;
 

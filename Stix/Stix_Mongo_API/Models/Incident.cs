@@ -3,7 +3,7 @@ using MongoDB.Bson.Serialization.Attributes;
 
 namespace Stix_Mongo_API.Models
 {
-    //[BsonIgnoreExtraElements]
+    [BsonIgnoreExtraElements]
     public class Incident
     {
         [BsonId]

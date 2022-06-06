@@ -1,16 +1,19 @@
 ﻿using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Stix.Controllers;
 
 namespace Stix.Pages
 {
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        private readonly IncidentController controller;
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(ILogger<IndexModel> logger, IncidentController _controller)
         {
             _logger = logger;
+            controller = _controller;
         }
         
         [BindProperty]
@@ -25,7 +28,7 @@ namespace Stix.Pages
 
         public void OnGet()
         {
-            
+            List<IncidentModel> incidents = new List<IncidentModel>();
         }
 
         public void OnPost() 
