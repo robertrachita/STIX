@@ -80,6 +80,9 @@ namespace Stix_Mongo_API.Models
         [BsonElement("References")]
         public List<string>? References { get; set; }
 
+        //[BsonExtraElements]
+        //public BsonDocument? ExtraElements { get; set; }
+
 
     }
 
@@ -94,16 +97,16 @@ namespace Stix_Mongo_API.Models
     //    public string? Name { get; set; }
     //}
 
-        //this doesnt break the api, but it doesn't send the correct data to the database and GET will crash
+    //this doesnt break the api, but it doesn't send the correct data to the database and GET will crash
 
-        //[BsonElement("Additional")]
-        //public dynamic? Additional { get; set; }
+    //[BsonElement("Additional")]
+    //public dynamic? Additional { get; set; }
 
 
-        //this freezes the api
-        //TODO: figure out how to get this to work
-        //https://mongodb.github.io/mongo-csharp-driver/2.8/examples/mixing_static_and_dynamic/
+    //this freezes the api
+    //TODO: figure out how to get this to work
+    //https://mongodb.github.io/mongo-csharp-driver/2.8/examples/mixing_static_and_dynamic/
 
-        //[BsonExtraElements]
-        //public BsonDocument? ExtraElements { get; set; }
-    }
+    //[BsonExtraElements]
+    //public BsonDocument? ExtraElements { get; set; }
+}
