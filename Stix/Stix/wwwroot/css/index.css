@@ -1,4 +1,4 @@
-* {
+{
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
@@ -10,26 +10,19 @@ body {
 	background-color: #030f1d;
 	background-image: url("../resources/background.png");
 	background-repeat: no-repeat;
-  	background-size: cover;
+	background-size: cover;
 }
 
 ul {
 	list-style-type: none;
 }
 
-table {
-    color: #c0c0c0;
-    width: 85%;
-    margin: 1em 1em;
-    border-collapse: collapse;
-}
-
 th {
-    padding: 8px;
+	padding: 8px;
 }
 
 td {
-    padding: 8px;
+	padding: 8px;
 }
 
 a {
@@ -43,107 +36,99 @@ a {
 	height: 100%;
 }
 
-.navbar {
-    height: 9vh;
-}
-
-.navbar .flex {
-	justify-content: space-between;
-}
-
-.navbar .stixDb{
-    font-size: 30px;
-}
-
-.navbar a {
-    color: #c0c0c0;
-    padding: 0 1vw;
-	margin: 0.5em 0em;
-    font-size: 19px;
-}
-
-.navbar ul {
-	display: flex;
-    margin: auto;
-}
-
 .horizontalBreak {
-    background-color: white;
-    height: 0.5vh;
+	background-color: white;
+	height: 0.5vh;
 }
 
-.overviewTableContainer {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-    width: 100%;
-    height: 75vh;
-    overflow: auto;
-    display: block;
+.tableHeader {
+	background-color: #ddd;
+	position: sticky;
+	top: 0;
+	z-index: 9999;
+	color:black;
+}
+
+.table {
+	color: #c0c0c0;
+	width: 100%;
+	border-collapse: collapse;
+	--bs-table-hover-color: #ffffff;
+	--bs-table-hover-bg: rgba(0, 0, 0, 0.075);
+}
+
+.tableContainer {
+	-ms-overflow-style: none; /* IE and Edge */
+	scrollbar-width: none; /* Firefox */
+	width: 100%;
+	height: 75vh;
+	overflow: auto;
+	display: block;
 }
 
 .overviewTable {
-    margin: 0 auto;
+	margin: 0 auto;
 }
 
 ::-webkit-scrollbar {
-    width: 0;  /* Remove scrollbar space */
-    background: transparent;  /* Optional: just make scrollbar invisible */
+	width: 0; /* Remove scrollbar space */
+	background: transparent; /* Optional: just make scrollbar invisible */
 }
 
 .overviewTable {
-    text-align:left
+	text-align: left
 }
 
 .incidentHeader {
-    border-bottom: 1px solid silver;
-    border-right: 1px solid silver;
+	border-bottom: 1px solid silver;
+	border-right: 1px solid silver;
 }
 
-.descriptionHeader, .addedOnHeader{
-    border-bottom: 1px solid silver;
-    border-right: 1px solid silver;
+.descriptionHeader, .addedOnHeader {
+	border-bottom: 1px solid silver;
+	border-right: 1px solid silver;
 }
 
 .addedOnHeader {
-    width: 10%;
+	width: 10%;
 }
 
 .viewMoreHeader {
-    border-bottom: 1px solid silver;
+	border-bottom: 1px solid silver;
 }
 
 .leftTableCell {
-    border-bottom: 1px solid silver;
-    border-right: 1px solid silver;
+	border-bottom: 1px solid silver;
+	border-right: 1px solid silver;
 }
 
 .rightTableCell {
-    border-bottom: 1px solid silver;
-    text-align: center;
+	border-bottom: 1px solid silver;
+	text-align: center;
 }
 
 .centerTableCell {
-    border-bottom: 1px solid silver;
-    border-right: 1px solid silver;
+	border-bottom: 1px solid silver;
+	border-right: 1px solid silver;
 }
 
 .filterSortContainer {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: 10px;
+	display: flex;
+	justify-content: flex-end;
+	margin-top: 10px;
 }
 
 .filterSortContainer button {
-	display:inline-block;
-	padding:0.4em 1.2em;
-	margin:0 0.3em 0.3em 0;
-	border-radius:12px;
+	display: inline-block;
+	padding: 0.4em 1.2em;
+	margin: 0 0.3em 0.3em 0;
+	border-radius: 12px;
 	box-sizing: border-box;
-	text-decoration:none;
-	font-size:20px;
-	color: #c0c0c0;;
-	background-color:#3f729d;
-	text-align:center;
+	text-decoration: none;
+	font-size: 20px;
+	color: #c0c0c0;
+	background-color: #3f729d;
+	text-align: center;
 	transition: all 0.2s;
 }
 
@@ -158,7 +143,7 @@ h6:hover{
 a, a:focus, a:active {
     text-decoration: none;
     color: dodgerblue;
- 
+
 }
 label {
     color: white;
