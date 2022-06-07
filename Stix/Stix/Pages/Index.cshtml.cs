@@ -30,33 +30,7 @@ namespace Stix.Pages
         {
             try
             {
-                string conn = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='C:\\Chris\\Period 4\\Northwind.mdf';Integrated Security=True;Connect Timeout=30";
-                using (SqlConnection connection = new SqlConnection(conn))
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        if(!string.IsNullOrEmpty(this.searchString))
-                        {
-                            command.Parameters.AddWithValue("@Name", '%' + this.searchString + '%');
-                        }
-                        using (SqlDataReader reader = command.ExecuteReader())
-                        {
-                            while (reader.Read())
-                            {
-                                IncidentsModel info = new IncidentsModel();
-                                info.Id = reader.GetInt32(0);
-                                info.Name = reader.GetString(1);
-                                info.Description = reader.GetString(2);
-                                info.Reference_Number = reader.GetInt32(3);
-                                info.Month = reader.GetInt32(4);
-                                info.Year = reader.GetInt32(5);
-
-                                infos.Add(info);
-                            }
-                        }
-                    }
-                }
+                
             }
             catch (Exception ex)
             {
