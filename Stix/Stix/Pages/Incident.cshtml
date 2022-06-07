@@ -1,5 +1,5 @@
 @page
-@model IncidentModel
+@model Stix.Pages.IncidentModel
 @{
     ViewData["Title"] = "Incident";
 }
@@ -17,12 +17,35 @@ body {
 <div class="d-flex flex-column flex-center container mh-100 mw-100 textcolour">
     <div class="mt-2 d-flex flex-row mh-25 mw-100 justify-content-between">
         <h4>@ViewData["IncidentName"]</h4>
-        <button class="btn btn-sm mb-2 rounded- btn-primary buttoncolour">Export as...</button>
+        <form method="post" enctype="multipart/form-data">
+            <select name="file-formats" asp-for="FileFormatType">
+                <option value="pdf">PDF</option>
+                <option value="xlsx">Excel</option>
+            </select>
+            <input type="file" id="export-directory" webkitdirectory directory multiple/>
+            <button type="submit" class="btn btn-sm mb-2 rounded- btn-primary buttoncolour">Export as...</button>
+        </form>
     </div> 
     <p class="mt-4 text-left text-justify mh-50 text-wrap">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
     <div class="container mt-4  w-50 h-50 d-flex p-55 border border-dark"> . </div>
     <div class="d-flex flex-left flex-row"><p class="w-25 mh-10">Date of the incident</p> @ViewData["IncidentDate"]</div>
     <div class="d-flex flex-left flex-row"><p class="w-25 mh-10">Date added</p> @ViewData["IncidentAdded"]</div>
     <div class="d-flex flex-left flex-row"><p class="w-25 mh-10">Source(s)</p> @ViewData["IncidentSource"]</div>
+    
+
+    <!-- Javascript for file in form-->
+    <script>
+        let input = document.getElementById('export-directory');
+
+        input.addEventListener('change', (event) => {
+            let files = event.target.files;
+
+          for (let i = 0; i < files.length; i++) {
+              let file = files[i];
+              console.log(file.webkitRelativePath);
+          }
+        })
+
+    </script>
 </div>
 
