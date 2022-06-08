@@ -9,7 +9,7 @@ namespace Stix.Controllers
     {
         private static readonly String conn = "https://localhost:51104/api/incident/";
  
-        public async Task<List<IncidentModel>> Index()
+        public static async Task<List<IncidentModel>> Index()
         {
             List<IncidentModel> incidents = new List<IncidentModel>();
 
