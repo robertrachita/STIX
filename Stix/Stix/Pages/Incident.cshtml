@@ -17,12 +17,13 @@ body {
 <div class="d-flex flex-column flex-center container mh-100 mw-100 textcolour">
     <div class="mt-2 d-flex flex-row mh-25 mw-100 justify-content-between">
         <h4>@ViewData["IncidentName"]</h4>
-        <form method="post" enctype="multipart/form-data">
+        <form method="post">
             <select name="file-formats" asp-for="FileFormatType">
                 <option value="pdf">PDF</option>
                 <option value="xlsx">Excel</option>
+                <option value="xml">XML</option>
+                <option value="csv">CSV</option>
             </select>
-            <input type="file" id="export-directory" webkitdirectory directory multiple/>
             <button type="submit" class="btn btn-sm mb-2 rounded- btn-primary buttoncolour">Export as...</button>
         </form>
     </div> 
@@ -31,21 +32,5 @@ body {
     <div class="d-flex flex-left flex-row"><p class="w-25 mh-10">Date of the incident</p> @ViewData["IncidentDate"]</div>
     <div class="d-flex flex-left flex-row"><p class="w-25 mh-10">Date added</p> @ViewData["IncidentAdded"]</div>
     <div class="d-flex flex-left flex-row"><p class="w-25 mh-10">Source(s)</p> @ViewData["IncidentSource"]</div>
-    
-
-    <!-- Javascript for file in form-->
-    <script>
-        let input = document.getElementById('export-directory');
-
-        input.addEventListener('change', (event) => {
-            let files = event.target.files;
-
-          for (let i = 0; i < files.length; i++) {
-              let file = files[i];
-              console.log(file.webkitRelativePath);
-          }
-        })
-
-    </script>
 </div>
 

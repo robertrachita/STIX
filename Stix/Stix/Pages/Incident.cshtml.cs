@@ -40,7 +40,6 @@ namespace Stix.Pages
 
         public IActionResult OnPost()
         {
-            ViewData["yes"] = FileLocation;
             // {TO DO} Add try-catch blocks
 
             // Store file format based on selected option
@@ -58,13 +57,13 @@ namespace Stix.Pages
                 Cell incidentNameCell = workSheet.Cells["A1"];
                 incidentNameCell.PutValue("Incident name");
 
-                Cell incidentDateCell = workSheet.Cells["B1"];
+                Cell incidentDateCell = workSheet.Cells["A2"];
                 incidentDateCell.PutValue("Incident date " + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss", new CultureInfo("en-NL")));
 
-                Cell incidentAddedDateCell = workSheet.Cells["C1"];
+                Cell incidentAddedDateCell = workSheet.Cells["A3"];
                 incidentAddedDateCell.PutValue("Incident added date " + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss", new CultureInfo("en-NL")));
 
-                Cell incidentSourceCell = workSheet.Cells["D1"];
+                Cell incidentSourceCell = workSheet.Cells["A4"];
                 incidentSourceCell.PutValue("Incident source");
 
                 return workBook;
@@ -82,7 +81,7 @@ namespace Stix.Pages
             {
                 saveWorkBook(addIncidentInfoToExcelSpreadSheet());
 
-                return Page();
+                return RedirectToPage("Index");
             }
 
             return Page();
