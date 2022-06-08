@@ -7,10 +7,15 @@ namespace Stix.Pages
     public class LandingModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
+        private IncidentController incidentController;
+        public dynamic incidentList;
 
         public IndexModel(ILogger<IndexModel> logger)
+            
         {
             _logger = logger;
+            incidentController = new IncidentController();
+            incidentList = incidentController.Index();
         }
 
         [BindProperty]
@@ -32,5 +37,6 @@ namespace Stix.Pages
         {
 
         }
+
     }
 }
