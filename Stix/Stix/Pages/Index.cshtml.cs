@@ -15,7 +15,7 @@ namespace Stix.Pages
         {
             _logger = logger;
             incidentController = new IncidentController();
-            incidentList = IncidentController.Index();
+            GetIncidents();
         }
 
         [BindProperty]
@@ -35,6 +35,12 @@ namespace Stix.Pages
         public void OnPost()
         {
 
+        }
+        
+        public async void GetIncidents()
+        {
+            this.incidentList = await IncidentController.Index();
+            //return 
         }
 
     }
