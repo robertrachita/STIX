@@ -11,14 +11,14 @@ namespace Stix_Mongo_API.Models
         public string? Id { get; set; }
 
         [BsonIgnoreIfNull]
-        [BsonElement("ReferenceNumber")]
-        public string? Reference { get; set; }
+        [BsonElement("ReferenceID")]
+        public string? ReferenceID { get; set; }
 
         [BsonElement("Month")]
-        public int Month { get; set; }
+        public string? Month { get; set; }
 
         [BsonElement("Year")]
-        public int Year { get; set; }
+        public string? Year { get; set; }
 
         [BsonElement("Title")]
         public String Title { get; set; }
