@@ -10,8 +10,7 @@ namespace Stix.Pages
         private IncidentController incidentController;
         public dynamic incidentList;
 
-        public IndexModel(ILogger<IndexModel> logger)
-            
+        public IndexModel(ILogger<IndexModel> logger)   
         {
             _logger = logger;
             incidentController = new IncidentController();
@@ -39,7 +38,7 @@ namespace Stix.Pages
         
         public async void GetIncidents()
         {
-            //this.incidentList = await IncidentController.Index();
+            this.incidentList = await IncidentController.Index();
             //return 
         }
 
