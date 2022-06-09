@@ -17,10 +17,10 @@ namespace Stix_Mongo_API.Controllers
             _incidentService = incidentService;
         }
 
-        [HttpGet]
+        [HttpGet("GetAllIncidents.{format}"), FormatFilter]
         public async Task<List<Incident>> Get() =>
             await _incidentService.GetAllIncidents();
-            
+
         [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<Incident>> Get(string id)
         {
