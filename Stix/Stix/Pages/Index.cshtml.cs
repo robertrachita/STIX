@@ -3,7 +3,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Data.SqlClient;
 using Stix.Models;
+using MongoDB.Driver;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using MongoDB.Bson;
 
 namespace Stix.Pages
 {
@@ -16,21 +18,22 @@ namespace Stix.Pages
         [BindProperty (SupportsGet = true)]
         public string searchString { get; set; }
 
-        public string query = "SELECT * FROM incidents";
-
-        public string referenceNumber { get; set; }
-
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
-            this.getIncidents(query);
+            this.getIncidents();
         }
 
-        public void getIncidents(string query)
+        public async void getIncidents()
         {
             try
             {
-                
+                MongoClient dbClient = new MongoClient("mongodb://localhost:27017");
+                IMongoDatabase database = dbClient.GetDatabase("Stix");
+                IMongoCollection<IncidentsModel> collection = database.GetCollection<IncidentsModel>("Incidents");
+                //var results = await collection.FindAsync(_ => true); 
+                var results = collection.Find(new BsonDocument());
+                this.infos = results.ToList();
             }
             catch (Exception ex)
             {
@@ -52,11 +55,7 @@ namespace Stix.Pages
 
         public async Task OnGetAsync()
         {
-            if (!string.IsNullOrEmpty(searchString))
-            {
-                this.query = "SELECT * FROM incidents WHERE title LIKE @NAME";
-                this.getIncidents(query);
-            }
+
         }
 
         public void OnPost() 
