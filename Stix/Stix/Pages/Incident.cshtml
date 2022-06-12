@@ -10,6 +10,11 @@ body {
   background: rgb(13,81,109);
   background: radial-gradient(circle, rgba(13,81,109,1) 0%, rgba(9,51,70,1) 51%, rgba(3,16,22,1) 91%);
 }
+.attackPattern{
+    width:50px;
+    height:50px;
+    background-image: url("/Resources/attack_pattern");
+}
 </style>
 </head>
 
@@ -27,7 +32,10 @@ body {
         </form>
     </div> 
     <p class="mt-4 text-left text-justify mh-50 text-wrap">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
-    <div class="container mt-4  w-50 h-50 d-flex p-55 border border-dark"> . </div>
+     <div class="container mt-4 w-100 h-auto p-55 border border-dark min-vh-50">
+       <img src=~/Resources/attack_pattern.png alt="Attack Pattern" width="100" height="100">
+
+    </div>
     <div class="d-flex flex-left flex-row"><p class="w-25 mh-10">Date of the incident</p> @ViewData["IncidentDate"]</div>
     <div class="d-flex flex-left flex-row"><p class="w-25 mh-10">Date added</p> @ViewData["IncidentAdded"]</div>
     <div class="d-flex flex-left flex-row"><p class="w-25 mh-10">Source(s)</p> @ViewData["IncidentSource"]</div>

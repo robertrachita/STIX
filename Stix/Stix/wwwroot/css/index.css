@@ -146,3 +146,8 @@ a {
 	text-align:center;
 	transition: all 0.2s;
 }
+.attackPattern {
+    width: 50px;
+    height: 50px;
+    background-image: url("/Resources/attack_pattern");
+}
