@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Stix.Models;
 using MongoDB.Driver;
 using MongoDB.Bson;
+using System.Text.RegularExpressions;
 
 namespace Stix.Pages
 {
@@ -63,12 +64,12 @@ namespace Stix.Pages
                 Console.WriteLine("Exception: " + ex.ToString());
             }
         }
-
         /*
+         * Search function
          * There are 4 ways to do this: MQL, BsonDocument, Builder, and LINQ & Mapping Classes
          */
-        [HttpGet]
-        public async Task OnGetAsync()
+        [HttpPost]
+        public async Task OnPostAsync()
         {
             if (string.IsNullOrEmpty(searchString))
             {
@@ -76,7 +77,17 @@ namespace Stix.Pages
             }
             IMongoDatabase database = _client.GetDatabase("Stix");
             var collection = database.GetCollection<IncidentsModel>("Incidents");
-            var filter = Builders<IncidentsModel>.Filter.Eq("title", "Germany");
+
+            //var query = new BsonRegularExpression(new Regex(searchString, RegexOptions.IgnoreCase));
+            //var builder = Builders<IncidentsModel>.Filter;
+            //var filter = builder.Regex("name", query);
+            var searchFilter = Builders<IncidentsModel>.Filter.Regex("name", new BsonRegularExpression(new Regex(searchString, RegexOptions.IgnoreCase)));
+            this.infos = await collection.Find(searchFilter).ToListAsync();
+
+            /* var search = Builders<IncidentsModel>.Filter.Eq("title", "Germany");*/
+
+            //var filter = collection.Where(x => x.Name.Equals("Hapag-Lloyd hit by spear-phishing attack in Hamburg, Germany"));
+            //this.infos = search.ToList();
         }
 
     }
