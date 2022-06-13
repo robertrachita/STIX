@@ -7,9 +7,9 @@ namespace Stix.Controllers
 {
     public class IncidentController : Controller
     {
-        private static readonly String conn = "https://localhost:52189/api/incident/";
+        private static readonly String conn = "https://localhost:60383/api/incident/";
  
-        public static async Task<List<IncidentModel>> Index()
+        public static async Task<JsonResult> Index()
         {
             List<IncidentModel> incidents = new List<IncidentModel>();
 
@@ -22,7 +22,7 @@ namespace Stix.Controllers
                 }
             }
 
-            return incidents;
+            return new JsonResult(incidents);
         }
     }
 }
