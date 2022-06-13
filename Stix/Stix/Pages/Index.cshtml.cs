@@ -8,7 +8,8 @@ namespace Stix.Pages
     {
         private readonly ILogger<IndexModel> _logger;
         private IncidentController incidentController;
-        public dynamic incidentList;
+        [BindProperty]
+        public dynamic incidentList { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger)   
         {
@@ -24,8 +25,7 @@ namespace Stix.Pages
         [BindProperty]
         public string addedOn { get; set; } = "2022-02-22\n" +
             "T69:42:00";
-        [BindProperty]
-        public string viewMore { get; set; } = "";
+        
 
         public void OnGet()
         {
@@ -38,7 +38,7 @@ namespace Stix.Pages
         
         public async void GetIncidents()
         {
-            this.incidentList = await IncidentController.Index();
+           //this.incidentList = await IncidentController.Index();
             //return 
         }
 
