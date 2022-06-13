@@ -13,21 +13,32 @@
 
 <body>
     <header>
+            <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" asp-page="/Index">STIX Database <span class="badge bg-dark mx-2">v1.01</span></a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navmenu"> 
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="navbar">
-		    <div class="container flex">
-                <a class="stixDb" href="">STIX Database</a>
-			    <nav>
-				    <ul>
-					    <li><a href="">Add New Incident</a></li>
-					    <li><a asp-page="/Import">Import</a></li>
-					    <li><a href="">About</a></li>
-					    <li><a href="">My Account</a></li>
-				    </ul>
-			    </nav>
-		    </div>
+            <div class="collapse navbar-collapse" id="navmenu">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a href="" class="nav-link">Add new incident</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="" class="nav-link">Import</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-page="moderator/Moderator">About</a>
+                    </li>
+                    <li class="nav-item log-out">
+                        <a class="nav-link button btn-outline-dark" asp-page="login/LoginUser">Log out</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-
+    </nav>
     </header>
 
     <div class="horizontalBreak flex"></div>

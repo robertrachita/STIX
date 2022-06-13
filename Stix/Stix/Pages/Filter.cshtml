@@ -1,0 +1,125 @@
+﻿@page
+@model Stix.Pages.FilterModel
+@{
+}
+<h2 class="nav-link text-white text-center">Filter By</h2>
+
+<form method="post" class="form-check position-static">
+    <div class="d-flex justify-content-between w-auto">
+        @{
+            foreach (var item in Model._filters)
+            {
+                <div>
+                    <h5 class="text-uppercase text-white">Date</h5>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Happened On</label>
+                        <input class="form-check-input" type="checkbox" checked="@item.Date" asp-for="@Model.date">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Added On</label>
+                        <input class="form-check-input" type="checkbox">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-uppercase text-white">Incident Explanation</h5>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Title</label>
+                        <input class="form-check-input" type="checkbox" checked="@item.Title" asp-for="@Model.title">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Description</label>
+                        <input class="form-check-input" type="checkbox" checked="@item.Description" asp-for="@Model.description">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Additional Information</label>
+                        <input class="form-check-input" type="checkbox" checked="@item.Summary">
+                    </div>
+                </div>
+
+                <div>
+                    <h5 class="text-uppercase text-white">Collateral Damage</h5>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Impact Area</label>
+                        <input class="form-check-input" type="checkbox" checked="@item.Impacted_area">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Victim Location</label>
+                        <input class="form-check-input" type="checkbox" checked="@item.Location">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Victim Country</label>
+                        <input class="form-check-input" type="checkbox">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Victim Identity</label>
+                        <input class="form-check-input" type="checkbox" checked="@item.Victim_identity">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Victim Type</label>
+                        <input class="form-check-input" type="checkbox">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Affected System</label>
+                        <input class="form-check-input" type="checkbox">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Impact</label>
+                        <input class="form-check-input" type="checkbox">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-uppercase text-white">Gathered Modus Operandi Intelligence</h5>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Method</label>
+                        <input class="form-check-input" type="checkbox">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Social Engineering Technique</label>
+                        <input class="form-check-input" type="checkbox">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Malware Type</label>
+                        <input class="form-check-input" type="checkbox">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Ransomware Type</label>
+                        <input class="form-check-input" type="checkbox">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Attack Pattern</label>
+                        <input class="form-check-input" type="checkbox">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Campaign</label>
+                        <input class="form-check-input" type="checkbox">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-uppercase text-white">Attacker Data</h5>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Threat Actor Country</label>
+                        <input class="form-check-input" type="checkbox">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Threat Actor</label>
+                        <input class="form-check-input" type="checkbox">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-white text-uppercase">Appendecies</h5>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Reference(short)</label>
+                        <input class="form-check-input" type="checkbox">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Reference(full)</label>
+                        <input class="form-check-input" type="checkbox">
+                    </div>
+                </div>
+            }
+        }
+    </div>
+        <button type="submit" class="btn-sm btn-success" style="float:right">Ok</button>
+</form>
+
+
