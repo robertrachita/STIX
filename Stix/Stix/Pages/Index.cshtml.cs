@@ -15,10 +15,6 @@ namespace Stix.Pages
         // Incidents fields
         public List<IncidentsModel> infos = new List<IncidentsModel>();
 
-        // Search function fields
-        [BindProperty (SupportsGet = true)]
-        public string searchString { get; set; }
-
         // Filter function fields
         public List<FiltersModel> _filters = new List<FiltersModel>();
 
@@ -71,8 +67,9 @@ namespace Stix.Pages
         [HttpPost]
         public async Task OnPostAsync()
         {
-            if (string.IsNullOrEmpty(searchString))
+/*            if (string.IsNullOrEmpty(searchString))
             {
+                this.getIncidents();
                 return;
             }
             IMongoDatabase database = _client.GetDatabase("Stix");
@@ -84,10 +81,10 @@ namespace Stix.Pages
             var searchFilter = Builders<IncidentsModel>.Filter.Regex("name", new BsonRegularExpression(new Regex(searchString, RegexOptions.IgnoreCase)));
             this.infos = await collection.Find(searchFilter).ToListAsync();
 
-            /* var search = Builders<IncidentsModel>.Filter.Eq("title", "Germany");*/
+            *//* var search = Builders<IncidentsModel>.Filter.Eq("title", "Germany");*//*
 
             //var filter = collection.Where(x => x.Name.Equals("Hapag-Lloyd hit by spear-phishing attack in Hamburg, Germany"));
-            //this.infos = search.ToList();
+            //this.infos = search.ToList();*/
         }
 
     }
