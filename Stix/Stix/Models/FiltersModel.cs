@@ -1,6 +1,7 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 namespace Stix.Models
 {
+    [BsonIgnoreExtraElements]
     public class FiltersModel
     {
 
