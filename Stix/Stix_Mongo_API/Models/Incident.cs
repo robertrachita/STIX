@@ -17,6 +17,9 @@ namespace Stix_Mongo_API.Models
         [BsonElement("Month")]
         public string? Month { get; set; }
 
+        [BsonElement("Pending")]
+        public bool? Pending { get; set; }
+
         [BsonElement("Year")]
         public string? Year { get; set; }
 

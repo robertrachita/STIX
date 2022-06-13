@@ -21,7 +21,8 @@ namespace Stix_Mongo_API.Controllers
         public async Task<List<Incident>> Get() =>
             await _incidentService.GetAllIncidents();
 
-        [HttpGet("{id:length(24)}")]
+        //[HttpGet("{id:length(24)}")]
+        [HttpGet("GetIncident.{id:length(24)}.{format}"), FormatFilter]
         public async Task<ActionResult<Incident>> Get(string id)
         {
             var incident = await _incidentService.GetIncident(id);
@@ -33,8 +34,9 @@ namespace Stix_Mongo_API.Controllers
 
             return incident;
         }
-
-        [HttpPost]
+        //write logic for xml
+        //[HttpPost("PostIncident.{format}"), FormatFilter]
+        [HttpPost("PostIncident")]
         public async Task<IActionResult> Post(Incident incident)
         {
             //incident.ExtraElements = new MongoDB.Bson.BsonDocument();
@@ -43,7 +45,7 @@ namespace Stix_Mongo_API.Controllers
             return CreatedAtAction(nameof(Get), new { id = incident.Id.ToString() }, incident);
         }
 
-        [HttpPut("{id:length(24)}")]
+        [HttpPut("UpdateIncidents.{id:length(24)}.{format}"), FormatFilter]
         public async Task<IActionResult> Update(string id, Incident incidentIn)
         {
             var incident = await _incidentService.GetIncident(id);
@@ -58,7 +60,7 @@ namespace Stix_Mongo_API.Controllers
             return Accepted();
         }
 
-        [HttpDelete("{id:length(24)}")]
+        [HttpDelete("DeleteIncident.{id:length(24)}")]
         public async Task<IActionResult> Delete(string id)
         {
             var incident = await _incidentService.GetIncident(id);
