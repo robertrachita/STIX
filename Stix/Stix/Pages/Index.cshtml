@@ -10,8 +10,8 @@
 </style>
 <br />
     <div class="filterSortContainer d-flex justify-content-between">
-        <form method="get">
-            <input type="text" placeholder="Search...." name="searchString" class="form-group">
+        <form method="post" enctype="multipart/form-data">
+            <input type="text" placeholder="Search...." class="form-group" asp-for="@Model.searchString">
             <button type="submit" class="btn btn-primary"> <i class="fa fa-search"></i> </button>
         </form>
         <div class="d-flex flex-row">
@@ -42,7 +42,9 @@
                     </div>
                 </div>
             </div>
-            <a asp-page="Filter"class="link-light"><button type="button" class="btn btn-secondary btn-outline-dark btn-sm" >Filter</button> </a>
+            <a asp-page="/Filter">
+        <button type="submit" class="btn btn-secondary btn-outline-dark btn-sm">Filter</button> 
+                </a>
         </div>
     </div>
 
@@ -50,10 +52,28 @@
         <table class="table table-responsive table-condensed table-hover">
         <thead>
             <tr class="tableHeader">
-                <th class="incidentHeader">Incident Name</th>
-                <th class="descriptionHeader">Description</th>
-                <th class="addedOnHeader">Added On</th>
-                <th class="viewMoreHeader">View More</th>
+                @{
+                    foreach(var value in Model._filters)
+                    {
+                        if(value.Title)
+                        {
+                                <th>Title</th>
+                        }
+                        if (value.Description)
+                        {
+                                <th>Description</th>
+                        }
+                        if (value.Date)
+                        {
+                                <th>Date</th>
+                        }
+                        if (value.Method)
+                        {
+                                <th>Method</th>
+                        }
+                    }
+                }
+                <th>View</th>
             </tr>
         </thead>
             
@@ -62,13 +82,31 @@
     {
             <tbody>
             <tr>
-                <td class="leftTableCell">@item.Name</td>
-                <td class="centerTableCell">@item.Description</td>
-                <td class="centerTableCell">@item.Month @item.Year</td>
+                    @{
+                        foreach(var variable in Model._filters)
+                        {
+                            if (variable.Title)
+                            {
+                                <td class="leftTableCell">@item.Name</td>
+                            }
+                            if (variable.Description)
+                            {
+                                <td class="centerTableCell">@item.Description</td>
+                            }
+                            if (variable.Date)
+                            {
+                                <td class="centerTableCell">@item.Month-@item.Year</td>
+                            }
+                        }
+                    }
                 <td class="rightTableCell"><a class="btn btn-primary btn-sm" href="moderator/Moderator?id=@item.Id">X</a></td>
             </tr>
         </tbody>  
     }
         </table>
+        <div class="text-white">         
+            @Model.searchString
+        </div>
     </div>
+
 
