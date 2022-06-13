@@ -132,3 +132,29 @@ a {
 	transition: all 0.2s;
 	}
 
+  h6 {
+      color: white;
+      margin-top: 2vh;
+      margin-bottom: 2vh;
+  }
+  h6:hover{
+      color:cornflowerblue;
+  }
+  a, a:focus, a:active {
+      text-decoration: none;
+      color: dodgerblue;
+
+  }
+  label {
+      color: white;
+      font-size:20px;
+  }
+  .form-group {
+      margin-top:5vh;
+  }
+
+  .attackPattern {
+      width: 50px;
+      height: 50px;
+      background-image: url("/Resources/attack_pattern");
+  }

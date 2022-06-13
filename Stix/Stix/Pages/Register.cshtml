@@ -3,6 +3,7 @@
 @{
     ViewData["Title"] = "Register User";
 }
+  <div class="form-group d-flex justify-content-center">
 
 <form method="post">
     <div class="form-group">
@@ -13,7 +14,7 @@
     </div>
 
     <div class="form-group">
-        <label for="registerEmailUsers">User name</label>
+        <label for="registerEmailUsers">Email</label>
 
         <input type="text" asp-for="User.email" class="form-control" id="registerEmailUsers"
                placeholder="Enter your email">
@@ -28,7 +29,13 @@
         <small id="registerPasswordMinRequirements" class="form-text text-muted">Password should be at least 8
             characters long, contain at least one uppercase character and a special character</small>
     </div>
-
+    <a href="registerModerator"> 
+    <h6> Register moderator.. </h6> 
+    </a>
+    <a href="login"> 
+    <h6> Login.. </h6> 
+    </a>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+</div>
 

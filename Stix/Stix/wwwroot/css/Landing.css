@@ -54,3 +54,14 @@ body {
     display: inline-block;
     padding:10px;
 }
+.signUp {
+    font-size: 35px;
+    color: #c0c0be;
+    background-color: #3f729d;
+    border-radius: 12px;
+    border: 0;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    padding: 10px;
+}
