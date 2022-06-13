@@ -30,6 +30,28 @@ namespace Stix.Pages
             ViewData["IncidentDate"] = dateTime;
             ViewData["IncidentAdded"] = dateTime;
             ViewData["IncidentSource"] = "https://www.definitely-a-valid-source.com/incident";
+            /* {TO DO}: Uncomment this when API is implemented and change the values to the appropriate names*/
+            //ViewData["IncidentCampaign"] = Incident.campaign;
+            //ViewData["IncidentIndicator"] = Incident.Indicator;
+            //ViewData["IncidentThreatActor"] = Incident.ThreatActor;
+            //ViewData["IncidentVulnerability"] = Incident.Vulnerability;
+
+            //ViewData["IncidentCourseOfAction"] = Incident.CourseOfAction;
+            //ViewData["IncidentGrouping"] = Incident.Grouping;
+            //ViewData["IncidentIdentity"] = Incident.Identity;
+            //ViewData["IncidentInfrastructure"] = Incident.Infrastructure;
+            //ViewData["IncidentIntrusionSet"] = Incident.IntrusionSet;
+            //ViewData["IncidentLocation"] = Incident.Location;
+            //ViewData["IncidentMalware"] = Incident.Malware;
+            //ViewData["IncidentMalwareAnalysis"] = Incident.MalwareAnalysis;
+            //ViewData["IncidentNote"] = Incident.Note;
+            //ViewData["IncidentObservedData"] = Incident.ObservedData;
+            //ViewData["IncidentOpinion"] = Incident.Opinion;
+            //ViewData["IncidentRelationship"] = Incident.Relationship;
+            //ViewData["IncidentReport"] = Incident.Report;
+            //ViewData["IncidentSighting"] = Incident.Sighting;
+            //ViewData["IncidentTool"] = Incident.Tool;
+            //ViewData["IncidentAttackPattern"] = Incident.AttackPattern;
         }
 
         [BindProperty]
