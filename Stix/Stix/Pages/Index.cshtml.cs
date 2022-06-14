@@ -38,7 +38,7 @@ namespace Stix.Pages
         
         public async void GetIncidents()
         {
-           //this.incidentList = await IncidentController.Index();
+            this.incidentList = await IncidentController.Index();
             //return 
         }
 
