@@ -83,6 +83,9 @@ namespace Stix_Mongo_API.Models
         [BsonElement("References")]
         public List<string>? References { get; set; }
 
+        [BsonElement("AdditionalInfo")]
+        public List<string>? AdditionalInfoList { get; set; }
+
         //[BsonExtraElements]
         //public BsonDocument? ExtraElements { get; set; }
 
