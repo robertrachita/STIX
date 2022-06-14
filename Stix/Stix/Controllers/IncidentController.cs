@@ -7,7 +7,7 @@ namespace Stix.Controllers
 {
     public class IncidentController : Controller
     {
-        private static readonly String conn = "https://localhost:60383/api/incident/";
+        private static readonly String conn = "https://172.18.0.3:51050/api/incident/";
  
         public static async Task<JsonResult> Index()
         {
