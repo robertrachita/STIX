@@ -3,155 +3,29 @@
 @{
     ViewData["Title"] = "STIX";
 }
-<script src="/js/jquery 3.6.0.js"> </script>
-<style type="text/css">
-    ul {
-        position: absolute;
-    }
 
-    .not-found {
-        display: none;
-    }
-</style>
-<br />
-<div class="filterSortContainer d-flex justify-content-between h-auto">
-    <form method="post" enctype="multipart/form-data">
-        <input type="text" placeholder="Search...." id="search_txt">
-        <button type="submit" class="btn btn-primary"> <i class="fa fa-search"></i> </button>
-    </form>
-    <div class="clearfix">
-        <p style="float:left">adads</p>
-        <input type="text" class="custom-search-input">
-        <button id="inputHelper" type="button">Ok</button>
+    <div class="filterSortContainer">
+        <a href=""><button type="button">Sort</button></a>
+        <a href=""><button type="button">Filter</button></a>
     </div>
-    <div class="d-flex flex-row">
-        <a href="" class="link-light"><button type="button" class="btn btn-secondary btn-outline-dark">Export</button></a>
-        <div class="dropup">
-            <button id="dropdownButton" type="button" class="btn btn-secondary btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
-                    aria-haspopup="true" data-bs-auto-close="outside">
-                Sort
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownButton">
-                <div class="dropstart">
-                    <a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Name: </a>
-                    <ul class="dropdown-menu shadow">
-                        <li>
-                            <a class="dropdown-item">Ascending</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item">Descending</a>
-                        </li>
-                    </ul>
-                    <a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Date: </a>
-                    <ul class="dropdown-menu shadow ">
-                        <li>
-                            <a class="dropdown-item">Ascending</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item">Descending</a>
-                        </li>
-                    </ul>
-                    <ul class="dropdown-divider"></ul>
-                    <ul class="dropdown-item">
-                        <li>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <a asp-page="/Filter">
-            <button type="submit" class="btn btn-secondary btn-outline-dark btn-sm">Filter</button>
-        </a>
-    </div>
-</div>
-
-<div class="tableContainer align-items-center ms-auto">
-    <table class="table table-responsive table-condensed table-hover">
-        <thead>
-            <tr class="tableHeader">
-                @{
-                    foreach (var value in Model._filters)
-                    {
-                        if (value.Title)
-                        {
-                            <th>Title</th>
-                        }
-                        if (value.Description)
-                        {
-                            <th>Description</th>
-                        }
-                        if (value.Date)
-                        {
-                            <th>Date</th>
-                        }
-                        if (value.Method)
-                        {
-                            <th>Method</th>
-                        }
-                    }
-                }
-                <th>View</th>
+    
+    <div class="overviewTableContainer flex">
+        <table class="overviewTable">
+            <tr>
+              <th class="incidentHeader">Incident Name</th>
+              <th class="descriptionHeader">Description</th>
+              <th class="addedOnHeader">Added On</th>
+              <th class="viewMoreHeader">View More</th>
             </tr>
-        </thead>
-
         <!-- loop, can change it to just grab everything from a db-->
-        @foreach (var item in Model.infos)
+        @for (int i = 0; i < 15 ; i++)
         {
-            <tbody>
-                <tr>
-                    @{
-                        foreach (var variable in Model._filters)
-                        {
-                            if (variable.Title)
-                            {
-                                <td class="leftTableCell">@item.Name</td>
-                            }
-                            if (variable.Description)
-                            {
-                                <td class="centerTableCell">@item.Description</td>
-                            }
-                            if (variable.Date)
-                            {
-                                <td class="centerTableCell">@item.Month-@item.Year</td>
-                            }
-                        }
-                    }
-                    <td class="rightTableCell"><a class="btn btn-primary btn-sm" href="moderator/Moderator?id=@item.Id">X</a></td>
-                    <td class="not-found">Not Found</td>
-                </tr>
-            </tbody>
+           <tr>
+              <td class="leftTableCell">@Model.incidentName</td>
+              <td class="centerTableCell">@Model.description</td>
+              <td class="centerTableCell">@Model.addedOn</td>
+              <td class="rightTableCell">"x"</td>
+            </tr> 
         }
-    </table>
-</div>
-<!-- Live search using JQuery (no C# is needed)-->
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#search_txt').keyup(function() {
-            // Get the value
-            var search = $(this).val();
-
-            // Hide all the table tbody rows
-            $('table tbody tr').hide();
-
-            // Count the total result
-            var len = $('table tbody tr:not(.not-found) td:contains("' + search + '")').length;
-
-            if (len > 0) {
-                // Searching text in columns and show match row
-                $('table tbody tr:not(.not-found) td:contains("' + search + '")').each(function() {
-                    $(this).closest('tr').show();
-                });
-            } else {
-                $('.not-found').show();
-            }
-        });
-    });
-
-    $.expr[":"].contains = $.expr.createPseudo(function(arg) {
-        return function(elem) {
-            return $(elem).text().toUpperCase.indexOf(arg.toUpperCase()) >= 0;
-        };
-    });
-</script>
-
-
+          </table>
+    </div>
