@@ -18,7 +18,8 @@ namespace Stix.Pages
             _logger = logger;
             incidentController = new IncidentController();
             //GetIncidents();
-            OnGetIncidentsAsync();            
+            OnGetIncidentsAsync();
+            //Test();
         }
 
         [BindProperty]
@@ -52,6 +53,13 @@ namespace Stix.Pages
                 }
             }
             return new JsonResult(incidents);
+        }
+        
+        public void Test()
+        {
+            string json = "[{\"id\":\"62a9f8f90346133662624bd3\",\"referenceID\":\"test1\",\"month\":\"string\",\"pending\":true,\"year\":\"string\",\"title\":\"string\",\"impactArea\":\"string\",\"victimLocation\":\"string\",\"victimCountry\":\"string\",\"identity\":\"string\",\"victimType\":\"string\",\"affectedSystem\":\"string\",\"method\":\"string\",\"malwareType\":\"string\",\"ransomwareType\":\"string\",\"attackPattern\":\"string\",\"campaign\":\"string\",\"impact\":\"string\",\"threatActorCountry\":\"string\",\"threatActor\":\"string\",\"additionalInfo\":\"string\",\"summary\":\"string\",\"referenceShort\":[\"string\"],\"references\":[\"string\"],\"additionalInfoList\":[\"string\"]},{\"id\":\"62a9fba50346133662624bd4\",\"referenceID\":\"111\",\"month\":\"string\",\"pending\":true,\"year\":\"string\",\"title\":\"test2\",\"impactArea\":\"string\",\"victimLocation\":\"string\",\"victimCountry\":\"string\",\"identity\":\"string\",\"victimType\":\"string\",\"affectedSystem\":\"string\",\"method\":\"string\",\"malwareType\":\"string\",\"ransomwareType\":\"string\",\"attackPattern\":\"string\",\"campaign\":\"string\",\"impact\":\"string\",\"threatActorCountry\":\"string\",\"threatActor\":\"string\",\"additionalInfo\":\"string\",\"summary\":\"string\",\"referenceShort\":[\"string\"],\"references\":[\"string\"],\"additionalInfoList\":[\"string\"]}]";               
+            List<IncidentModel> incidents = new List<IncidentModel>();
+            incidents = JsonConvert.DeserializeObject<List<IncidentModel>>(json);
         }
         
     }
