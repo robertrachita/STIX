@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Stix.Controllers;
+using System.Text.Json;
 using Newtonsoft.Json;
 
 namespace Stix.Pages
@@ -47,11 +48,12 @@ namespace Stix.Pages
                 using (HttpResponseMessage response = await httpClient.GetAsync("https://stix-test.herokuapp.com/api/Incident/GetAllIncidents.json/"))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
+                    //incidents = JsonSerializer.Deserialize<List<IncidentModel>>(apiResponse);
                     incidents = JsonConvert.DeserializeObject<List<IncidentModel>>(apiResponse);
                 }
             }
             return new JsonResult(incidents);
         }
-
+        
     }
 }
