@@ -22,7 +22,7 @@ namespace Stix.Pages
             incidentController = new IncidentController();
             incidentList = new List<Incident>();
             //GetIncidents();
-            //OnGetIncidentsAsync();
+            OnGetIncidentsAsync();
             //Test();
         }
 
