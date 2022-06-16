@@ -32,11 +32,11 @@ namespace Stix.Pages
             "T69:42:00";
         
 
-        public void OnGet()
+        public  void OnGet()
         {
             OnGetIncidentsAsync();
             //ViewData["incidentIterator"] = this.incident;
-            ViewData["incidentList"] = this.incidentList;
+            //ViewData["incidentList"] = this.incidentList;
         }
 
         public void OnPost() 
@@ -46,34 +46,31 @@ namespace Stix.Pages
 
         public async void OnGetIncidentsAsync()
         {
-            string apiResponse = "";
             try
             {
                 using (var httpClient = new HttpClient())
                 {
                     using (HttpResponseMessage response = await httpClient.GetAsync("https://stix-test.herokuapp.com/api/Incident/GetAllIncidents.json/"))
                     {
-                        apiResponse = await response.Content.ReadAsStringAsync();
+                        string apiResponse = await response.Content.ReadAsStringAsync();
                         this.incidentList = JsonConvert.DeserializeObject<List<Incident>>(apiResponse).ToList();
                         //Console.WriteLine(apiResponse);
+                        foreach (var item in this.incidentList)
+                        {
+                            Console.WriteLine(item.pending);
+                        }
                     }
                 }
 
+
+
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine(ex.ToString());
             }
-
-            //JObject json = JObject.Parse(apiResponse);
-            Console.WriteLine("Top GAY");
-            Console.WriteLine(apiResponse);
-            Console.WriteLine("Top GAY");
-            
-string str = apiResponse.Replace("[[]]", " ");
-            Console.WriteLine(str);
-
-            //    Console.WriteLine(json);
+            ViewData["incidentList"] = this.incidentList;
+            Console.WriteLine(this.incidentList);
         }
 
         public void Test()
