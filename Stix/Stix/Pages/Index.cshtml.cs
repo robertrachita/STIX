@@ -50,10 +50,9 @@ namespace Stix.Pages
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
                         this.incidentList = JsonConvert.DeserializeObject<List<Incident>>(apiResponse).ToList();
-                        //Console.WriteLine(apiResponse);
+
                         foreach (var item in this.incidentList)
                         {
-                            //Console.WriteLine(item.pending);
                             return Page();
                         }
                     }
