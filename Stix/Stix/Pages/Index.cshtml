@@ -4,31 +4,45 @@
   Layout = null;
 }
 
-    <div class="filterSortContainer">
-        <a href=""><button type="button">Sort</button></a>
-        <a href=""><button type="button">Filter</button></a>
-    </div>
+<div class="filterSortContainer">
+    <a href=""><button type="button">Sort</button></a>
+    <a href=""><button type="button">Filter</button></a>
+</div>
 
-    <div class="overviewTableContainer flex">
-        <table class="overviewTable">
-            <tr>
-              <th class="incidentHeader">Incident Name</th>
-              <th class="descriptionHeader">Description</th>
-              <th class="addedOnHeader">Added On</th>
-              <th class="viewMoreHeader">View More</th>
-            </tr>
+<div class="overviewTableContainer flex">
+    <table class="overviewTable">
+        <tr>
+            <th class="incidentHeader">Incident Name</th>
+            <th class="descriptionHeader">Description</th>
+            <th class="addedOnHeader">Added On</th>
+            <th class="viewMoreHeader">View More</th>
+        </tr>
         <!-- loop, can change it to just grab everything from a db-->
         @*@for (int i = 0; i < 15 ; i++)*@
-        @*@foreach(IncidentModel incident in @Model.incidentList)*@
+        @foreach(@Model.incident in @Model.incidentList)
         {
-           <tr>
-              <td class="leftTableCell">@Model.incidentName</td>
-              <td class="centerTableCell">@Model.description</td>
-              <td class="centerTableCell">@Model.addedOn</td>
-              <td class="rightTableCell">"x"</td>
-            </tr>
+        <tr>
+            <td class="leftTableCell">@</td>
+            <td class="centerTableCell">@Model.description</td>
+            <td class="centerTableCell">@Model.addedOn</td>
+            <td class="rightTableCell">"x"</td>
+        </tr>
         }
-          </table>
+    </table>
+    @section scripts{
+        <script type="text/javascript">
+            $(function() {
+                $.get('/Index/Incidents').done(function(incidents) {
+                    $.each(incidents, function(i, incident) {
+                        var item = `<li>
+                                        <strong>${incident.id} ${incident.referenceID}</strong>
+                                        (£${incident.pending})</li>`;
+                        $('#incident-list').append(item);
+                    });
+                });
+            });
+        </script>
+        }
     </div>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

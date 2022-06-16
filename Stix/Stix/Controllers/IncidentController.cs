@@ -13,14 +13,14 @@ namespace Stix.Controllers
  
         public static async Task<JsonResult> Index()
         {
-            List<IncidentModel> incidents = new List<IncidentModel>();
+            List<Incident> incidents = new List<Incident>();
 
             using (var httpClient = new HttpClient())
             {
                 using (var response = await httpClient.GetAsync(conn))
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    incidents = JsonConvert.DeserializeObject<List<IncidentModel>>(apiResponse);
+                    incidents = JsonConvert.DeserializeObject<List<Incident>>(apiResponse);
                 }
             }
 
