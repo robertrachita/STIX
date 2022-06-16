@@ -17,9 +17,7 @@ namespace Stix.Pages
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
-            //GetIncidents();
-            OnGetIncidentsAsync();
-            Test();
+
         }
 
         [BindProperty]
@@ -31,11 +29,9 @@ namespace Stix.Pages
             "T69:42:00";
 
 
-        public  void OnGet()
+        public async Task OnGetAsync()
         {
-            OnGetIncidentsAsync();
-            //ViewData["incidentIterator"] = this.incident;
-            //ViewData["incidentList"] = this.incidentList;
+            await OnGetIncidentsAsync();
         }
 
         public void OnPost()
@@ -43,7 +39,7 @@ namespace Stix.Pages
 
         }
 
-        public async void OnGetIncidentsAsync()
+        public async Task<ActionResult> OnGetIncidentsAsync()
         {
             try
             {
@@ -56,7 +52,8 @@ namespace Stix.Pages
                         //Console.WriteLine(apiResponse);
                         foreach (var item in this.incidentList)
                         {
-                            Console.WriteLine(item.pending);
+                            //Console.WriteLine(item.pending);
+                            return Page();
                         }
                     }
                 }
@@ -68,47 +65,8 @@ namespace Stix.Pages
             {
                 Console.WriteLine(ex.ToString());
             }
-            ViewData["incidentList"] = this.incidentList;
-            Console.WriteLine(this.incidentList);
+
+            return RedirectToPage("Login");
         }
-
-        public void Test()
-        {
-            //string json = "[{\"id\":\"62a9f8f90346133662624bd3\",\"referenceID\":\"test1\",\"month\":\"string\",\"pending\":true,\"year\":\"string\",\"title\":\"string\",\"impactArea\":\"string\",\"victimLocation\":\"string\",\"victimCountry\":\"string\",\"identity\":\"string\",\"victimType\":\"string\",\"affectedSystem\":\"string\",\"method\":\"string\",\"malwareType\":\"string\",\"ransomwareType\":\"string\",\"attackPattern\":\"string\",\"campaign\":\"string\",\"impact\":\"string\",\"threatActorCountry\":\"string\",\"threatActor\":\"string\",\"additionalInfo\":\"string\",\"summary\":\"string\",\"referenceShort\":[\"string\"],\"references\":[\"string\"],\"additionalInfoList\":[\"string\"]},{\"id\":\"62a9fba50346133662624bd4\",\"referenceID\":\"111\",\"month\":\"string\",\"pending\":true,\"year\":\"string\",\"title\":\"test2\",\"impactArea\":\"string\",\"victimLocation\":\"string\",\"victimCountry\":\"string\",\"identity\":\"string\",\"victimType\":\"string\",\"affectedSystem\":\"string\",\"method\":\"string\",\"malwareType\":\"string\",\"ransomwareType\":\"string\",\"attackPattern\":\"string\",\"campaign\":\"string\",\"impact\":\"string\",\"threatActorCountry\":\"string\",\"threatActor\":\"string\",\"additionalInfo\":\"string\",\"summary\":\"string\",\"referenceShort\":[\"string\"],\"references\":[\"string\"],\"additionalInfoList\":[\"string\"]}]";
-            //string json = @"[{'id':'62a9f8f90346133662624bd3','referenceID':'test1','month':'string','pending':true,'year':'string','title':'string','impactArea':'string','victimLocation':'string','victimCountry':'string','identity':'string','victimType':'string','affectedSystem':'string','method':'string','malwareType':'string','ransomwareType':'string','attackPattern':'string','campaign':'string','impact':'string','threatActorCountry':'string','threatActor':'string','additionalInfo':'string','summary':'string','referenceShort':['string'],'references':['string'],'additionalInfoList':['string']},{'id':'62a9fba50346133662624bd4','referenceID':'111','month':'string','pending':true,'year':'string','title':'test2','impactArea':'string','victimLocation':'string','victimCountry':'string','identity':'string','victimType':'string','affectedSystem':'string','method':'string','malwareType':'string','ransomwareType':'string','attackPattern':'string','campaign':'string','impact':'string','threatActorCountry':'string','threatActor':'string','additionalInfo':'string','summary':'string','referenceShort':['string'],'references':['string'],'additionalInfoList':['string']}]";
-            //string json = "[{\"id\":\"62a9f8f90346133662624bd3\",\"referenceID\":\"test1\",\"additionalInfoList\":[\"string\"]},{\"id\":\"62a9fba50346133662624bd4\",\"referenceID\":\"111\",\"additionalInfoList\":[\"string\"]}]";
-            string json = @"[{
-                    'id':'62a9f8f90346133662624bd3',
-                    'referenceId': 'kasjjdsakj',
-                    },
-                    {
-                    'id':'62a9fba50346133662624bd4'
-                    }]";
-            List<Incident> incidents = new List<Incident>();
-            incidents = JsonConvert.DeserializeObject<List<Incident>>(json).ToList();
-            Console.WriteLine(incidents.First().id);
-            //string json = @"[{
-            //        'Email': 'james@example.com',
-            //        'Active': true,
-            //        'CreatedDate': '2013-01-20T00:00:00Z',
-            //        'Roles': [
-            //            'User',
-            //            'Admin'
-            //                ]
-            //        },
-            //        {
-            //        'Email': 'test@test2.com',
-            //        'Active': true,
-            //        'CreatedDate': '2013-01-20T00:00:00Z',
-            //        'Roles': [
-            //        'User',
-            //        'Admin'
-            //        ]
-            //        }]";
-            //List<Account> accounts = new List<Account>();
-            //accounts = JsonConvert.DeserializeObject<List<Account>>(json);
-
-        }
-
     }
 }
