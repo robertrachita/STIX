@@ -23,7 +23,7 @@ namespace Stix.Pages
             incidentController = new IncidentController();
             incidentList = new List<Incident>();
             //GetIncidents();
-            OnGetIncidentsAsync();
+            //OnGetIncidentsAsync();
             //Test();
         }
         
@@ -38,6 +38,9 @@ namespace Stix.Pages
 
         public void OnGet()
         {
+            OnGetIncidentsAsync();
+            ViewData["incidentIterator"] = this.incident;
+            ViewData["incidentList"] = this.incidentList;
         }
 
         public void OnPost() 
@@ -55,6 +58,7 @@ namespace Stix.Pages
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     //incidents = JsonSerializer.Deserialize<List<IncidentModel>>(apiResponse);
                     this.incidentList = JsonConvert.DeserializeObject<List<Incident>>(apiResponse);
+                    incidents = JsonConvert.DeserializeObject<List<Incident>>(apiResponse);                    
                 }
             }
             return new JsonResult(incidents);

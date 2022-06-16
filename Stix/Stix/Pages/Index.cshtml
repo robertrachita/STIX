@@ -19,10 +19,10 @@
         </tr>
         <!-- loop, can change it to just grab everything from a db-->
         @*@for (int i = 0; i < 15 ; i++)*@
-        @foreach(@Model.incident in @Model.incidentList)
+        @*@foreach(@ViewData.incident in @ViewData.incidentList)*@
         {
         <tr>
-            <td class="leftTableCell">@</td>
+            <td class="leftTableCell">@Model.incidentList[0].id</td>
             <td class="centerTableCell">@Model.description</td>
             <td class="centerTableCell">@Model.addedOn</td>
             <td class="rightTableCell">"x"</td>
