@@ -16,8 +16,9 @@ CREATE TABLE [Netflix].[dbo].[User] (
 )
 
 CREATE TABLE [Netflix].[dbo].[Profile] (
-    profile_id INT PRIMARY KEY IDENTITY(1, 1) NOT NULL,
+    profile_id INT IDENTITY(1, 1) NOT NULL,
     profile_name VARCHAR(255),
+    date_of_birth DATE,
     photo IMAGE NULL,
     user_id INT,
     language_id INT
@@ -83,10 +84,10 @@ CREATE TABLE [Netflix].[dbo].[Language] (
     language_name VARCHAR(200)
 )
 
-CREATE TABLE [Netflix].[dbo].[Subtile] (
+CREATE TABLE [Netflix].[dbo].[Subtitle] (
     subtitle_id INT IDENTITY(1, 1) NOT NULL,
     subtitle_text VARCHAR(255),
-    title_id INT,
+    cinema_id INT,
     language_id INT
 )
 
@@ -94,7 +95,7 @@ CREATE TABLE [Netflix].[dbo].[Cinema] (
     cinema_id INT IDENTITY(1, 1) NOT NULL,
     cinema_name VARCHAR(255),
     cinema_description VARCHAR(255),
-    duration TIME NULL,
+    duration TIME(0) NULL,
     credits VARCHAR(255)
 )
 
@@ -111,7 +112,7 @@ CREATE TABLE [Netflix].[dbo].[Episode] (
     episode_number INT,
     episode_name VARCHAR(255),
     episode_descriotion VARCHAR(255),
-    episode_duration TIME NULL,
+    episode_duration TIME(0) NULL,
     season_id INT
 )
 
