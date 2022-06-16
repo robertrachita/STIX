@@ -20,29 +20,36 @@
         <!-- loop, can change it to just grab everything from a db-->
         @*@for (int i = 0; i < 15 ; i++)*@
         @*@foreach(@ViewData.incident in @ViewData.incidentList)*@
+        @foreach (var item in @Model.incidentList)
         {
-        <tr>
-            @*<td class="leftTableCell">@Model.incidentList[0].id</td>*@
-            <td class="centerTableCell">@Model.description</td>
-            <td class="centerTableCell">@Model.addedOn</td>
-            <td class="rightTableCell">"x"</td>
-        </tr>
+            <tr>
+                @*<td class="leftTableCell">@Model.incidentList[0].id</td>*@
+                <td class="centerTableCell">@item.summary</td>
+                <td class="centerTableCell">@item.referenceID</td>
+                <td class="rightTableCell">"x"</td>
+            </tr>
         }
     </table>
+    <p class="text-white">
+        @{
+            @Model.incidentList.Count
+        }
+    </p>
+
     @section scripts{
         <script type="text/javascript">
             $(function() {
                 $.get('/Index/Incidents').done(function(incidents) {
                     $.each(incidents, function(i, incident) {
                         var item = `<li>
-                                        <strong>${incident.id} ${incident.referenceID}</strong>
-                                        (£${incident.pending})</li>`;
+                                                    <strong>${incident.id} ${incident.referenceID}</strong>
+                                                    (£${incident.pending})</li>`;
                         $('#incident-list').append(item);
                     });
                 });
             });
         </script>
-        }
+    }
     </div>
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
