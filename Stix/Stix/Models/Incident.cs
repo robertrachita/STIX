@@ -1,14 +1,7 @@
-﻿using MongoDB.Bson.Serialization.Attributes;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace Stix.Models
+﻿namespace Stix.Models
 {
-    public class IncidentModel
+    public class Incident
     {
-        // Root myDeserializedClass = JsonConvert.DeserializeObject<Root>(myJsonResponse);
         public string id { get; set; }
         public string referenceID { get; set; }
         public string month { get; set; }
@@ -34,6 +27,6 @@ namespace Stix.Models
         public List<string> referenceShort { get; set; }
         public List<string> references { get; set; }
         public List<string> AdditionalInfoList { get; set; }
-
+        
     }
 }
