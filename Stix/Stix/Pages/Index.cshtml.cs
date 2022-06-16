@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Stix.Controllers;
 using System.Text.Json;
 using Newtonsoft.Json;
+using Stix.Models;
 
 namespace Stix.Pages
 {
@@ -57,11 +58,33 @@ namespace Stix.Pages
         
         public void Test()
         {
-            //string json = "[{\"id\":\"62a9f8f90346133662624bd3\",\"referenceID\":\"test1\",\"month\":\"string\",\"pending\":true,\"year\":\"string\",\"title\":\"string\",\"impactArea\":\"string\",\"victimLocation\":\"string\",\"victimCountry\":\"string\",\"identity\":\"string\",\"victimType\":\"string\",\"affectedSystem\":\"string\",\"method\":\"string\",\"malwareType\":\"string\",\"ransomwareType\":\"string\",\"attackPattern\":\"string\",\"campaign\":\"string\",\"impact\":\"string\",\"threatActorCountry\":\"string\",\"threatActor\":\"string\",\"additionalInfo\":\"string\",\"summary\":\"string\",\"referenceShort\":[\"string\"],\"references\":[\"string\"],\"additionalInfoList\":[\"string\"]},{\"id\":\"62a9fba50346133662624bd4\",\"referenceID\":\"111\",\"month\":\"string\",\"pending\":true,\"year\":\"string\",\"title\":\"test2\",\"impactArea\":\"string\",\"victimLocation\":\"string\",\"victimCountry\":\"string\",\"identity\":\"string\",\"victimType\":\"string\",\"affectedSystem\":\"string\",\"method\":\"string\",\"malwareType\":\"string\",\"ransomwareType\":\"string\",\"attackPattern\":\"string\",\"campaign\":\"string\",\"impact\":\"string\",\"threatActorCountry\":\"string\",\"threatActor\":\"string\",\"additionalInfo\":\"string\",\"summary\":\"string\",\"referenceShort\":[\"string\"],\"references\":[\"string\"],\"additionalInfoList\":[\"string\"]}]";               
-            string json = "[{'id':'62a9f8f90346133662624bd3','referenceID':'test1','month':'string','pending':true,'year':'string','title':'string','impactArea':'string','victimLocation':'string','victimCountry':'string','identity':'string','victimType':'string','affectedSystem':'string','method':'string','malwareType':'string','ransomwareType':'string','attackPattern':'string','campaign':'string','impact':'string','threatActorCountry':'string','threatActor':'string','additionalInfo':'string','summary':'string','referenceShort':['string'],'references':['string'],'additionalInfoList':['string']},{'id':'62a9fba50346133662624bd4','referenceID':'111','month':'string','pending':true,'year':'string','title':'test2','impactArea':'string','victimLocation':'string','victimCountry':'string','identity':'string','victimType':'string','affectedSystem':'string','method':'string','malwareType':'string','ransomwareType':'string','attackPattern':'string','campaign':'string','impact':'string','threatActorCountry':'string','threatActor':'string','additionalInfo':'string','summary':'string','referenceShort':['string'],'references':['string'],'additionalInfoList':['string']}]";
-            List<IncidentModel> incidents = new List<IncidentModel>();
-            incidents = JsonConvert.DeserializeObject<List<IncidentModel>>(json);
+            //string json = "[{\"id\":\"62a9f8f90346133662624bd3\",\"referenceID\":\"test1\",\"month\":\"string\",\"pending\":true,\"year\":\"string\",\"title\":\"string\",\"impactArea\":\"string\",\"victimLocation\":\"string\",\"victimCountry\":\"string\",\"identity\":\"string\",\"victimType\":\"string\",\"affectedSystem\":\"string\",\"method\":\"string\",\"malwareType\":\"string\",\"ransomwareType\":\"string\",\"attackPattern\":\"string\",\"campaign\":\"string\",\"impact\":\"string\",\"threatActorCountry\":\"string\",\"threatActor\":\"string\",\"additionalInfo\":\"string\",\"summary\":\"string\",\"referenceShort\":[\"string\"],\"references\":[\"string\"],\"additionalInfoList\":[\"string\"]},{\"id\":\"62a9fba50346133662624bd4\",\"referenceID\":\"111\",\"month\":\"string\",\"pending\":true,\"year\":\"string\",\"title\":\"test2\",\"impactArea\":\"string\",\"victimLocation\":\"string\",\"victimCountry\":\"string\",\"identity\":\"string\",\"victimType\":\"string\",\"affectedSystem\":\"string\",\"method\":\"string\",\"malwareType\":\"string\",\"ransomwareType\":\"string\",\"attackPattern\":\"string\",\"campaign\":\"string\",\"impact\":\"string\",\"threatActorCountry\":\"string\",\"threatActor\":\"string\",\"additionalInfo\":\"string\",\"summary\":\"string\",\"referenceShort\":[\"string\"],\"references\":[\"string\"],\"additionalInfoList\":[\"string\"]}]";
+            //tring json = "[{'id':'62a9f8f90346133662624bd3','referenceID':'test1','month':'string','pending':true,'year':'string','title':'string','impactArea':'string','victimLocation':'string','victimCountry':'string','identity':'string','victimType':'string','affectedSystem':'string','method':'string','malwareType':'string','ransomwareType':'string','attackPattern':'string','campaign':'string','impact':'string','threatActorCountry':'string','threatActor':'string','additionalInfo':'string','summary':'string','referenceShort':['string'],'references':['string'],'additionalInfoList':['string']},{'id':'62a9fba50346133662624bd4','referenceID':'111','month':'string','pending':true,'year':'string','title':'test2','impactArea':'string','victimLocation':'string','victimCountry':'string','identity':'string','victimType':'string','affectedSystem':'string','method':'string','malwareType':'string','ransomwareType':'string','attackPattern':'string','campaign':'string','impact':'string','threatActorCountry':'string','threatActor':'string','additionalInfo':'string','summary':'string','referenceShort':['string'],'references':['string'],'additionalInfoList':['string']}]";
+            //string json = "[{\"id\":\"62a9f8f90346133662624bd3\",\"referenceID\":\"test1\",\"additionalInfoList\":[\"string\"]},{\"id\":\"62a9fba50346133662624bd4\",\"referenceID\":\"111\",\"additionalInfoList\":[\"string\"]}]";
+            //List<IncidentModel> incidents = new List<IncidentModel>();
+            //incidents = JsonConvert.DeserializeObject<List<IncidentModel>>(json);
+
+            string json = @"[{
+                    'Email': 'james@example.com',
+                    'Active': true,
+                    'CreatedDate': '2013-01-20T00:00:00Z',
+                    'Roles': [
+                        'User',
+                        'Admin'
+                            ]       
+                    },
+                    {
+                    'Email': 'test@test2.com',
+                    'Active': true,
+                    'CreatedDate': '2013-01-20T00:00:00Z',
+                    'Roles': [
+                    'User',
+                    'Admin'
+                    ]       
+                    }]";
+            List<Account> accounts = new List<Account>();
+            accounts = JsonConvert.DeserializeObject<List<Account>>(json);
         }
-        
+
     }
 }
