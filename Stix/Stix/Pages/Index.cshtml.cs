@@ -1,3 +1,4 @@
+﻿using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Stix.Controllers;
@@ -8,7 +9,7 @@ using Newtonsoft.Json.Linq;
 
 namespace Stix.Pages
 {
-    public class LandingModel : PageModel
+    public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
         private IncidentController incidentController;
