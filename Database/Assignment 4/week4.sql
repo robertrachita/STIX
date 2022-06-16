@@ -1,5 +1,9 @@
 -- Implement Primary Keys, Foreign Keys and Indexes
 
+ALTER TABLE Cinema
+ADD CONSTRAINT id PRIMARY KEY CLUSTERED(cinema_id)
+
+
     -- This clustered index will sort all the cinema the Netflix has from primary id and its cinema name on asceding order
 CREATE CLUSTERED INDEX IX__Cinema
 ON [dbo].[Cinema] (cinema_id ASC, cinema_name ASC)

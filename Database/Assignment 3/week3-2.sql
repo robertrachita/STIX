@@ -11,7 +11,7 @@ FROM Subscription
 -- 4.) How many films there are
 SELECT COUNT(cinema_id) AS films 
 FROM [dbo].[Cinema] C
-JOIN [dbo][Season] S ON C.cinema_d = S.cinema_id
+JOIN [dbo][Season] S ON C.cinema_id = S.cinema_id
 
 --  5.) What the average users age is
 SELECT AVG()
@@ -47,7 +47,10 @@ WHERE (
 
 
 -- 14.) How often Dutch subtitling has been used
-
+SELECT COUNT(viewedlist_id) AS dutch_subtitle_used
+FROM [ViewedList] V
+INNER JOIN Cinema C ON C.cinema_id = V.cinema_id
+WHERE 
 
 -- 15.) How often no subtitling has been used
 SELECT COUNT(viewedlist_id) AS no_subtitle
@@ -59,9 +62,9 @@ SELECT email AS user_name
 FROM Users
 WHERE EXISTS (
     SELECT COUNT(*)
-    FROM [dbo].[Subscription]
-    WHERE [Users].customer_id = [Subscription].customer_id
-    GROUP BY customer_id
+    FROM [dbo].[Profile]
+    WHERE [Users].user_id = [Profile].user_id
+    GROUP BY user_id
     HAVING COUNT(*) > 1
 )
 
