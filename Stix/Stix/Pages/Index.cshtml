@@ -12,7 +12,7 @@
 <div class="overviewTableContainer flex">
     <table class="overviewTable">
         <tr>
-            <th class="incidentHeader">Incident Name</th>
+            <th class="incidentHeader">@ViewData["incidentName"]</th>
             <th class="descriptionHeader">Description</th>
             <th class="addedOnHeader">Added On</th>
             <th class="viewMoreHeader">View More</th>
@@ -24,17 +24,13 @@
         {
             <tr>
                 @*<td class="leftTableCell">@Model.incidentList[0].id</td>*@
+                <td class="centerTableCell">@item.title</td>
                 <td class="centerTableCell">@item.summary</td>
-                <td class="centerTableCell">@item.referenceID</td>
+                <td class="centerTableCell">@item.year</td>
                 <td class="rightTableCell">"x"</td>
             </tr>
         }
     </table>
-    <p class="text-white">
-        @{
-            @Model.incidentList.Count
-        }
-    </p>
 
     @section scripts{
         <script type="text/javascript">
