@@ -1,7 +1,11 @@
+using Stix.Controllers;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSingleton<IncidentController>();
+builder.Services.AddControllers();
 
 var app = builder.Build();
 

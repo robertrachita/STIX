@@ -4,23 +4,20 @@ services:
 
   stix:
     image: ${DOCKER_REGISTRY-}stix
+    networks:
+    - stix_network
     build:
       context: .
       dockerfile: Stix/Dockerfile
       
   stix_mongo_api:
     image: ${DOCKER_REGISTRY-}stixmongoapi
+    networks:
+    - stix_network
     build:
       context: .
       dockerfile: Stix_Mongo_API/Dockerfile
-    depends_on:
-      - "mongodb"
 
-  mongodb:
-    image: mongo:latest
-    container_name: Stix-Mongo
-    ports:
-      - "27017:27017"
-    depends_on:
-      - "stix"
-
+networks:
+    stix_network:
+    

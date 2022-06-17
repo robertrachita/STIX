@@ -9,7 +9,7 @@ namespace Stix.Pages
     public class IncidentModel : PageModel
     {
         [BindProperty]
-        public IncidentInfoModel Incident { get; set; }
+        public Models.Incident Incident { get; set; }
 
         private readonly ILogger<IncidentModel> _logger;
 
@@ -30,28 +30,6 @@ namespace Stix.Pages
             ViewData["IncidentDate"] = dateTime;
             ViewData["IncidentAdded"] = dateTime;
             ViewData["IncidentSource"] = "https://www.definitely-a-valid-source.com/incident";
-            /* {TO DO}: Uncomment this when API is implemented and change the values to the appropriate names*/
-            //ViewData["IncidentCampaign"] = Incident.campaign;
-            //ViewData["IncidentIndicator"] = Incident.Indicator;
-            //ViewData["IncidentThreatActor"] = Incident.ThreatActor;
-            //ViewData["IncidentVulnerability"] = Incident.Vulnerability;
-
-            //ViewData["IncidentCourseOfAction"] = Incident.CourseOfAction;
-            //ViewData["IncidentGrouping"] = Incident.Grouping;
-            //ViewData["IncidentIdentity"] = Incident.Identity;
-            //ViewData["IncidentInfrastructure"] = Incident.Infrastructure;
-            //ViewData["IncidentIntrusionSet"] = Incident.IntrusionSet;
-            //ViewData["IncidentLocation"] = Incident.Location;
-            //ViewData["IncidentMalware"] = Incident.Malware;
-            //ViewData["IncidentMalwareAnalysis"] = Incident.MalwareAnalysis;
-            //ViewData["IncidentNote"] = Incident.Note;
-            //ViewData["IncidentObservedData"] = Incident.ObservedData;
-            //ViewData["IncidentOpinion"] = Incident.Opinion;
-            //ViewData["IncidentRelationship"] = Incident.Relationship;
-            //ViewData["IncidentReport"] = Incident.Report;
-            //ViewData["IncidentSighting"] = Incident.Sighting;
-            //ViewData["IncidentTool"] = Incident.Tool;
-            //ViewData["IncidentAttackPattern"] = Incident.AttackPattern;
         }
 
         [BindProperty]
@@ -62,6 +40,7 @@ namespace Stix.Pages
 
         public IActionResult OnPost()
         {
+            ViewData["yes"] = FileLocation;
             // {TO DO} Add try-catch blocks
 
             // Store file format based on selected option
@@ -79,13 +58,13 @@ namespace Stix.Pages
                 Cell incidentNameCell = workSheet.Cells["A1"];
                 incidentNameCell.PutValue("Incident name");
 
-                Cell incidentDateCell = workSheet.Cells["A2"];
+                Cell incidentDateCell = workSheet.Cells["B1"];
                 incidentDateCell.PutValue("Incident date " + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss", new CultureInfo("en-NL")));
 
-                Cell incidentAddedDateCell = workSheet.Cells["A3"];
+                Cell incidentAddedDateCell = workSheet.Cells["C1"];
                 incidentAddedDateCell.PutValue("Incident added date " + DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss", new CultureInfo("en-NL")));
 
-                Cell incidentSourceCell = workSheet.Cells["A4"];
+                Cell incidentSourceCell = workSheet.Cells["D1"];
                 incidentSourceCell.PutValue("Incident source");
 
                 return workBook;
@@ -103,7 +82,7 @@ namespace Stix.Pages
             {
                 saveWorkBook(addIncidentInfoToExcelSpreadSheet());
 
-                return RedirectToPage("Index");
+                return Page();
             }
 
             return Page();
