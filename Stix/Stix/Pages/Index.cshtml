@@ -7,6 +7,7 @@
 <script src="/js/jquery 3.6.0.js"> </script>
 <p class="text-white">
     @Model.title
+    @Model.date
 </p>
 <div class="filterSortContainer d-flex justify-content-between h-auto">
     <div>
@@ -20,34 +21,63 @@
                 Sort
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownButton">
-                    <a class="dropdown-item">Action</a>
+                <a class="dropdown-item">Action</a>
             </div>
         </div>
         <form method="post" enctype="multipart/form-data">
-                <button type="submit" class="btn btn-secondary btn-outline-dark">Filter</button>
+            <button type="submit" class="btn btn-secondary btn-outline-dark">Filter</button>
         </form>
     </div>
 </div>
-<br /> <br /> <br /> <br />
+<br />
+<br />
+<br />
+<br />
 <div class="overviewTableContainer flex">
     <table class="overviewTable">
         <tr>
-            <th class="incidentHeader">Title</th>
-            <th class="descriptionHeader">Description</th>
-            <th class="addedOnHeader">Added On</th>
+            @{
+                @if (@Model.title)
+                {
+                    <th class="incidentHeader">Title</th>
+                }
+                @if (@Model.summary)
+                {
+                    <th class="descriptionHeader">Description</th>
+                }
+                @if (@Model.date)
+                {
+                    <th class="addedOnHeader">Added On</th>
+                }
+                @if (@Model.additional_info)
+                {
+                    <th>Additional Information</th>
+                }
+            }
             <th class="viewMoreHeader">View More</th>
         </tr>
         <!-- loop, can change it to just grab everything from a db-->
-        @*@for (int i = 0; i < 15 ; i++)*@
         @*@foreach(@ViewData.incident in @ViewData.incidentList)*@
         @foreach (var item in @Model.incidentList)
         {
             <tr>
-                @*<td class="leftTableCell">@Model.incidentList[0].id</td>*@
-                <td class="centerTableCell">@item.title</td>
-                <td class="centerTableCell">@item.summary</td>
-                <td class="centerTableCell">@item.year</td>
-                <td class="rightTableCell">"x"</td>
+                @if (@Model.title)
+                {
+                    <td class="centerTableCell">@item.title</td>
+                }
+                @if (@Model.summary)
+                {
+                    <td class="centerTableCell">@item.summary</td>
+                }
+                @if (@Model.date)
+                {
+                    <td class="centerTableCell">@item.month - @item.year</td>
+                }
+                @if (@Model.additional_info)
+                {
+                    <td class="centerTableCell">@item.additionalInfo</td>
+                }
+                <td class="rightTableCell"><a href="Incident/?id=@item.id">X</a></td>
             </tr>
         }
     </table>
@@ -58,8 +88,8 @@
                 $.get('/Index/Incidents').done(function(incidents) {
                     $.each(incidents, function(i, incident) {
                         var item = `<li>
-                                                                                            <strong>${incident.id} ${incident.referenceID}</strong>
-                                                                                            (£${incident.pending})</li>`;
+                                                                                                                                <strong>${incident.id} ${incident.referenceID}</strong>
+                                                                                                                                (£${incident.pending})</li>`;
                         $('#incident-list').append(item);
                     });
                 });

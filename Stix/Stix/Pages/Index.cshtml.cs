@@ -18,13 +18,70 @@ namespace Stix.Pages
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
-            
+
+            this.filters = new FiltersModel();
+            this.filters.Title = true;
+            this.filters.Description = true;
+
+            this.title = true;
+            this.summary = true;
+            this.date = true;
+            this.additional_info = false;
         }
+
+        // Filter Properties
+
+        [BindProperty(SupportsGet = true)]
+        public FiltersModel filters { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public bool title { get; set; }
 
-        public bool title2 = false;
+        [BindProperty(SupportsGet = true)]
+        public bool summary { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool date { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool affected_system { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool method { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool impact_area { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool victim_location { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool identity { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool victim_type { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool malware_type { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool ransomware_type { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool attack_pattern { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool campaign { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool impact { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool threat_actor { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool additional_info { get; set; }
+
         public async Task OnGetAsync()
         {
             await OnGetIncidentsAsync();
@@ -58,7 +115,7 @@ namespace Stix.Pages
         [HttpPost]
         public async Task<IActionResult> OnPost()
         {
-            return RedirectToPage("Filter", new { title = this.title2});
+            return RedirectToPage("Filter", new { filters = this.filters, title = this.filters.Title });
         }
     }
 }

@@ -1,10 +1,13 @@
 ﻿@page
 @model Stix.Pages.FilterModel
 @{
+
 }
 <h2 class="nav-link text-white text-center">Filter By</h2>
 <p class="text-white">
-    @Model.title
+    @{
+        @Model.filters.Title;
+    }
 </p>
 <form method="post" class="form-check position-static">
     <div class="d-flex justify-content-between w-auto">
@@ -12,19 +15,15 @@
                 <div>
                     <h5 class="text-uppercase text-white">Date</h5>
                     <div class="form-check">
-                        <label class="form-check-label text-white">Happened On</label>
-                        <input class="form-check-input" type="checkbox" asp-for="@Model.title" checked="@Model.title">
-                    </div>
-                    <div class="form-check">
-                        <label class="form-check-label text-white">Added On</label>
-                        <input class="form-check-input" type="checkbox">
+                        <label class="form-check-label text-white">Happened on</label>
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.date" checked="@Model.date">
                     </div>
                 </div>
                 <div>
                     <h5 class="text-uppercase text-white">Incident Explanation</h5>
                     <div class="form-check">
                         <label class="form-check-label text-white">Title</label>
-                        <input class="form-check-input" type="checkbox">
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.title" checked="@Model.title">
                     </div>
                     <div class="form-check">
                         <label class="form-check-label text-white">Description</label>

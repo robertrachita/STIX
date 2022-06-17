@@ -4,7 +4,6 @@ namespace Stix.Models
     [BsonIgnoreExtraElements]
     public class FiltersModel
     {
-
         [BsonId]
         [BsonRepresentation(MongoDB.Bson.BsonType.ObjectId)]
         public string id { get; set; }
@@ -35,5 +34,6 @@ namespace Stix.Models
 
         [BsonElement("location")]
         public bool Location { get; set; }
+
     }
 }
