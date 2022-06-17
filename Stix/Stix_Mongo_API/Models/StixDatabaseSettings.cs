@@ -1,4 +1,4 @@
-﻿namespace Stix_Mongo_API.Models
+namespace Stix_Mongo_API.Models
 {
     public class StixDatabaseSettings
     {

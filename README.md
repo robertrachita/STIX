@@ -7,6 +7,7 @@
 
 
 ### Docker and Project Installation Guide (Windows 10 & 11)
+### Installation Guide (Windows 10 & 11)
 
 1. IDE - Visual Studio 2022 (recommended)  [Get from here](https://visualstudio.microsoft.com/thank-you-downloading-visual-studio/?sku=Community&channel=Release&version=VS2022&source=VSLandingPage&cid=2030&passive=false)
 
@@ -121,6 +122,8 @@ In some cases, when opening Docker for the first time, the service will enter a 
 
      
 
-     
 
-     
+### Troubleshooting
+
+In some cases, when opening Docker for the first time, the service will enter a loop of starting and stopping the engine, and trying to access the settings will result in a loading animation. To solve this, run Docker Desktop as admin, click on the Troubleshoot button and then click on Clean/Purge Data. Proceed and select all the items and then restart Docker. This should fix the problem.
+

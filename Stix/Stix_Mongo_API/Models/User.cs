@@ -1,4 +1,4 @@
-﻿using MongoDB.Bson;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System.ComponentModel.DataAnnotations;
 
@@ -23,8 +23,6 @@ namespace Stix_Mongo_API.Models
         [MinLength(8)]
         [BsonElement("Password")]
         public string password { get; set; }
-
-
 
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections.Specialized;
+using System.Collections.Specialized;
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Stix_Mongo_API.Models;

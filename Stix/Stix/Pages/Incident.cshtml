@@ -10,6 +10,7 @@ body {
   background: rgb(13,81,109);
   background: radial-gradient(circle, rgba(13,81,109,1) 0%, rgba(9,51,70,1) 51%, rgba(3,16,22,1) 91%);
 }
+
 .attackPattern{
     width:50px;
     height:50px;
@@ -17,6 +18,9 @@ body {
 }
 </style>
 <link rel="stylesheet" href="/css/domarrow.css">
+
+</style>
+
 </head>
 
 
@@ -111,3 +115,4 @@ body {
     @if (Model.Incident.victimLocation != null){
     <connection from="#identity" to="#location" color="#aaaaaa" fromX="1" tail onlyVisible></connection>
     }    
+
