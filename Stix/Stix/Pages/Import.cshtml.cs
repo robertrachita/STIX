@@ -11,13 +11,6 @@ namespace Stix.Pages
         public void OnGet()
         {
         }
-        public static string GetCellValue(string fileName, string sheetName, string addressName)
-        {//Instantiating a Workbook object
-            Workbook workbook = new Workbook(fileName);//Obtaining the reference of the Active worksheet
-            Worksheet worksheet = workbook.Worksheets.GetSheetByCodeName(sheetName);//retrieve value from cell
-            string returnValue = worksheet.Cells[addressName].Value.ToString(); 
-            return returnValue;
-        }
 
         public IActionResult OnPost()
         {
@@ -36,13 +29,15 @@ namespace Stix.Pages
                     var workBook = new Workbook(fileNameWithoutExtension + ".xlsx");
                     Worksheet worksheet;
                     worksheet = workBook.Worksheets[0];
-                    string cell, ss;
+                    string ss;
                     string[] sss;
                     int x;
+                    int counter = 2;
                     for (int i = 2; i <= 152; i++)
                     {
-                        cell = "U" + i;
-                        ss = GetCellValue(fileNameWithoutExtension, "Gecorrigeerd", cell);
+                        string cell;
+                        cell = "U" + counter.ToString();
+                        ss = worksheet.Cells[cell].Value.ToString();
 
                         ss = ss.Replace(Environment.NewLine, "|");
                         ss = ss.Replace("\\", "");
@@ -70,9 +65,9 @@ namespace Stix.Pages
                         worksheet.Cells[cell].PutValue(ss);
 
                         //next cell
-                        cell = "V" + i;
+                        cell = "V" + counter.ToString();
 
-                        ss = GetCellValue(fileNameWithoutExtension, "Gecorrigeerd", cell);
+                        ss = worksheet.Cells[cell].Value.ToString();
 
                         ss = ss.Replace(Environment.NewLine, "|");
                         ss = ss.Replace("\\", "");
@@ -98,6 +93,7 @@ namespace Stix.Pages
                         ss = string.Join(" ", sss);
 
                         worksheet.Cells[cell].PutValue(ss);
+                        counter++;
                     }
                     workBook.Save("Output.json");
                     ViewData["ConvertedToJson"] = string.Format("Successfuly converted {0} and saved file to a JSON file", fileNameWithExtension);
