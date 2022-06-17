@@ -18,26 +18,16 @@ namespace Stix.Pages
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
-
+            
         }
 
-        [BindProperty]
-        public string incidentName { get; set; } = "Default name";
-        [BindProperty]
-        public string description { get; set; } = "This section describes the incident";
-        [BindProperty]
-        public string addedOn { get; set; } = "2022-02-22\n" +
-            "T69:42:00";
+        [BindProperty(SupportsGet = true)]
+        public bool title { get; set; }
 
-
+        public bool title2 = false;
         public async Task OnGetAsync()
         {
             await OnGetIncidentsAsync();
-        }
-
-        public void OnPost()
-        {
-
         }
 
         public async Task<ActionResult> OnGetIncidentsAsync()
@@ -56,9 +46,6 @@ namespace Stix.Pages
                         }
                     }
                 }
-
-
-
             }
             catch (Exception ex)
             {
@@ -66,6 +53,12 @@ namespace Stix.Pages
             }
 
             return RedirectToPage("Login");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> OnPost()
+        {
+            return RedirectToPage("Filter", new { title = this.title2});
         }
     }
 }

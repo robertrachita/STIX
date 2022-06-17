@@ -3,17 +3,17 @@
 @{
 }
 <h2 class="nav-link text-white text-center">Filter By</h2>
-
+<p class="text-white">
+    @Model.title
+</p>
 <form method="post" class="form-check position-static">
     <div class="d-flex justify-content-between w-auto">
         @{
-            foreach (var item in Model._filters)
-            {
                 <div>
                     <h5 class="text-uppercase text-white">Date</h5>
                     <div class="form-check">
                         <label class="form-check-label text-white">Happened On</label>
-                        <input class="form-check-input" type="checkbox" checked="@item.Date" asp-for="@Model.date">
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.title" checked="@Model.title">
                     </div>
                     <div class="form-check">
                         <label class="form-check-label text-white">Added On</label>
@@ -24,15 +24,15 @@
                     <h5 class="text-uppercase text-white">Incident Explanation</h5>
                     <div class="form-check">
                         <label class="form-check-label text-white">Title</label>
-                        <input class="form-check-input" type="checkbox" checked="@item.Title" asp-for="@Model.title">
+                        <input class="form-check-input" type="checkbox">
                     </div>
                     <div class="form-check">
                         <label class="form-check-label text-white">Description</label>
-                        <input class="form-check-input" type="checkbox" checked="@item.Description" asp-for="@Model.description">
+                        <input class="form-check-input" type="checkbox">
                     </div>
                     <div class="form-check">
                         <label class="form-check-label text-white">Additional Information</label>
-                        <input class="form-check-input" type="checkbox" checked="@item.Summary">
+                        <input class="form-check-input" type="checkbox">
                     </div>
                 </div>
 
@@ -40,11 +40,11 @@
                     <h5 class="text-uppercase text-white">Collateral Damage</h5>
                     <div class="form-check">
                         <label class="form-check-label text-white">Impact Area</label>
-                        <input class="form-check-input" type="checkbox" checked="@item.Impacted_area">
+                        <input class="form-check-input" type="checkbox" checked="">
                     </div>
                     <div class="form-check">
                         <label class="form-check-label text-white">Victim Location</label>
-                        <input class="form-check-input" type="checkbox" checked="@item.Location">
+                        <input class="form-check-input" type="checkbox" checked="">
                     </div>
                     <div class="form-check">
                         <label class="form-check-label text-white">Victim Country</label>
@@ -52,7 +52,7 @@
                     </div>
                     <div class="form-check">
                         <label class="form-check-label text-white">Victim Identity</label>
-                        <input class="form-check-input" type="checkbox" checked="@item.Victim_identity">
+                        <input class="form-check-input" type="checkbox" checked="">
                     </div>
                     <div class="form-check">
                         <label class="form-check-label text-white">Victim Type</label>
@@ -116,7 +116,6 @@
                         <input class="form-check-input" type="checkbox">
                     </div>
                 </div>
-            }
         }
     </div>
         <button type="submit" class="btn-sm btn-success" style="float:right">Ok</button>

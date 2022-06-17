@@ -5,50 +5,30 @@
 }
 
 <script src="/js/jquery 3.6.0.js"> </script>
-
-<div class="filterSortContainer d-flex justify-content-between">
+<p class="text-white">
+    @Model.title
+</p>
+<div class="filterSortContainer d-flex justify-content-between h-auto">
     <div>
         <input placeholder="Search..." id="search_txt" type="text">
     </div>
     <div class="d-flex flex-row">
-        <a href="" class="link-light"><button type="button" class="btn btn-secondary btn-outline-dark">Export</button></a>
-        <div class="dropup">
+        <a href="" class="link-light"><button class="btn btn-secondary btn-outline-dark">Export</button></a>
+        <div class="drodown">
             <button id="dropdownButton" type="button" class="btn btn-secondary btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
                     aria-haspopup="true" data-bs-auto-close="outside">
                 Sort
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownButton">
-                <div class="dropstart">
-                    <a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Name: </a>
-                    <ul class="dropdown-menu shadow">
-                        <li>
-                            <a class="dropdown-item">Ascending</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item">Descending</a>
-                        </li>
-                    </ul>
-                    <a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Date: </a>
-                    <ul class="dropdown-menu shadow ">
-                        <li>
-                            <a class="dropdown-item">Ascending</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item">Descending</a>
-                        </li>
-                    </ul>
-                    <ul class="dropdown-divider"></ul>
-                    <ul class="dropdown-item">
-                        <li>
-                        </li>
-                    </ul>
-                </div>
+                    <a class="dropdown-item">Action</a>
             </div>
         </div>
-        <a asp-page="Filter"><button type="button">Filter</button></a>
+        <form method="post" enctype="multipart/form-data">
+                <button type="submit" class="btn btn-secondary btn-outline-dark">Filter</button>
+        </form>
     </div>
 </div>
-
+<br /> <br /> <br /> <br />
 <div class="overviewTableContainer flex">
     <table class="overviewTable">
         <tr>
