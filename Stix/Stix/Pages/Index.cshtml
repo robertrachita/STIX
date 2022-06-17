@@ -5,10 +5,6 @@
 }
 
 <script src="/js/jquery 3.6.0.js"> </script>
-<p class="text-white">
-    @Model.title
-    @Model.date
-</p>
 <div class="filterSortContainer d-flex justify-content-between h-auto">
     <div>
         <input placeholder="Search..." id="search_txt" type="text">
@@ -41,7 +37,7 @@
                 {
                     <th class="incidentHeader">Title</th>
                 }
-                @if (@Model.summary)
+                @if (@Model.attack_pattern)
                 {
                     <th class="descriptionHeader">Description</th>
                 }
@@ -49,15 +45,78 @@
                 {
                     <th class="addedOnHeader">Added On</th>
                 }
+                @if (@Model.impact_area)
+                {
+                    <th class="addedOnHeader">Impact Area</th>
+                }
+                @if (@Model.victim_location)
+                {
+                    <th class="addedOnHeader">Victim Location</th>
+                }
+                @if (@Model.victim_country)
+                {
+                    <th class="addedOnHeader">Country</th>
+                }
+                @if (@Model.identity)
+                {
+                    <th class="addedOnHeader">Identity</th>
+                }
+                @if (@Model.victim_type)
+                {
+                    <th class="addedOnHeader">Victim Type</th>
+                }
+                @if (@Model.affected_system)
+                {
+                    <th class="addedOnHeader">Affected system</th>
+                }
+                @if (@Model.method)
+                {
+                    <th class="addedOnHeader">Method</th>
+                }
+                @if (@Model.malware_type)
+                {
+                    <th class="addedOnHeader">Malware Type</th>
+                }
+                @if (@Model.ransomware_type)
+                {
+                    <th class="addedOnHeader">Ransomware type</th>
+                }
+                @if (@Model.campaign)
+                {
+                    <th class="addedOnHeader">Campaign</th>
+                }
+                @if (@Model.impact)
+                {
+                    <th class="addedOnHeader">Impact</th>
+                }
+                @if (@Model.threat_actor_country)
+                {
+                    <th class="addedOnHeader">Threat Actor Country</th>
+                }
+                @if (@Model.threat_actor)
+                {
+                    <th class="addedOnHeader">Threat Actor</th>
+                }
                 @if (@Model.additional_info)
                 {
-                    <th>Additional Information</th>
+                    <th class="addedOnHeader">Additional Info</th>
+                }
+                @if (@Model.summary)
+                {
+                    <th class="addedOnHeader">Summary</th>
+                }
+                @if(@Model.reference_short)
+                {
+                    <th class="addedOnHeader">Reference (short)</th>
+                }
+                @if(@Model.reference_long)
+                {
+                    <th class="addedOnHeader">Reference (long)</th>
                 }
             }
             <th class="viewMoreHeader">View More</th>
         </tr>
         <!-- loop, can change it to just grab everything from a db-->
-        @*@foreach(@ViewData.incident in @ViewData.incidentList)*@
         @foreach (var item in @Model.incidentList)
         {
             <tr>
@@ -65,9 +124,9 @@
                 {
                     <td class="centerTableCell">@item.title</td>
                 }
-                @if (@Model.summary)
+                @if (@Model.attack_pattern)
                 {
-                    <td class="centerTableCell">@item.summary</td>
+                    <td class="centerTableCell">@item.attackPattern</td>
                 }
                 @if (@Model.date)
                 {
@@ -76,6 +135,76 @@
                 @if (@Model.additional_info)
                 {
                     <td class="centerTableCell">@item.additionalInfo</td>
+                }
+                
+                @if (@Model.impact_area)
+                {
+                    <td class="centerTableCell">@item.impactArea</td>
+                }
+                @if (@Model.victim_location)
+                {
+                    <td class="centerTableCell">@item.victimLocation</td>
+                }
+                @if (@Model.victim_country)
+                {
+                    <td class="centerTableCell">@item.victimCountry</td>
+                }
+                @if (@Model.identity)
+                {
+                    <td class="centerTableCell">@item.identity</td>
+                }
+                @if (@Model.victim_type)
+                {
+                    <td class="centerTableCell">@item.victimType</td>
+                }
+                @if (@Model.affected_system)
+                {
+                    <td class="centerTableCell">@item.affectedSystem</td>
+                }
+                @if (@Model.method)
+                {
+                    <td class="centerTableCell">@item.method</td>
+                }
+                @if (@Model.malware_type)
+                {
+                    <td class="centerTableCell">@item.malwareType</td>
+                }
+                @if (@Model.ransomware_type)
+                {
+                    <td class="centerTableCell">@item.ransomwareType</td>
+                }
+                @if (@Model.campaign)
+                {
+                    <td class="centerTableCell">@item.campaign</td>
+                }
+                @if (@Model.impact)
+                {
+                    <td class="centerTableCell">@item.impact</td>
+                }
+                @if (@Model.threat_actor_country)
+                {
+                    <td class="centerTableCell">@item.threatActorCountry</td>
+                }
+                @if (@Model.threat_actor)
+                {
+                    <td class="centerTableCell">@item.threatActor</td>
+                }
+                @if (@Model.summary)
+                {
+                    <td class="centerTableCell">@item.summary</td>
+                }
+                @if(@Model.reference_short)
+                {
+                    <td class="centerTableCell">@item.referenceShort</td>
+                }
+                @if(@Model.reference_long)
+                {
+                    <td class="centerTableCell">
+                        @foreach(string reference in @item.references)  
+                        {
+                            reference.ToString();
+                        }
+                    </td>
                 }
                 <td class="rightTableCell"><a href="Incident/?id=@item.id">X</a></td>
             </tr>

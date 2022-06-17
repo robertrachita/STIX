@@ -12,28 +12,34 @@ namespace Stix.Pages
     public class IndexModel : PageModel
     {
         private readonly ILogger<IndexModel> _logger;
-        private IncidentController incidentController;
 
         public List<Incident> incidentList = new List<Incident>();
+
         public IndexModel(ILogger<IndexModel> logger)
         {
             _logger = logger;
 
-            this.filters = new FiltersModel();
-            this.filters.Title = true;
-            this.filters.Description = true;
-
             this.title = true;
-            this.summary = true;
             this.date = true;
             this.additional_info = false;
+            this.impact_area = false;
+            this.impact = false;
+            this.victim_country = false;
+            this.victim_location = false;
+            this.identity = false;
+            this.victim_type = false;
+            this.affected_system = false;
+            this.method = false;
+            this.malware_type = false;
+            this.ransomware_type = false;
+            this.attack_pattern = true;
+            this.campaign = false;
+            this.impact = false;
+            this.summary = false;
+            this.reference_short = false;
+            this.reference_long = false;
         }
-
         // Filter Properties
-
-        [BindProperty(SupportsGet = true)]
-        public FiltersModel filters { get; set; }
-
         [BindProperty(SupportsGet = true)]
         public bool title { get; set; }
 
@@ -54,6 +60,9 @@ namespace Stix.Pages
 
         [BindProperty(SupportsGet = true)]
         public bool victim_location { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool victim_country { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public bool identity { get; set; }
@@ -80,8 +89,16 @@ namespace Stix.Pages
         public bool threat_actor { get; set; }
 
         [BindProperty(SupportsGet = true)]
+        public bool threat_actor_country { get; set; }
+
+        [BindProperty(SupportsGet = true)]
         public bool additional_info { get; set; }
 
+        [BindProperty(SupportsGet = true)]
+        public bool reference_short { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool reference_long { get; set; }
         public async Task OnGetAsync()
         {
             await OnGetIncidentsAsync();
@@ -115,7 +132,29 @@ namespace Stix.Pages
         [HttpPost]
         public async Task<IActionResult> OnPost()
         {
-            return RedirectToPage("Filter", new { filters = this.filters, title = this.filters.Title });
+            return RedirectToPage("Filter", new
+            {
+                title = this.title,
+                summary = this.summary,
+                date = this.date,
+                impact_area = this.impact_area,
+                impact = this.impact,
+                victim_location = this.victim_location,
+                victim_country = this.victim_country,
+                victim_type = this.victim_type,
+                identity = this.identity,
+                affected_system = this.affected_system,
+                malware_type = this.malware_type,
+                ransomware_type = this.ransomware_type,
+                method = this.method,
+                attack_pattern = this.attack_pattern,
+                campaign = this.campaign,
+                threat_actor = this.threat_actor,
+                threat_actor_country = this.threat_actor_country,
+                additional_info = this.additional_info,
+                reference_short = this.reference_short,
+                reference_long = this.reference_long
+            });
         }
     }
 }
