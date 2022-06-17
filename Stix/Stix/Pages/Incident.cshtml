@@ -22,7 +22,7 @@ body {
 
 <div class="d-flex flex-column flex-center container mh-100 mw-100 textcolour">
     <div class="mt-2 d-flex flex-row mh-25 mw-100 justify-content-between">
-        <h4>@ViewData["IncidentName"]</h4>
+        <h4>@Model.Incident.title</h4>
         <form method="post">
             <select name="file-formats" asp-for="FileFormatType">
                 <option value="pdf">PDF</option>
@@ -33,46 +33,80 @@ body {
             <button type="submit" class="btn btn-sm mb-2 rounded- btn-primary buttoncolour">Export as...</button>
         </form>
     </div>
-    <p class="mt-4 text-left text-justify mh-50 text-wrap">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    <p class="mt-4 text-left text-justify mh-50 text-wrap">@Model.Incident.summary</p>
      <div class="container mt-4 w-100 h-auto p-55 border border-dark min-vh-50">
             <div class="d-flex justify-content-center">
 
-                <figure id="indicator" class="text-center"> <img src=~/Resources/indicator.png alt="Indicator" width="100" height="100"><br >  Test</figure> <br>
+                <figure id="indicator" class="text-center"> <img src=~/Resources/indicator.png alt="Indicator" width="100" height="100"><br ></figure> <br>
 
             </div>
             <div class="d-flex justify-content-evenly">
-               <figure id="campaign" class="text-center" > <img  src=~/Resources/campaign.png alt="Campaign" width="100" height="100"><br> Test </figure>
-               <figure id="threat_actor" class="text-center"> <img src=~/Resources/threat_actor.png alt="Threat Actor" width="100" height="100"> <br> Test </figure>
-             <figure id="vulnerability" class="text-center">  <img src=~/Resources/vulnerability.png alt="Vulnerability" width="100" height="100"> <br> Test </figure>
+               <figure id="campaign" class="text-center" > <img id="campaign"  src=~/Resources/campaign.png alt="Campaign" width="100" height="100"><br>@Model.Incident.campaign</figure>
+               <figure id="threat_actor" class="text-center"> <img id="threat_actor" src=~/Resources/threat_actor.png alt="Threat Actor" width="100" height="100"> <br> @Model.Incident.threatActor </figure>
+             <figure id="vulnerability" class="text-center">  <img id="vulnerability" src=~/Resources/vulnerability.png alt="Vulnerability" width="100" height="100"> <br> </figure>
           </div> <br>
                <div class="d-flex justify-content-evenly">
-                 <div class="d-flex justify-content-center"> <figure  id="course_of_action" class="text-center">  <img src=~/Resources/course_of_action.png alt="Course of Action" width="100" height="100"> <br>Test </figure> </div>
-             <div class="d-flex justify-content-center"> <figure id="grouping"  class="text-center">  <img src=~/Resources/grouping.png alt="Grouping" width="100" height="100"><br>Test </figure> </div>
-              <div class="d-flex justify-content-center"> <figure id="identity" class="text-center"> <img src=~/Resources/identity.png alt="Identity" width="100" height="100"> <br>Test </figure> </div>
-             <div class="d-flex justify-content-center"> <figure id="infrastructure" class="text-center"> <img src=~/Resources/infrastructure.png alt="Infrastructure" width="100" height="100"> <br>Test </figure> </div>
-            <div class="d-flex justify-content-center"> <figure id="intrusion_set" class="text-center">  <img src=~/Resources/intrusion_set.png alt="Intrusion Set" width="100" height="100"> <br>Test </figure> </div>
-             <div class="d-flex justify-content-center"> <figure id="location" class="text-center"> <img src=~/Resources/location.png alt="Location" width="100" height="100"><br> Test </figure></div>
+                 <div class="d-flex justify-content-center"> <figure  id="course_of_action" class="text-center">  <img src=~/Resources/course_of_action.png alt="Course of Action" width="100" height="100"> <br> </figure> </div>
+             <div class="d-flex justify-content-center"> <figure id="grouping"  class="text-center">  <img src=~/Resources/grouping.png alt="Grouping" width="100" height="100"><br>Test </figure>  </div>
+              <div class="d-flex justify-content-center"> <figure id="identity" class="text-center"> <img src=~/Resources/identity.png alt="Identity" width="100" height="100"> <br>@Model.Incident.identity </figure> </div>
+             <div class="d-flex justify-content-center"> <figure id="infrastructure" class="text-center"> <img src=~/Resources/infrastructure.png alt="Infrastructure" width="100" height="100"> <br></figure> </div>
+            <div class="d-flex justify-content-center"> <figure id="intrusion_set" class="text-center">  <img src=~/Resources/intrusion_set.png alt="Intrusion Set" width="100" height="100"> <br> </figure> </div>
+             <div class="d-flex justify-content-center"> <figure id="location" class="text-center"> <img src=~/Resources/location.png alt="Location" width="100" height="100"><br>@Model.Incident.victimLocation</figure></div>
              </div><br>
             <div class="d-flex justify-content-evenly">
-            <div class="d-flex justify-content-center"> <figure id="malware" class="text-center">   <img src=~/Resources/malware.png alt="Malware" width="100" height="100"> <br>Test </figure> </div>
-          <div class="d-flex justify-content-center"> <figure id="malware_analysis" class="text-center">     <img src=~/Resources/malware_analysis.png alt="Malware Analysis" width="100" height="100"> <br>Test </figure> </div>
-             <div class="d-flex justify-content-center"> <figure id="note" class="text-center">  <img src=~/Resources/note.png alt="Note" width="100" height="100"> <br>Test </figure> </div>
-             <div class="d-flex justify-content-center"> <figure id="observed_data" class="text-center">  <img src=~/Resources/observed_data.png alt="Observed Data" width="100" height="100"> <br>Test </figure> </div>
-            <div class="d-flex justify-content-center"> <figure id="opinion" class="text-center">   <img src=~/Resources/opinion.png alt="Opinion" width="100" height="100"> <br>Test </figure> </div>
-            <div class="d-flex justify-content-center"> <figure id="relationship" class="text-center">   <img src=~/Resources/relationship.png alt="Relationship" width="100" height="100"> <br>Test </figure> </div>
-            <div class="d-flex justify-content-center"> <figure id="report" class="text-center">   <img src=~/Resources/report.png alt="Report" width="100" height="100"> <br>Test </figure> </div>
-            <div class="d-flex justify-content-center"> <figure id="sighting" class="text-center">   <img src=~/Resources/sighting.png alt="Sighting" width="100" height="100"> <br>Test </figure> </div>
-           <div class="d-flex justify-content-center"> <figure id="tool" class="text-center">    <img src=~/Resources/tool.png alt="Tool" width="100" height="100"> <br>Test </figure> </div>
-           <div class="d-flex justify-content-center"> <figure id="attack_pattern" class="text-center">    <img src=~/Resources/attack_pattern.png alt="Attack Pattern" width="100" height="100"> <br>Test </figure> </div>
+            <div class="d-flex justify-content-center"> <figure id="malware" class="text-center">   <img src=~/Resources/malware.png alt="Malware" width="100" height="100"> <br>@Model.Incident.malwareType </figure> </div>
+          <div class="d-flex justify-content-center"> <figure id="malware_analysis" class="text-center">     <img src=~/Resources/malware_analysis.png alt="Malware Analysis" width="100" height="100"> <br > </figure> </div>
+             <div class="d-flex justify-content-center"> <figure id="observed_data" class="text-center">  <img src=~/Resources/observed_data.png alt="Observed Data" width="100" height="100"> <br> </figure> </div>
+            <div class="d-flex justify-content-center"> <figure id="opinion" class="text-center">   <img src=~/Resources/opinion.png alt="Opinion" width="100" height="100"> <br> </figure> </div>
+            <div class="d-flex justify-content-center"> <figure id="relationship" class="text-center">   <img src=~/Resources/relationship.png alt="Relationship" width="100" height="100"> <br> </figure> </div>
+            <div class="d-flex justify-content-center"> <figure id="report" class="text-center">   <img src=~/Resources/report.png alt="Report" width="100" height="100"> <br></figure> </div>
+            <div class="d-flex justify-content-center"> <figure id="sighting" class="text-center">   <img src=~/Resources/sighting.png alt="Sighting" width="100" height="100"> <br>  </figure> </div>
+           <div class="d-flex justify-content-center"> <figure id="tool" class="text-center">    <img src=~/Resources/tool.png alt="Tool" width="100" height="100"> <br>  </figure> </div>
+           
        </div>
 
 
 
     </div>
-    <div class="d-flex flex-left flex-row"><p class="w-25 mh-10">Date of the incident</p> @ViewData["IncidentDate"]</div>
+    <div class="d-flex flex-left flex-row"><p class="w-25 mh-10">Date of the incident</p> @Model.Incident.month @Model.Incident.year</div>
     <div class="d-flex flex-left flex-row"><p class="w-25 mh-10">Date added</p> @ViewData["IncidentAdded"]</div>
-    <div class="d-flex flex-left flex-row"><p class="w-25 mh-10">Source(s)</p> @ViewData["IncidentSource"]</div>
+    <div class="d-flex flex-left flex-row"><p class="w-25 mh-10">Source(s)</p> </div>
 
-     <connection from="#indicator" to="#campaign" color="#aaaaaa" fromX="1" tail onlyVisible></connection>
     <!-- Javascript for file in form-->
-     <script src="~/js/domarrow.js"></script>
+    <script src="~/js/domarrow.js"></script>
+    <script> 
+        var collection = [];
+    
+        var data = @Html.Raw(Json.Serialize(@Model.Incident));
+
+        function hideIfNull(key, id){
+            if (data[key] == null || data[key] == "") {
+                document.getElementById(id).style.display = 'none';
+            }
+            else 
+            {
+                collection.push(id);
+            }
+        }
+
+        hideIfNull('indicator', 'indicator');
+        hideIfNull('threatactor', 'threat_actor');
+        hideIfNull('campaign', 'campaign');
+        hideIfNull('vulnerability', 'vulnerability');
+        hideIfNull('grouping', 'grouping');
+        hideIfNull('intrusion_set', 'intrusion_set');
+        hideIfNull('infrastructure', 'infrastructure');
+        hideIfNull('victimLocation', 'location');
+        hideIfNull('course_of_action', 'course_of_action');
+        hideIfNull('malwareType', 'malware');
+        hideIfNull('malware_analysis', 'malware_analysis');
+        hideIfNull('observed_data', 'observed_data');
+        hideIfNull('opinion', 'opinion');
+        hideIfNull('relationship', 'relationship');
+        hideIfNull('report', 'report');
+        hideIfNull('sighting', 'sighting');
+        hideIfNull('tool', 'tool');
+        hideIfNull('identity', 'identity');
+    </script>
+
+    <connection from="#identity" to="#location" color="#aaaaaa" fromX="1" tail onlyVisible></connection>

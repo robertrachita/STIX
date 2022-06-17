@@ -1,0 +1,113 @@
+﻿@page
+@model Stix.Pages.FilterModel
+@{
+}
+<h2 class="nav-link text-white text-center">Filter By</h2>
+<form method="post" class="form-check position-static">
+    <div class="d-flex justify-content-between w-auto">
+        @{
+                <div>
+                    <h5 class="text-uppercase text-white">Date</h5>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Happened on</label>
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.date" checked="@Model.date">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-uppercase text-white">Incident Explanation</h5>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Title</label>
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.title" checked="@Model.title">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Description</label>
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.summary" checked="@Model.summary">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Additional Information</label>
+                        <input class="form-check-input" type="checkbox" asp-for="@Model.additional_info" checked="@Model.additional_info">
+                    </div>
+                </div>
+
+                <div>
+                    <h5 class="text-uppercase text-white">Collateral Damage</h5>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Impact Area</label>
+                        <input class="form-check-input" type="checkbox" checked="@Model.impact_area" asp-for="@Model.impact_area">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Victim Location</label>
+                        <input class="form-check-input" type="checkbox" checked="@Model.victim_location" asp-for="@Model.victim_location" >
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Victim Country</label>
+                        <input class="form-check-input" type="checkbox" checked="@Model.victim_country" asp-for="@Model.victim_country">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Victim Identity</label>
+                        <input class="form-check-input" type="checkbox" checked="@Model.identity" asp-for="@Model.identity">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Victim Type</label>
+                        <input class="form-check-input" type="checkbox" checked="@Model.victim_type" asp-for="@Model.victim_type">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Affected System</label>
+                        <input class="form-check-input" type="checkbox" checked="@Model.affected_system" asp-for="@Model.affected_system">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Impact</label>
+                        <input class="form-check-input" type="checkbox" checked="@Model.impact" asp-for="@Model.impact">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-uppercase text-white">Gathered Modus Operandi Intelligence</h5>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Method</label>
+                        <input class="form-check-input" type="checkbox" checked="@Model.method" asp-for="@Model.method">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Malware Type</label>
+                        <input class="form-check-input" type="checkbox" checked="@Model.malware_type" asp-for="@Model.malware_type">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Ransomware Type</label>
+                        <input class="form-check-input" type="checkbox" checked="@Model.ransomware_type" asp-for="@Model.ransomware_type">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Attack Pattern</label>
+                        <input class="form-check-input" type="checkbox" checked="@Model.attack_pattern" asp-for="@Model.attack_pattern">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Campaign</label>
+                        <input class="form-check-input" type="checkbox" checked="@Model.campaign" asp-for="@Model.campaign">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-uppercase text-white">Attacker Data</h5>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Threat Actor Country</label>
+                        <input class="form-check-input" type="checkbox" checked="@Model.threat_actor_country" asp-for="@Model.threat_actor_country">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Threat Actor</label>
+                        <input class="form-check-input" type="checkbox" checked="@Model.threat_actor" asp-for="@Model.threat_actor">
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-white text-uppercase">Appendecies</h5>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Reference(short)</label>
+                        <input class="form-check-input" type="checkbox" checked="@Model.reference_short" asp-for="@Model.reference_short">
+                    </div>
+                    <div class="form-check">
+                        <label class="form-check-label text-white">Reference(full)</label>
+                        <input class="form-check-input" type="checkbox" checked="@Model.reference_long" asp-for="@Model.reference_long">
+                    </div>
+                </div>
+        }
+    </div>
+        <button type="submit" class="btn-sm btn-success" style="float:right">Ok</button>
+</form>
+
+

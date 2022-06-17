@@ -1,46 +1,17 @@
-﻿using System.Globalization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Stix.Controllers;
-using System.Text.Json;
-using Newtonsoft.Json;
 using Stix.Models;
-using Newtonsoft.Json.Linq;
-
+using MongoDB.Driver;
+using MongoDB.Bson;
 namespace Stix.Pages
 {
-    public class IndexModel : PageModel
+    public class FilterModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
 
-        public List<Incident> incidentList = new List<Incident>();
+        [BindProperty]
+        public List<bool> AreChecked { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger)
-        {
-            _logger = logger;
-
-            this.title = true;
-            this.date = true;
-            this.additional_info = false;
-            this.impact_area = false;
-            this.impact = false;
-            this.victim_country = false;
-            this.victim_location = false;
-            this.identity = false;
-            this.victim_type = false;
-            this.affected_system = false;
-            this.method = false;
-            this.malware_type = false;
-            this.ransomware_type = false;
-            this.attack_pattern = true;
-            this.campaign = false;
-            this.impact = false;
-            this.summary = false;
-            this.reference_short = false;
-            this.reference_long = false;
-        }
-        // Filter Properties
-        [BindProperty(SupportsGet = true)]
+        [BindProperty (SupportsGet = true)]
         public bool title { get; set; }
 
         [BindProperty(SupportsGet = true)]
@@ -62,13 +33,13 @@ namespace Stix.Pages
         public bool victim_location { get; set; }
 
         [BindProperty(SupportsGet = true)]
-        public bool victim_country { get; set; }
-
-        [BindProperty(SupportsGet = true)]
         public bool identity { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public bool victim_type { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        public bool victim_country { get; set; }
 
         [BindProperty(SupportsGet = true)]
         public bool malware_type { get; set; }
@@ -99,40 +70,11 @@ namespace Stix.Pages
 
         [BindProperty(SupportsGet = true)]
         public bool reference_long { get; set; }
-        public async Task OnGetAsync()
-        {
-            await OnGetIncidentsAsync();
-        }
-
-        public async Task<ActionResult> OnGetIncidentsAsync()
-        {
-            try
-            {
-                using (var httpClient = new HttpClient())
-                {
-                    using (HttpResponseMessage response = await httpClient.GetAsync("https://stix-test.herokuapp.com/api/Incident/GetAllIncidents.json/"))
-                    {
-                        string apiResponse = await response.Content.ReadAsStringAsync();
-                        this.incidentList = JsonConvert.DeserializeObject<List<Incident>>(apiResponse).ToList();
-                        foreach (var item in this.incidentList)
-                        {
-                            return Page();
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.ToString());
-            }
-
-            return RedirectToPage("Login");
-        }
 
         [HttpPost]
-        public async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPostAsync()
         {
-            return RedirectToPage("Filter", new
+            return RedirectToPage("Index", new
             {
                 title = this.title,
                 summary = this.summary,
@@ -144,9 +86,9 @@ namespace Stix.Pages
                 victim_type = this.victim_type,
                 identity = this.identity,
                 affected_system = this.affected_system,
+                method = this.method,
                 malware_type = this.malware_type,
                 ransomware_type = this.ransomware_type,
-                method = this.method,
                 attack_pattern = this.attack_pattern,
                 campaign = this.campaign,
                 threat_actor = this.threat_actor,
@@ -156,5 +98,6 @@ namespace Stix.Pages
                 reference_long = this.reference_long
             });
         }
+
     }
 }
