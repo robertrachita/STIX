@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Stix.Pages
 {
-    public class LandingModel : PageModel
+    public class AboutModel : PageModel
     {
-       
+        public void OnGet()
+        {
+        }
     }
 }

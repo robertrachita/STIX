@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Stix.styles.css" asp-append-version="true" />
-
     <link rel="stylesheet" href="~/css/index.css"/>
 </head>
 
@@ -17,12 +16,12 @@
 
         <div class="navbar">
 		    <div class="container flex">
-                <a class="stixDb" href="">STIX Database</a>
+                <a class="stixDb" asp-page="Overview">STIX Database</a>
 			    <nav>
 				    <ul>
-					    <li><a href="">Add New Incident</a></li>
+					    <li><a asp-page="/Manual">Add New Incident</a></li>
 					    <li><a asp-page="/Import">Import</a></li>
-					    <li><a href="">About</a></li>
+					    <li><a asp-page="/About">About</a></li>
 					    <li><a href="">My Account</a></li>
 				    </ul>
 			    </nav>
@@ -33,16 +32,15 @@
 
     <div class="horizontalBreak flex"></div>
 
-
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted fixed-bottom">
         <div class="container">
-            &copy; 2022 - Stix - <a asp-area="" asp-page="/Privacy">Privacy</a>
+            &copy; 2022 - Stix - <a asp-area="" asp-page="/About">About</a>
         </div>
     </footer>
 

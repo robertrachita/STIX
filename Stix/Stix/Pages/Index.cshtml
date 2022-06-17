@@ -1,32 +1,43 @@
-﻿@page
-@model IndexModel
+@page
+@model Stix.Pages.LandingModel
 @{
-    ViewData["Title"] = "STIX";
+  Layout = null; 
+  ViewData["Title"] = "Welcome";
 }
 
-    <div class="filterSortContainer">
-        <a href=""><button type="button">Sort</button></a>
-        <a href=""><button type="button">Filter</button></a>
-    </div>
-    
-    <div class="overviewTableContainer flex">
-        <table class="overviewTable">
-            <tr>
-              <th class="incidentHeader">Incident Name</th>
-              <th class="descriptionHeader">Description</th>
-              <th class="addedOnHeader">Added On</th>
-              <th class="viewMoreHeader">View More</th>
-            </tr>
-        <!-- loop, can change it to just grab everything from a db-->
-        @for (int i = 0; i < 15 ; i++)
-        {
-           <tr>
-              <td class="leftTableCell">@Model.incidentName</td>
-              <td class="centerTableCell">@Model.description</td>
-              <td class="centerTableCell">@Model.addedOn</td>
-              <td class="rightTableCell">"x"</td>
-            </tr> 
-        }
-          </table>
-    </div>
+<html lang="en">
+<head>
+ <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Welcome</title>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Stix.styles.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/Landing.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-8"></div>
+            <div class="col-sm-4 my-custom-col align-items-center">
+                <div class="row-sm-20 push">
 
+                </div>
+                <div class="row-sm-20 content">
+                   
+                <h1 id="stixHeader">STIX Database</h1>
+                 <p id="stixParagraph">The place for maritime cyber<br>
+                  incidents reporting</p>
+                  <a href="/Login">
+                  <button id="logRegButt"> Login/Register  </button></a>
+                  </div>
+             </div>
+        </div>
+
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+</body>
+</html> 

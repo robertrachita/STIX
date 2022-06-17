@@ -1,21 +1,13 @@
 html {
   font-size: 14px;
 }
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
-
+    margin-bottom: 60px;
 }
 
 .textcolour {
@@ -24,5 +16,28 @@ body {
 
 .buttoncolour {
     background-color: #3f729d;
+}
 
+h5 {
+    color: #c0c0c0;
+}
+
+h2 {
+    color: #c0c0c0;
+}
+
+.textContainerAbout {
+    margin: auto;
+    width: 50%;
+    //border: 3px solid green;
+    padding: 10px;
+    margin-top: 5%;
+    text-align: center;
+}
+
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
 }
