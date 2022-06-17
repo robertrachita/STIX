@@ -27,10 +27,6 @@
         </form>
     </div>
 </div>
-<br />
-<br />
-<br />
-<br />
 <div class="overviewTableContainer flex">
     <table class="overviewTable" id="myTable">
         <thead>
@@ -122,12 +118,6 @@
         </thead>
         <!-- loop, can change it to just grab everything from a db-->
         <tbody>
-            <tr>
-                <td class="centerTableCell">Zimbabwe</td>
-                <td class="centerTableCell">Nasco is Gay</td>
-                <td class="centerTableCell">az</td>
-                <td class="centerTableCell">x</td>
-            </tr>
             @foreach (var item in @Model.incidentList)
             {
                 <tr class="trow">
@@ -228,7 +218,6 @@
                 </tr>
             }
             <tr class="not-found"><td>Not Found</td></tr>
-
         </tbody>
     </table>
 
@@ -291,8 +280,8 @@
                 $.get('/Index/Incidents').done(function(incidents) {
                     $.each(incidents, function(i, incident) {
                         var item = `<li>
-                                                                                                                                                                                                                    <strong>${incident.id} ${incident.referenceID}</strong>
-                                                                                                                                                                                                                    (£${incident.pending})</li>`;
+                                                                                                                                                                                                                                <strong>${incident.id} ${incident.referenceID}</strong>
+                                                                                                                                                                                                                                (£${incident.pending})</li>`;
                         $('#incident-list').append(item);
                     });
                 });
