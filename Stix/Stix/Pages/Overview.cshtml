@@ -16,15 +16,12 @@
         <input placeholder="Search..." id="search_txt" type="text">
     </div>
     <div class="d-flex flex-row">
-        <div class="dropdown">
-            <button id="dropdownButton" type="button" class="btn btn-secondary btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
-                    aria-haspopup="true" data-bs-auto-close="outside">
-                Sort
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownButton">
-                <a class="dropdown-item">Action</a>
-            </div>
-        </div>
+        <button type="button" class="btn" onclick="sortColumn('asc')">
+            Sort Name ASC
+        </button>
+        <button type="button" class="btn" onclick="sortColumn('desc')">
+            Sort Name DESC
+        </button>
         <form method="post" enctype="multipart/form-data">
             <button type="submit" class="btn btn-secondary btn-outline-dark">Filter</button>
         </form>
@@ -35,7 +32,7 @@
 <br />
 <br />
 <div class="overviewTableContainer flex">
-    <table class="overviewTable">
+    <table class="overviewTable" id="myTable">
         <thead>
             <tr>
                 @{
@@ -124,116 +121,178 @@
             </tr>
         </thead>
         <!-- loop, can change it to just grab everything from a db-->
-        @foreach (var item in @Model.incidentList)
-        {
+        <tbody>
             <tr>
-                @if (@Model.title)
-                {
-                    <td class="centerTableCell">@item.title</td>
-                }
-                @if (@Model.attack_pattern)
-                {
-                    <td class="centerTableCell">@item.attackPattern</td>
-                }
-                @if (@Model.date)
-                {
-                    <td class="centerTableCell">@item.month - @item.year</td>
-                }
-                @if (@Model.additional_info)
-                {
-                    <td class="centerTableCell">@item.additionalInfo</td>
-                }
-
-                @if (@Model.impact_area)
-                {
-                    <td class="centerTableCell">@item.impactArea</td>
-                }
-                @if (@Model.victim_location)
-                {
-                    <td class="centerTableCell">@item.victimLocation</td>
-                }
-                @if (@Model.victim_country)
-                {
-                    <td class="centerTableCell">@item.victimCountry</td>
-                }
-                @if (@Model.identity)
-                {
-                    <td class="centerTableCell">@item.identity</td>
-                }
-                @if (@Model.victim_type)
-                {
-                    <td class="centerTableCell">@item.victimType</td>
-                }
-                @if (@Model.affected_system)
-                {
-                    <td class="centerTableCell">@item.affectedSystem</td>
-                }
-                @if (@Model.method)
-                {
-                    <td class="centerTableCell">@item.method</td>
-                }
-                @if (@Model.malware_type)
-                {
-                    <td class="centerTableCell">@item.malwareType</td>
-                }
-                @if (@Model.ransomware_type)
-                {
-                    <td class="centerTableCell">@item.ransomwareType</td>
-                }
-                @if (@Model.campaign)
-                {
-                    <td class="centerTableCell">@item.campaign</td>
-                }
-                @if (@Model.impact)
-                {
-                    <td class="centerTableCell">@item.impact</td>
-                }
-                @if (@Model.threat_actor_country)
-                {
-                    <td class="centerTableCell">@item.threatActorCountry</td>
-                }
-                @if (@Model.threat_actor)
-                {
-                    <td class="centerTableCell">@item.threatActor</td>
-                }
-                @if (@Model.summary)
-                {
-                    <td class="centerTableCell">@item.summary</td>
-                }
-                @if (@Model.reference_short)
-                {
-                    string str = "";
-                    @foreach (string element in @item.referenceShort)
-                    {
-                        str += element + "\n";
-                    }
-
-                    <td class="centerTableCell"> @str; </td>
-                }
-                @if (@Model.reference_long)
-                {
-                    string str = "";
-                    @foreach (string element in @item.references)
-                    {
-                        str += element + "\n";
-                    }
-
-                    <td class="centerTableCell"> @str; </td>
-                }
-                <td class="rightTableCell"><a href="Incident/?id=@item.id">X</a></td>
+                <td class="centerTableCell">Zimbabwe</td>
+                <td class="centerTableCell">Nasco is Gay</td>
+                <td class="centerTableCell">az</td>
+                <td class="centerTableCell">x</td>
             </tr>
-        }
-        <tr class="not-found"><td>Not Found</td></tr>
+            @foreach (var item in @Model.incidentList)
+            {
+                <tr class="trow">
+                    @if (@Model.title)
+                    {
+                        <td class="centerTableCell">@item.title</td>
+                    }
+                    @if (@Model.attack_pattern)
+                    {
+                        <td class="centerTableCell">@item.attackPattern</td>
+                    }
+                    @if (@Model.date)
+                    {
+                        <td class="centerTableCell">@item.month - @item.year</td>
+                    }
+                    @if (@Model.additional_info)
+                    {
+                        <td class="centerTableCell">@item.additionalInfo</td>
+                    }
+
+                    @if (@Model.impact_area)
+                    {
+                        <td class="centerTableCell">@item.impactArea</td>
+                    }
+                    @if (@Model.victim_location)
+                    {
+                        <td class="centerTableCell">@item.victimLocation</td>
+                    }
+                    @if (@Model.victim_country)
+                    {
+                        <td class="centerTableCell">@item.victimCountry</td>
+                    }
+                    @if (@Model.identity)
+                    {
+                        <td class="centerTableCell">@item.identity</td>
+                    }
+                    @if (@Model.victim_type)
+                    {
+                        <td class="centerTableCell">@item.victimType</td>
+                    }
+                    @if (@Model.affected_system)
+                    {
+                        <td class="centerTableCell">@item.affectedSystem</td>
+                    }
+                    @if (@Model.method)
+                    {
+                        <td class="centerTableCell">@item.method</td>
+                    }
+                    @if (@Model.malware_type)
+                    {
+                        <td class="centerTableCell">@item.malwareType</td>
+                    }
+                    @if (@Model.ransomware_type)
+                    {
+                        <td class="centerTableCell">@item.ransomwareType</td>
+                    }
+                    @if (@Model.campaign)
+                    {
+                        <td class="centerTableCell">@item.campaign</td>
+                    }
+                    @if (@Model.impact)
+                    {
+                        <td class="centerTableCell">@item.impact</td>
+                    }
+                    @if (@Model.threat_actor_country)
+                    {
+                        <td class="centerTableCell">@item.threatActorCountry</td>
+                    }
+                    @if (@Model.threat_actor)
+                    {
+                        <td class="centerTableCell">@item.threatActor</td>
+                    }
+                    @if (@Model.summary)
+                    {
+                        <td class="centerTableCell">@item.summary</td>
+                    }
+                    @if (@Model.reference_short)
+                    {
+                        string str = "";
+                        @foreach (string element in @item.referenceShort)
+                        {
+                            str += element + "\n";
+                        }
+
+                        <td class="centerTableCell"> @str; </td>
+                    }
+                    @if (@Model.reference_long)
+                    {
+                        string str = "";
+                        @foreach (string element in @item.references)
+                        {
+                            str += element + "\n";
+                        }
+
+                        <td class="centerTableCell"> @str; </td>
+                    }
+                    <td class="rightTableCell"><a href="Incident/?id=@item.id">X</a></td>
+                </tr>
+            }
+            <tr class="not-found"><td>Not Found</td></tr>
+
+        </tbody>
     </table>
 
     @section scripts{
         <script type="text/javascript">
+
+            function sortColumn(order) {
+                var table, rows, switching, i, x, y, shouldSwitch;
+                table = document.getElementById("myTable");
+                switching = true;
+
+                if (order == 'asc') {
+
+                    while (switching) {
+                        switching = false;
+                        rows = table.rows;
+
+                        for (i = 1; i < (rows.length - 1); i++) {
+                            shouldSwitch = false;
+
+                            x = rows[i].getElementsByTagName("TD")[0];
+                            y = rows[i + 1].getElementsByTagName("TD")[0];
+
+                            if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        }
+                        if (shouldSwitch) {
+                            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                            switching = true;
+                        }
+                    }
+                } else if (order == 'desc') {
+
+                    while (switching) {
+                        switching = false;
+                        rows = table.rows;
+
+                        for (i = 1; i < (rows.length - 1); i++) {
+                            shouldSwitch = false;
+
+                            x = rows[i].getElementsByTagName("TD")[0];
+                            y = rows[i + 1].getElementsByTagName("TD")[0];
+
+                            if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                                shouldSwitch = true;
+                                break;
+                            }
+                        }
+                        if (shouldSwitch) {
+                            rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                            switching = true;
+                        }
+                    }
+                }
+            }
+
             $(function() {
                 $.get('/Index/Incidents').done(function(incidents) {
                     $.each(incidents, function(i, incident) {
                         var item = `<li>
-                                                                                                                                                        <strong>${incident.id} ${incident.referenceID}</strong>
-                                                                                                                                                        (£${incident.pending})</li>`;
+                                                                                                                                                                                                                    <strong>${incident.id} ${incident.referenceID}</strong>
+                                                                                                                                                                                                                    (£${incident.pending})</li>`;
                         $('#incident-list').append(item);
                     });
                 });
