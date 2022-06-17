@@ -1,270 +1,42 @@
 ﻿@page
-@model IndexModel
+@model Stix.Pages.LandingModel
 @{
-    ViewData["Title"] = "STIX";
+  Layout = null;  
 }
 
-<style type="text/css">
-    .not-found {
-        display: none;
-    }
-</style>
+<html lang="en">
+<head>
+ <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Page Title</title>
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Stix.styles.css" asp-append-version="true" />
+        <link rel="stylesheet" href="~/css/Landing.css">
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-8"></div>
+            <div class="col-sm-4 my-custom-col align-items-center">
+                <div class="row-sm-20 push">
 
-<script src="/js/jquery 3.6.0.js"> </script>
-<div class="filterSortContainer d-flex justify-content-between h-auto">
-    <div>
-        <input placeholder="Search..." id="search_txt" type="text">
-    </div>
-    <div class="d-flex flex-row">
-        <div class="dropdown">
-            <button id="dropdownButton" type="button" class="btn btn-secondary btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
-                    aria-haspopup="true" data-bs-auto-close="outside">
-                Sort
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownButton">
-                <a class="dropdown-item">Action</a>
-            </div>
+                </div>
+                <div class="row-sm-20 content">
+                   
+                <h1 id="stixHeader">STIX Database</h1>
+                 <p id="stixParagraph">The place for maritime cyber<br>
+                  incidents reporting</p>
+                  <a href="/Login">
+                  <button id="logRegButt"> Login/Register  </button></a>
+                  </div>
+             </div>
         </div>
-        <form method="post" enctype="multipart/form-data">
-            <button type="submit" class="btn btn-secondary btn-outline-dark">Filter</button>
-        </form>
+
     </div>
-</div>
-<br />
-<br />
-<br />
-<br />
-<div class="overviewTableContainer flex">
-    <table class="overviewTable">
-        <thead>
-            <tr>
-                @{
-                    @if (@Model.title)
-                    {
-                        <th class="incidentHeader">Title</th>
-                    }
-                    @if (@Model.attack_pattern)
-                    {
-                        <th class="descriptionHeader">Description</th>
-                    }
-                    @if (@Model.date)
-                    {
-                        <th class="addedOnHeader">Added On</th>
-                    }
-                    @if (@Model.impact_area)
-                    {
-                        <th class="addedOnHeader">Impact Area</th>
-                    }
-                    @if (@Model.victim_location)
-                    {
-                        <th class="addedOnHeader">Victim Location</th>
-                    }
-                    @if (@Model.victim_country)
-                    {
-                        <th class="addedOnHeader">Country</th>
-                    }
-                    @if (@Model.identity)
-                    {
-                        <th class="addedOnHeader">Identity</th>
-                    }
-                    @if (@Model.victim_type)
-                    {
-                        <th class="addedOnHeader">Victim Type</th>
-                    }
-                    @if (@Model.affected_system)
-                    {
-                        <th class="addedOnHeader">Affected system</th>
-                    }
-                    @if (@Model.method)
-                    {
-                        <th class="addedOnHeader">Method</th>
-                    }
-                    @if (@Model.malware_type)
-                    {
-                        <th class="addedOnHeader">Malware Type</th>
-                    }
-                    @if (@Model.ransomware_type)
-                    {
-                        <th class="addedOnHeader">Ransomware type</th>
-                    }
-                    @if (@Model.campaign)
-                    {
-                        <th class="addedOnHeader">Campaign</th>
-                    }
-                    @if (@Model.impact)
-                    {
-                        <th class="addedOnHeader">Impact</th>
-                    }
-                    @if (@Model.threat_actor_country)
-                    {
-                        <th class="addedOnHeader">Threat Actor Country</th>
-                    }
-                    @if (@Model.threat_actor)
-                    {
-                        <th class="addedOnHeader">Threat Actor</th>
-                    }
-                    @if (@Model.additional_info)
-                    {
-                        <th class="addedOnHeader">Additional Info</th>
-                    }
-                    @if (@Model.summary)
-                    {
-                        <th class="addedOnHeader">Summary</th>
-                    }
-                    @if (@Model.reference_short)
-                    {
-                        <th class="addedOnHeader">Reference (short)</th>
-                    }
-                    @if (@Model.reference_long)
-                    {
-                        <th class="addedOnHeader">Reference (long)</th>
-                    }
-                }
-                <th class="viewMoreHeader">View More</th>
-            </tr>
-        </thead>
-        <!-- loop, can change it to just grab everything from a db-->
-        @foreach (var item in @Model.incidentList)
-        {
-            <tr>
-                @if (@Model.title)
-                {
-                    <td class="centerTableCell">@item.title</td>
-                }
-                @if (@Model.attack_pattern)
-                {
-                    <td class="centerTableCell">@item.attackPattern</td>
-                }
-                @if (@Model.date)
-                {
-                    <td class="centerTableCell">@item.month - @item.year</td>
-                }
-                @if (@Model.additional_info)
-                {
-                    <td class="centerTableCell">@item.additionalInfo</td>
-                }
-
-                @if (@Model.impact_area)
-                {
-                    <td class="centerTableCell">@item.impactArea</td>
-                }
-                @if (@Model.victim_location)
-                {
-                    <td class="centerTableCell">@item.victimLocation</td>
-                }
-                @if (@Model.victim_country)
-                {
-                    <td class="centerTableCell">@item.victimCountry</td>
-                }
-                @if (@Model.identity)
-                {
-                    <td class="centerTableCell">@item.identity</td>
-                }
-                @if (@Model.victim_type)
-                {
-                    <td class="centerTableCell">@item.victimType</td>
-                }
-                @if (@Model.affected_system)
-                {
-                    <td class="centerTableCell">@item.affectedSystem</td>
-                }
-                @if (@Model.method)
-                {
-                    <td class="centerTableCell">@item.method</td>
-                }
-                @if (@Model.malware_type)
-                {
-                    <td class="centerTableCell">@item.malwareType</td>
-                }
-                @if (@Model.ransomware_type)
-                {
-                    <td class="centerTableCell">@item.ransomwareType</td>
-                }
-                @if (@Model.campaign)
-                {
-                    <td class="centerTableCell">@item.campaign</td>
-                }
-                @if (@Model.impact)
-                {
-                    <td class="centerTableCell">@item.impact</td>
-                }
-                @if (@Model.threat_actor_country)
-                {
-                    <td class="centerTableCell">@item.threatActorCountry</td>
-                }
-                @if (@Model.threat_actor)
-                {
-                    <td class="centerTableCell">@item.threatActor</td>
-                }
-                @if (@Model.summary)
-                {
-                    <td class="centerTableCell">@item.summary</td>
-                }
-                @if (@Model.reference_short)
-                {
-                    string str = "";
-                    @foreach (string element in @item.referenceShort)
-                    {
-                        str += element + "\n";
-                    }
-
-                    <td class="centerTableCell"> @str; </td>
-                }
-                @if (@Model.reference_long)
-                {
-                    string str = "";
-                    @foreach (string element in @item.references)
-                    {
-                        str += element + "\n";
-                    }
-
-                    <td class="centerTableCell"> @str; </td>
-                }
-                <td class="rightTableCell"><a href="Incident/?id=@item.id">X</a></td>
-            </tr>
-        }
-        <tr class="not-found"><td>Not Found</td></tr>
-    </table>
-
-    @section scripts{
-        <script type="text/javascript">
-            $(function() {
-                $.get('/Index/Incidents').done(function(incidents) {
-                    $.each(incidents, function(i, incident) {
-                        var item = `<li>
-                                                                                                                                                        <strong>${incident.id} ${incident.referenceID}</strong>
-                                                                                                                                                        (£${incident.pending})</li>`;
-                        $('#incident-list').append(item);
-                    });
-                });
-            });
-
-            $(document).ready(function() {
-                $('#search_txt').keyup(function() {
-                    var search = $(this).val();
-
-                    $('table tbody tr').hide();
-
-                    var len = $('table tbody tr:not(.not-found) td:contains("' + search + '")').length;
-
-                    if (len > 0) {
-                        $('table tbody tr:not(.not-found) td:contains("' + search + '")').each(function() {
-                            $(this).closest('tr').show();
-                        });
-                    } else {
-                        $('.not-found').show();
-                    }
-                });
-            });
-
-            $.expr[":"].contains = $.expr.createPseudo(function(arg) {
-                return function(elem) {
-                    return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
-                };
-            });
-        </script>
-    }
-    </div>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+</body>
+</html> 
