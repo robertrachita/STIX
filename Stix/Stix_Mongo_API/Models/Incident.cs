@@ -12,16 +12,17 @@ namespace Stix_Mongo_API.Models
 
         [BsonIgnoreIfNull]
         [BsonElement("ReferenceID")]
-        public string? ReferenceID { get; set; }
+        public int? ReferenceID { get; set; }
 
         [BsonElement("Month")]
-        public string? Month { get; set; }
+        public int? Month { get; set; }
 
+        [BsonIgnoreIfNull]
         [BsonElement("Pending")]
         public bool? Pending { get; set; }
 
         [BsonElement("Year")]
-        public string? Year { get; set; }
+        public int? Year { get; set; }
 
         [BsonElement("Title")]
         public String Title { get; set; }
@@ -83,8 +84,9 @@ namespace Stix_Mongo_API.Models
         [BsonElement("References")]
         public List<string>? References { get; set; }
 
+        [BsonIgnoreIfNull]
         [BsonElement("AdditionalInfo")]
-        public List<string>? AdditionalInfoList { get; set; }
+        public List<KeyValuePair<string, string>>? AdditionalInfoList { get; set; }
 
         //[BsonExtraElements]
         //public BsonDocument? ExtraElements { get; set; }
