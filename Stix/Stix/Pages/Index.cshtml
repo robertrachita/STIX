@@ -33,85 +33,85 @@
     <table class="overviewTable">
         <tr>
             @{
-                @if (@Model.title)
+                        @if (@Model.title)
                 {
-                    <th class="incidentHeader">Title</th>
+                            <th class="incidentHeader">Title</th>
                 }
-                @if (@Model.attack_pattern)
+                        @if (@Model.attack_pattern)
                 {
-                    <th class="descriptionHeader">Description</th>
+                            <th class="descriptionHeader">Description</th>
                 }
-                @if (@Model.date)
+                        @if (@Model.date)
                 {
-                    <th class="addedOnHeader">Added On</th>
+                            <th class="addedOnHeader">Added On</th>
                 }
-                @if (@Model.impact_area)
+                        @if (@Model.impact_area)
                 {
-                    <th class="addedOnHeader">Impact Area</th>
+                            <th class="addedOnHeader">Impact Area</th>
                 }
-                @if (@Model.victim_location)
+                        @if (@Model.victim_location)
                 {
-                    <th class="addedOnHeader">Victim Location</th>
+                            <th class="addedOnHeader">Victim Location</th>
                 }
-                @if (@Model.victim_country)
+                        @if (@Model.victim_country)
                 {
-                    <th class="addedOnHeader">Country</th>
+                            <th class="addedOnHeader">Country</th>
                 }
-                @if (@Model.identity)
+                        @if (@Model.identity)
                 {
-                    <th class="addedOnHeader">Identity</th>
+                            <th class="addedOnHeader">Identity</th>
                 }
-                @if (@Model.victim_type)
+                        @if (@Model.victim_type)
                 {
-                    <th class="addedOnHeader">Victim Type</th>
+                            <th class="addedOnHeader">Victim Type</th>
                 }
-                @if (@Model.affected_system)
+                        @if (@Model.affected_system)
                 {
-                    <th class="addedOnHeader">Affected system</th>
+                            <th class="addedOnHeader">Affected system</th>
                 }
-                @if (@Model.method)
+                        @if (@Model.method)
                 {
-                    <th class="addedOnHeader">Method</th>
+                            <th class="addedOnHeader">Method</th>
                 }
-                @if (@Model.malware_type)
+                        @if (@Model.malware_type)
                 {
-                    <th class="addedOnHeader">Malware Type</th>
+                            <th class="addedOnHeader">Malware Type</th>
                 }
-                @if (@Model.ransomware_type)
+                        @if (@Model.ransomware_type)
                 {
-                    <th class="addedOnHeader">Ransomware type</th>
+                            <th class="addedOnHeader">Ransomware type</th>
                 }
-                @if (@Model.campaign)
+                        @if (@Model.campaign)
                 {
-                    <th class="addedOnHeader">Campaign</th>
+                            <th class="addedOnHeader">Campaign</th>
                 }
-                @if (@Model.impact)
+                        @if (@Model.impact)
                 {
-                    <th class="addedOnHeader">Impact</th>
+                            <th class="addedOnHeader">Impact</th>
                 }
-                @if (@Model.threat_actor_country)
+                        @if (@Model.threat_actor_country)
                 {
-                    <th class="addedOnHeader">Threat Actor Country</th>
+                            <th class="addedOnHeader">Threat Actor Country</th>
                 }
-                @if (@Model.threat_actor)
+                        @if (@Model.threat_actor)
                 {
-                    <th class="addedOnHeader">Threat Actor</th>
+                            <th class="addedOnHeader">Threat Actor</th>
                 }
-                @if (@Model.additional_info)
+                        @if (@Model.additional_info)
                 {
-                    <th class="addedOnHeader">Additional Info</th>
+                            <th class="addedOnHeader">Additional Info</th>
                 }
-                @if (@Model.summary)
+                        @if (@Model.summary)
                 {
-                    <th class="addedOnHeader">Summary</th>
+                            <th class="addedOnHeader">Summary</th>
                 }
-                @if(@Model.reference_short)
+                        @if(@Model.reference_short)
                 {
-                    <th class="addedOnHeader">Reference (short)</th>
+                            <th class="addedOnHeader">Reference (short)</th>
                 }
-                @if(@Model.reference_long)
+                        @if(@Model.reference_long)
                 {
-                    <th class="addedOnHeader">Reference (long)</th>
+                            <th class="addedOnHeader">Reference (long)</th>
                 }
             }
             <th class="viewMoreHeader">View More</th>
@@ -195,16 +195,23 @@
                 }
                 @if(@Model.reference_short)
                 {
-                    <td class="centerTableCell">@item.referenceShort</td>
+                    string str = "";
+                    @foreach(string element in @item.references)
+                    {
+                        str += element + "\n";
+                    }
+
+                    <td class="centerTableCell"> @str; </td>
                 }
                 @if(@Model.reference_long)
                 {
-                    <td class="centerTableCell">
-                        @foreach(string reference in @item.references)  
-                        {
-                            reference.ToString();
-                        }
-                    </td>
+                    string str = "";
+                    @foreach(string element in @item.references)
+                    {
+                        str += element + "\n";
+                    }
+
+                    <td class="centerTableCell"> @str; </td>
                 }
                 <td class="rightTableCell"><a href="Incident/?id=@item.id">X</a></td>
             </tr>
