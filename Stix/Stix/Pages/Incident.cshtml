@@ -72,154 +72,41 @@ body {
     <div class="d-flex flex-left flex-row"><p class="w-25 mh-10">Date added</p> @ViewData["IncidentAdded"]</div>
     <div class="d-flex flex-left flex-row"><p class="w-25 mh-10">Source(s)</p> </div>
 
-@*     <connection from="#indicator" to="#campaign" color="#aaaaaa" fromX="1" tail onlyVisible></connection>
-*@    <!-- Javascript for file in form-->
-     <script src="~/js/domarrow.js"></script>
+    <!-- Javascript for file in form-->
+    <script src="~/js/domarrow.js"></script>
     <script> 
         var collection = [];
-        var counter = 0;
-    var data = @Html.Raw(Json.Serialize(@Model.Incident));
-    if(data['indicator'] == null || data['indicator'] == "" )
-{
-            document.getElementById('indicator').style.display = 'none';
-}
-else {
-        collection[counter] = data['indicator'];
-        counter++;
-}
-if(data['threatActor'] == null || data['threatActor'] == "" )
-{
-            document.getElementById('threat_actor').style.display = 'none';
-}
-else {
-        collection[counter] = data['threatActor'];
-        counter++;
-}
-if(data['campaign'] == null || data['campaign'] == "" )
-{
-            document.getElementById('campaign').style.display = 'none';
-}
-else {
-        collection[counter] = data['campaign'];
-        counter++;
-}
-if(data['vulnerability'] == null || data['vulnerability'] == "" )
-{
-            document.getElementById('vulnerability').style.display = 'none';
-}
-else {
-        collection[counter] = data['vulnerability'];
-        counter++;
-}
-if(data['grouping'] == null || data['grouping'] == "" )
-{
-            document.getElementById('grouping').style.display = 'none';
-}
-else {
-        collection[counter] = data['grouping'];
-        counter++;
-}
-if(data['intrusion_set'] == null || data['intrusion_set'] == "" )
-{
-            document.getElementById('intrusion_set').style.display = 'none';
-}
-else {
-        collection[counter] = data['intrusion_set'];
-        counter++;
-}
-if(data['infrastructure'] == null || data['infrastructure'] == "" )
-{
-            document.getElementById('infrastructure').style.display = 'none';
-}
-else {
-        collection[counter] = data['infrastructure'];
-        counter++;
-}
-if(data['victimLocation'] == null || data['victimLocation'] == "" )
-{
-            document.getElementById('location').style.display = 'none';
-}
-else {
-        collection[counter] = data['victimLocation'];
-        counter++;
-}
-if(data['course_of_action'] == null || data['course_of_action'] == "" )
-{
-            document.getElementById('course_of_action').style.display = 'none';
-}
-else {
-        collection[counter] = data['course_of_action'];
-        counter++;
-}
-if(data['malwareType'] == null || data['malwareType'] == "" )
-{
-            document.getElementById('malware').style.display = 'none';
-}
-else {
-        collection[counter] = data['malwareType'];
-        counter++;
-}
+    
+        var data = @Html.Raw(Json.Serialize(@Model.Incident));
 
+        function hideIfNull(key, id){
+            if (data[key] == null || data[key] == "") {
+                document.getElementById(id).style.display = 'none';
+            }
+            else 
+            {
+                collection.push(id);
+            }
+        }
 
-if(data['malware_analysis'] == null || data['malware_analysis'] == "" )
-{
-            document.getElementById('malware_analysis').style.display = 'none';
-}
-else {
-        collection[counter] = data['malware_analysis'];
-        counter++;
-}
-if(data['observed_data'] == null || data['observed_data'] == "" )
-{
-            document.getElementById('observed_data').style.display = 'none';
-}
-else {
-        collection[counter] = data['observed_data'];
-        counter++;
-}
-if(data['opinion'] == null || data['opinion'] == "" )
-{
-            document.getElementById('opinion').style.display = 'none';
-}
-else {
-        collection[counter] = data['opinion'];
-        counter++;
-}
-if(data['relationship'] == null || data['relationship'] == "" )
-{
-            document.getElementById('relationship').style.display = 'none';
-}
-else {
-        collection[counter] = data['relationship'];
-        counter++;
-}
-if(data['report'] == null || data['report'] == "" )
-{
-            document.getElementById('report').style.display = 'none';
-}
-else {
-        collection[counter] = data['report'];
-        counter++;
-}
-if(data['sighting'] == null || data['sighting'] == "" )
-{
-            document.getElementById('sighting').style.display = 'none';
-}
-else {
-        collection[counter] = data['sighting'];
-        counter++;
-}
-if(data['tool'] == null || data['tool'] == "" )
-{
-            document.getElementById('tool').style.display = 'none';
-}
-else {
-        collection[counter] = data['tool'];
-        counter++;
-}
+        hideIfNull('indicator', 'indicator');
+        hideIfNull('threatactor', 'threat_actor');
+        hideIfNull('campaign', 'campaign');
+        hideIfNull('vulnerability', 'vulnerability');
+        hideIfNull('grouping', 'grouping');
+        hideIfNull('intrusion_set', 'intrusion_set');
+        hideIfNull('infrastructure', 'infrastructure');
+        hideIfNull('victimLocation', 'location');
+        hideIfNull('course_of_action', 'course_of_action');
+        hideIfNull('malwareType', 'malware');
+        hideIfNull('malware_analysis', 'malware_analysis');
+        hideIfNull('observed_data', 'observed_data');
+        hideIfNull('opinion', 'opinion');
+        hideIfNull('relationship', 'relationship');
+        hideIfNull('report', 'report');
+        hideIfNull('sighting', 'sighting');
+        hideIfNull('tool', 'tool');
+        hideIfNull('identity', 'identity');
+    </script>
 
-for (let i = 0; i < collection.length -1; i++) {
-       <connection from=""+collection[i] to=""+collection[i+1] color="#aaaaaa" fromX="1" tail onlyVisible></connection>
-
-}
-     </script>
+    <connection from="#identity" to="#location" color="#aaaaaa" fromX="1" tail onlyVisible></connection>
