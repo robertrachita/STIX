@@ -3,11 +3,15 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Aspose.Cells;
 using Stix.Models;
+using Newtonsoft.Json;
 
 namespace Stix.Pages
 {
     public class IncidentModel : PageModel
     {
+        [BindProperty(SupportsGet = true)]
+        public string Id { get; set; }
+
         [BindProperty]
         public Models.Incident Incident { get; set; }
 
@@ -18,7 +22,12 @@ namespace Stix.Pages
             _logger = logger;
         }
 
-        public void OnGet()
+        public async Task OnGetAsync()
+        {
+            await OnGetIncidentsAsync();
+        }
+
+        public async Task<ActionResult> OnGetIncidentsAsync()
         {
             string dateTime = DateTime.Now.ToString("MM/dd/yyyy HH:mm:ss", new CultureInfo("en-NL"));
             /* {TO DO}: Uncomment this when API is implemented */
@@ -30,6 +39,27 @@ namespace Stix.Pages
             ViewData["IncidentDate"] = dateTime;
             ViewData["IncidentAdded"] = dateTime;
             ViewData["IncidentSource"] = "https://www.definitely-a-valid-source.com/incident";
+            string apiurl = "https://stix-test.herokuapp.com/api/Incident/GetIncident." + Id.ToString() + ".json"; 
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    using (HttpResponseMessage response = await httpClient.GetAsync(apiurl))
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        this.Incident = JsonConvert.DeserializeObject<Incident>(apiResponse);
+                        return Page();
+             
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.ToString());
+            }
+            
+
+            return RedirectToPage("Login");
         }
 
         [BindProperty]
