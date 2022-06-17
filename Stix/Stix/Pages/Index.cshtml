@@ -4,9 +4,47 @@
     ViewData["Title"] = "STIX";
 }
 
-<div class="filterSortContainer">
-    <a href=""><button type="button">Sort</button></a>
-    <a href=""><button type="button">Filter</button></a>
+<div class="filterSortContainer d-flex justify-content-between">
+    <div>
+        <input placeholder="Search..." id="search_txt" />
+    </div>
+    <div class="d-flex flex-row">
+        <a href="" class="link-light"><button type="button" class="btn btn-secondary btn-outline-dark">Export</button></a>
+        <div class="dropup">
+            <button id="dropdownButton" type="button" class="btn btn-secondary btn-outline-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false"
+                    aria-haspopup="true" data-bs-auto-close="outside">
+                Sort
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownButton">
+                <div class="dropstart">
+                    <a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Name: </a>
+                    <ul class="dropdown-menu shadow">
+                        <li>
+                            <a class="dropdown-item">Ascending</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item">Descending</a>
+                        </li>
+                    </ul>
+                    <a class="dropdown-item dropdown-toggle" data-bs-toggle="dropdown">Date: </a>
+                    <ul class="dropdown-menu shadow ">
+                        <li>
+                            <a class="dropdown-item">Ascending</a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item">Descending</a>
+                        </li>
+                    </ul>
+                    <ul class="dropdown-divider"></ul>
+                    <ul class="dropdown-item">
+                        <li>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <a asp-page="Filter"><button type="button">Filter</button></a>
+    </div>
 </div>
 
 <div class="overviewTableContainer flex">
@@ -38,15 +76,38 @@
                 $.get('/Index/Incidents').done(function(incidents) {
                     $.each(incidents, function(i, incident) {
                         var item = `<li>
-                                                    <strong>${incident.id} ${incident.referenceID}</strong>
-                                                    (£${incident.pending})</li>`;
+                                                                                            <strong>${incident.id} ${incident.referenceID}</strong>
+                                                                                            (£${incident.pending})</li>`;
                         $('#incident-list').append(item);
                     });
                 });
             });
+
+            $(document).ready(function() {
+                $('#search_txt').keyup(function() {
+                    var search = $(this).val();
+
+                    $('table tbody tr').hide();
+
+                    var len = $('table tbody tr:not(.not-found) td:contains("' + search + '")').length;
+
+                    if (len > 0) {
+                        $('table tbody tr:not(.not-found) td:contains("' + search + '")').each(function() {
+                            $(this).closest('tr').show();
+                        });
+                    } else {
+                        $('.not-found').show();
+                    }
+                });
+            });
+
+            $.expr[":"].contains = $.expr.createPseudo(function(arg) {
+                return function(elem) {
+                    return $(elem).text().toUpperCase().indexOf(arg.toUpperCase()) >= 0;
+                };
         </script>
     }
     </div>
-<script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
