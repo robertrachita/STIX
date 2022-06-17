@@ -1,0 +1,57 @@
+﻿@page
+@model Stix.Pages.ManualModel
+@{
+}
+<head>
+        <link rel="stylesheet" href="~/css/manual.css">
+</head>
+
+<body>
+    
+<form method="post">
+   <div class="form-group">
+       <input type="text" asp-for="Incident.title" id="title" placeholder="Title">
+
+       <input type="text" asp-for="Incident.month" id="month" placeholder="Month">
+
+       <input type="number" asp-for="Incident.year" id="year" placeholder="Year">
+
+       <input type="text" asp-for="Incident.summary" id="Summary" placeholder="Summary">
+
+       <input type="text" asp-for="Incident.impactArea" id="impactArea" placeholder="Impact Area">
+
+       <input type="text" asp-for="Incident.victimLocation" id="victimLocation" placeholder="Victim Location">
+
+       <input type="text" asp-for="Incident.victimCountry" id="victimCountry" placeholder="Victim Country">
+
+       <input type="text" asp-for="Incident.identity" id="Identity" placeholder="Identity">
+
+       <input type="text" asp-for="Incident.victimType" id="victimType" placeholder="Victim Type">
+
+       <input type="text" asp-for="Incident.affectedSystem" id="affectedSystem" placeholder="Affected System">
+
+       <input type="text" asp-for="Incident.method" id="method" placeholder="Method">
+
+       <input type="text" asp-for="Incident.malwareType" id="malwareType" placeholder="Malware Type">
+
+       <input type="text" asp-for="Incident.ransomwareType" id="ransomwareType" placeholder="Ransomware Type">
+
+       <input type="text" asp-for="Incident.attackPattern" id="attackPattern" placeholder="Attack Pattern">
+
+       <input type="text" asp-for="Incident.campaign" id="campaign" placeholder="Campaign">
+       
+       <input type="text" asp-for="Incident.impact" id="impact" placeholder="Impact">
+       
+       <input type="text" asp-for="Incident.threatActor" id="threatActor" placeholder="threatActor">
+
+       <input type="text" asp-for="Incident.referenceShort" id="referenceShort" placeholder="Reference short">
+
+       <input type="text" asp-for="Incident.references" id="references" placeholder="References">
+       
+       <input type="text" asp-for="Incident.additionalInfo" id="additionalInfo" placeholder="Additional Info">
+       
+       <button type="submit" class="btn btn-primary">Submit </button> 
+   </div>
+</form>
+
+</body>
