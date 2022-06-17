@@ -108,5 +108,6 @@ body {
         hideIfNull('tool', 'tool');
         hideIfNull('identity', 'identity');
     </script>
-
+    @if (Model.Incident.victimLocation != null){
     <connection from="#identity" to="#location" color="#aaaaaa" fromX="1" tail onlyVisible></connection>
+    }    
