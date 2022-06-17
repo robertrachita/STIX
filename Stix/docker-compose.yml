@@ -17,6 +17,16 @@ services:
     build:
       context: .
       dockerfile: Stix_Mongo_API/Dockerfile
+      
+  mongodb:
+    image: mongo:latest
+    container_name: Stix-Mongo
+    networks:
+    - stix_network
+    ports:
+      - "27017:27017"
+    depends_on:
+      - "stix"
 
 networks:
     stix_network:
