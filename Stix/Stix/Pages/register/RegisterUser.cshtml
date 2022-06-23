@@ -1,0 +1,33 @@
+@page
+@model RegisterUser
+@{
+    ViewData["Title"] = "Register User";
+}
+
+<form method="post">
+    <div class="form-group">
+        <label for="registerUsernameUsers">User name</label>
+
+        <input type="text" asp-for="User.username" class="form-control" id="registerUsernameUsers"
+            placeholder="Enter a username">
+    </div>
+
+    <div class="form-group">
+        <label for="registerEmailUsers">User name</label>
+
+        <input type="text" asp-for="User.email" class="form-control" id="registerEmailUsers"
+            placeholder="Enter your email">
+    </div>
+
+    <div class="form-group">
+        <label for="registerPasswordUsers">Password</label>
+
+        <input type="password" asp-for="User.password" class="form-control" id="registerPasswordUsers"
+            aria-describedby="registerPasswordMinRequirements" placeholder="Password">
+
+        <small id="registerPasswordMinRequirements" class="form-text text-muted">Password should be at least 8
+            characters long, contain at least one uppercase character and a special character</small>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

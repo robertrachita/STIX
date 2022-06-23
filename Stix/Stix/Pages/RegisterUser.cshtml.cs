@@ -4,10 +4,10 @@ using Stix.Models;
 
 namespace Stix.Pages
 {
-    public class RegisterModerator : PageModel
+    public class RegisterUser : PageModel
     {
         [BindProperty]
-        public ModeratorModel Moderator { get; set; }
+        public UserModel User { get; set; }
 
         public void onGet()
         {
