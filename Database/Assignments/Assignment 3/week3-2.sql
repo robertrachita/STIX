@@ -1,164 +1,223 @@
--- 1.) How many Netflix users there are
-SELECT COUNT(user_id) AS 'Total number of users'
+-- Query #1: Total Number of Users--
+SELECT COUNT(user_id) AS 'Total number of users' 
 FROM [User];
 
--- 2.) How many Netflix profiles there are
-SELECT COUNT(profile_id) AS total_profile
-FROM [Profile]
+-- Query #2: Total Number of Profiles --
+SELECT COUNT(profile_id) AS 'Total number of profiles' 
+FROM Profile;
 
---  3.) How many Netflix subscriptions there are
-SELECT COUNT(subscription_id) AS Netflix_subscrpitions
-FROM Subscription 
+-- Query #3: Total Number of Subscriptions --
+SELECT COUNT(subscription_id) AS 'Total numbers of available subscriptions'
+FROM Subscription
 
--- 4.) How many films there are
-SELECT COUNT(cinema_id) AS films 
-FROM [dbo].[Cinema] C
-JOIN [dbo][Season] S ON C.cinema_id = S.cinema_id
+-- Query #4: Total number of movies--
+SELECT COUNT(C.cinema_id) AS 'Total number of movies' 
+FROM Cinema C
+LEFT JOIN Season S
+ON C.cinema_id = S.cinema_id
+WHERE S.cinema_id IS NULL
 
---  5.) What the average users age is
-SELECT AVG()
+-- Query #5: --
+SELECT AVG(DATEDIFF(DAY, date_of_birth, GETDATE()) / 365.25) AS 'Average age of users'
+FROM [User];
 
--- 6.) What the combined age of all users is
-SELECT SUM()
-FROM [dbo].[Profile]
+-- Query #6: --
+SELECT SUM(DATEDIFF(DAY, date_of_birth, GETDATE()) / 365.25) AS 'Combined age of users'
+FROM [User];
 
--- 7.) How many different subtitles there are in the database
-SELECT COUNT(subtitle_id) AS avaliable_subtitles
-FROM [Netflix].[dbo].[Subtitle]
+-- Query #7: --
+SELECT COUNT(DISTINCT subtitle_text) AS 'Number of different subtitles'
+FROM Subtitle;
 
--- 8.) How many people have been invited to join by other users
+-- Query #8: Users that have been invited by others--
+SELECT COUNT(DISTINCT user_id) AS 'Number of invited users'
+FROM [User]
+WHERE invited_by IS NOT NULL;
 
+-- Query #9: Unique Items on the WatchList --
+SELECT COUNT(DISTINCT title_id) AS 'Unique items to be watched'
+FROM Watchlist;
 
--- 9.) How many items there are that users still want to watch
-SELECT profile_id AS user, COUNT(cinema_id) AS cinemas_yet_watched
-FROM [Watchlist] W
-GROUP BY cinema_id
-ORDER BY cinemas_yet_watched ASC
+-- Query #10: List Preference Options--
+SELECT name AS 'Preference options'
+FROM sys.columns 
+WHERE object_id = OBJECT_ID('Preference')
+    AND name NOT LIKE '%id%';
 
--- 10.) Which preferences I can set up as user
-
-
--- 11.) How many people have a subscription
-SELECT COUNT(user_id) AS 
-FROM
-
--- 12.) How many people are currently watching for free
-SELECT COUNT(user_id) AS free_users
-FROM [dbo].[Users]
-WHERE (
-    SELECT DATEPART(DAY, GETDATE()) - DATEPART(DAY, [Users].activation_date)
-) < 7
-
--- 13.) How many minutes users have watched in total
-SELECT profile_name AS user, 
-DATEDIFF(MINUTE, 0, COUNT()) AS minutes_spent
-FROM [Profile] P 
-INNER JOIN Viewedlist V
-ON P.profile_id = V.profile_id
+-- Query #11: Total Number of Subscribed Users--
+SELECT COUNT(user_id) AS 'Total number of subscribed users' 
+FROM [User] 
+WHERE subscription_id IS NOT NULL;
 
 
--- 14.) How often Dutch subtitling has been used
-SELECT COUNT(viewedlist_id) AS dutch_subtitle_used
-FROM [ViewedList] V
-INNER JOIN Cinema C ON C.cinema_id = V.cinema_id
-WHERE 
+-- Query #12: Users that are watching for free--
+SELECT COUNT(user_id) AS 'Total number of people that are watching for free'
+FROM [User]
+WHERE subscription_id IS NULL
+    AND DATEDIFF(DAY, activation_date, GETDATE()) <= 7;
 
--- 15.) How often no subtitling has been used
-SELECT COUNT(viewedlist_id) AS no_subtitle
-FROM [dbo].[ViewedList]
-WHERE subtitle_id = NULL
+-- Query #13: Total Minutes Watched--
+SELECT SUM((DATEPART(HOUR,duration) * 60) + DATEPART(MINUTE,duration)) AS 'Total minutes watched'
+FROM Cinema
+INNER JOIN ViewedList
+ON Cinema.cinema_id = ViewedList.cinema_id;
 
--- 16.) Which users have more than 4 profiles
-SELECT email AS user_name 
-FROM Users
-WHERE EXISTS (
-    SELECT COUNT(*)
-    FROM [dbo].[Profile]
-    WHERE [Users].user_id = [Profile].user_id
+-- Query #14: --
+SELECT COUNT(L.language_id) AS 'Total number of times dutch was used as subtitle language'
+FROM Language L
+INNER JOIN Subtitle S
+ON L.language_id = S.language_id
+INNER JOIN Cinema C 
+ON S.cinema_id = C.cinema_id
+INNER JOIN ViewedList VL 
+ON C.cinema_id = VL.cinema_id
+WHERE LOWER(L.language_name) LIKE '%dutch%'
+
+-- Query #15: Total Amount of Times no Subtitle has been used --
+SELECT COUNT(viewed_list_id) AS 'Total number of times no subtitles were used'
+FROM ViewedList
+WHERE subtitle_id IS NULL
+
+-- Query #16: All Users with more than 4 profiles --
+SELECT user_id
+    FROM Profile
     GROUP BY user_id
-    HAVING COUNT(*) > 1
-)
+    HAVING Count(*) > 4;
 
---  17.) Which users have watched the film 'Stenden'
-SELECT profile_name AS stenden_lovers
-FROM [dbo].[Profile] P
-INNER JOIN [dbo].[Viewedlist] V 
-ON P.profile_id = V.profile_id
-WHERE V.cinema_id = (
-    SELECT cinema_id FROM Cinema WHERE cinema_name = 'Stenden'
-)
+-- Query #17: Which Users have watched the film Stenden  --
+SELECT DISTINCT U.user_id AS 'Users that have watched the movie Stenden'
+FROM [User] U
+INNER JOIN Profile P
+ON U.user_id = P.user_id
+INNER JOIN ViewedList VL 
+ON P.profile_id = VL.profile_id
+INNER JOIN Cinema C 
+ON VL.cinema_id = C.cinema_id
+LEFT JOIN Season S 
+ON C.cinema_id = S.cinema_id
+WHERE S.cinema_id IS NULL
+    AND C.cinema_name = 'Stenden'
 
---  18.) How many users prefer horror
-SELECT COUNT(profile_id) AS horror_enjoyer 
-FROM [dbo].[Profile] P
-INNER JOIN [Preference] Pr
-ON P.profile_id = Pr.profile_id
-WHERE Pr.preference_id = (
-    SELECT preference_id 
-    FROM GenrePreference Gp
-    INNER JOIN Genre G 
-    ON Gp.genre_id = G.genre_id
-    WHERE UPPER(G.name) LIKE '%HORROR%'  
-)
+-- Query #18: How many users prefer horror --
+SELECT COUNT(DISTINCT P.user_id) AS 'Total number of users that like horror'
+FROM Profile P 
+INNER JOIN Preference PR
+ON P.profile_id = PR.profile_id
+INNER JOIN GenrePreference GPR
+ON PR.preference_id = GPR.preference_id
+INNER JOIN Genre G
+ON GPR.genre_id = G.genre_id
+WHERE G.genre_name LIKE '%horror%';
 
+-- Query #19: Which Users have no preferences :(--
+SELECT DISTINCT U.user_id AS 'Total number of users without preferences'
+FROM [User] U
+LEFT JOIN Profile P
+ON U.user_id = P.user_id
+INNER JOIN Preference PR
+ON P.profile_id = PR.profile_id
+WHERE P.user_id IS NULL;
 
--- 19.) Which users have no preference
-SELECT profile_name AS no_preference_user
-FROM [Profile] P
-LEFT OUTER JOIN [Preference] Pr
-ON P.profile_id <> Pr.profile_id
+-- Query #20: Which Users are not yet activated--
+SELECT user_id AS 'Users that have not been activated'
+FROM [User]
+WHERE activation_date IS NULL;
 
-
--- 20.) Which users are not yet activated
-SELECT email AS non_activated_users
-FROM [dbo].[User]
-WHERE activation_date IS NULL
-
--- 21.) How many euros are earned per month
-SELECT SUM(price) AS stonks_per_month -
-CASE
-    U.invited_user_id <> NULL
-    THEN 2 ELSE 0
-END
-FROM Subscription S
-INNER JOIN User U 
-ON S.subscription_id = U.subscription_id
-
--- 22.) How many extra euros can be earned per month when all users who do not subscribe would take out a subscription
-
-
--- 23.) Which users have watched a film with English subtitles
-
-
--- 24.) Which users who do not have a UHD subscription have watched a UHD film
-SELECT profile_name AS users
-FROM [Profile] P
-INNER JOIN [Viewedlist] V
-ON P.profile_id = V.profile_id
+-- Query #21: Total Euros Earned --
+SELECT ROUND(SUM(Sub.price),2) AS 'Total euros earned'
+FROM Subscription Sub
 INNER JOIN [User] U
-ON P.user_id = U.user_id
-WHERE U.subscription_id = (
-    SELECT subscription_id
-)
+ON Sub.subscription_id = U.subscription_id;
 
--- 25.) What the percentage is per subtitle that has been used to watch films
+-- Query #22: Potential Revenue --
+SELECT MIN(price) * (SELECT COUNT(*) FROM [User] WHERE subscription_id IS NULL)
+FROM Subscription;
 
+SELECT SUM(Sub.price) AS 'Euros that could be earned'
+FROM Subscription Sub
+LEFT JOIN [User] U 
+ON Sub.subscription_id = U.subscription_id
+WHERE U.subscription_id IS NULL
+    AND Sub.subscription_id = 1;
 
--- 26.) What the most used subtitle is for each user, excluding the native lamguage
+-- Query #23: Users that watched with english subtitles --
+SELECT DISTINCT U.user_id AS 'Users that have watched a movie with english subtitles'
+FROM [User] U
+INNER JOIN Profile P
+ON U.user_id = P.user_id
+INNER JOIN ViewedList VL
+ON P.profile_id = VL.profile_id
+INNER JOIN Subtitle Sub
+ON VL.subtitle_id = Sub.subtitle_id
+INNER JOIN Language L
+ON Sub.language_id = L.language_id
+WHERE L.language_name LIKE 'english';
 
+-- Query #24: Users without UHD Subscriptions that have watched UHD movies --
+SELECT U.user_id AS 'Users without a UHD subscription that have watched a UHD movie'
+FROM [User] U
+INNER JOIN Profile P 
+ON U.user_id = P.user_id
+INNER JOIN ViewedList VL
+ON P.profile_id = VL.profile_id
+INNER JOIN Cinema C
+ON VL.cinema_id = C.cinema_id
+INNER JOIN CinemaQuality CQ
+ON C.cinema_id = CQ.cinema_id
+INNER JOIN Quality Q
+ON CQ.quality_id = Q.quality_id
+LEFT JOIN Subscription Sub
+ON U.subscription_id = Sub.subscription_id
+WHERE q.quality_name LIKE 'UHD'
+    AND (U.subscription_id IS NULL OR Sub.subscription_name NOT LIKE 'UHD');
 
--- 27.) If the most watched genre of a specific user is also a genre that is from their prefferred genre list
+-- Query #25: What the percentage is per subtitle that has been used to watch films --
+SELECT Sub.subtitle_id, CAST(ROUND((COUNT(Sub.subtitle_id) * 100.0 / (SELECT COUNT(*) FROM ViewedList WHERE subtitle_id IS NOT NULL)),2) AS NUMERIC(10,2)) AS 'Percent'
+FROM Subtitle Sub
+INNER JOIN ViewedList VL
+ON Sub.subtitle_id = VL.subtitle_id
+GROUP BY Sub.subtitle_id;
 
+-- Query #26: Most Used Subtitle per User - Excluding Native language :( --
+SELECT TOP 1 P.profile_id, Sub.subtitle_id, COUNT(Sub.subtitle_id) AS 'Count of the most used subtitle of the user'
+FROM Profile P
+INNER JOIN ViewedList VL 
+ON P.profile_id = VL.profile_id
+INNER JOIN Subtitle Sub
+ON VL.subtitle_id = Sub.subtitle_id
+WHERE Sub.language_id != P.language_id
+GROUP BY Sub.subtitle_id
+ORDER BY 'Count of the most used subtitle of the user';
 
--- 28.) Which of the following genres are viewed most on Valentines day? Return a list order by amount of views descending, Romantic Comedy, Action, 
--- Horror, Sci-fi and Anime
-SELECT V.COUNT(viewedlist_id) AS views, G.genre_name AS prefered_genre 
-FROM [Genre] G
+-- Query #27: Most watched genre for a specific user :(--
+SELECT IF(COUNT(*) > 0 ? 'true' : 'false') AS 'Most watched genre is part of prefered genre list for user 1'
+FROM Profile P
+INNER JOIN Preference PR
+ON P.profile_id = PR.profile_id
+INNER JOIN GenrePreference GPR
+ON PR.preference_id = GPR.preference_id
+WHERE p.profile_id = 1
+    AND GPR.genre_id IN (
+        SELECT TOP 1 genre_id
+        FROM Profile IP
+        INNER JOIN ViewedList IVL
+        ON IP.profile_id = IVL.profile_id
+        INNER JOIN CinemaGenre ICG
+        ON IVL.cinema_id = ICG.cinema_id
+        GROUP BY ICG.genre_id
+        ORDER BY COUNT(genre_id)
+    );
+
+-- Query #28: Genres viewed most on valentines day in Order --
+SELECT G.genre_name AS 'Genre name', COUNT(genre_name) AS 'amount'
+FROM Genre G 
 INNER JOIN CinemaGenre CG
 ON G.genre_id = CG.genre_id
-INNER JOIN [Title] T
-ON CG.title_id = T.title_id
-INNER JOIN [Viewedlist] V
-ON 
-WHERE DATE_FORMAT(V.date_watched, '%m%d') = '0214'
-ORDER BY views DESC AND
+INNER JOIN ViewedList VL
+ON CG.cinema_id = VL.cinema_id
+WHERE MONTH(date_watched) = 2
+    AND DAY(date_watched) = 14
+    AND G.genre_name IN ('Romantic Comedy', 'Action', 'Horror', 'Sci-fi', 'Anime')
+GROUP BY G.genre_name
+ORDER BY COUNT(G.genre_id) DESC;
+
