@@ -48,6 +48,8 @@ insert into Language (language_name) values ('Spanish');
 insert into Language (language_name) values ('Amharic');
 insert into Language (language_name) values ('Kurdish');
 insert into Language (language_name) values ('Quechua');
+insert into Language (language_name) values ('Dutch');
+insert into Language (language_name) values ('English');
 
 
 --CINEMA (Movie/Series) INSERT
@@ -101,6 +103,7 @@ insert into Cinema (cinema_name, cinema_description, duration, credits) values (
 insert into Cinema (cinema_name, cinema_description, duration, credits) values ('Roxanne', 'Turkey - Ground. Lean', '01:22:12', 'Gusikowski, Senger and Mitchell');
 insert into Cinema (cinema_name, cinema_description, duration, credits) values ('Company You Keep, The', 'Bread - Raisin Walnut Oval', '01:22:12', 'Klein, Bins and Roob');
 insert into Cinema (cinema_name, cinema_description, duration, credits) values ('Pretty Bird', 'Soup - Base Broth Beef', '01:22:12', 'Kunze, Waters and Goldner');
+insert into Cinema (cinema_name, cinema_description, duration, credits) values ('Stenden', 'Soup - Base Broth Beef', '01:12:12', 'Kunze');
 
 --CINEMA QUALITY 
 insert into CinemaQuality (cinema_id, quality_id) values ('29', 1);
@@ -125,8 +128,12 @@ insert into CinemaQuality (cinema_id, quality_id) values ('10', 2);
 insert into CinemaQuality (cinema_id, quality_id) values ('32', 1);
 
 --GENRE INSERT
-insert into Genre (genre_name) values ('Comedy|Musical');
-insert into Genre (genre_name) values ('Comedy');
+insert into Genre (genre_name) values ('Sci-Fi');
+insert into Genre (genre_name) values ('Anime');
+insert into Genre (genre_name) values ('Horror');
+insert into Genre (genre_name) values ('Action');
+insert into Genre (genre_name) values ('Musical');
+insert into Genre (genre_name) values ('Romantic Comedy');
 insert into Genre (genre_name) values ('Drama');
 insert into Genre (genre_name) values ('Children|Drama');
 insert into Genre (genre_name) values ('Adventure|Children|Drama|Fantasy');
@@ -137,21 +144,17 @@ insert into Genre (genre_name) values ('Documentary');
 insert into Genre (genre_name) values ('Crime|Drama');
 insert into Genre (genre_name) values ('Drama');
 insert into Genre (genre_name) values ('Adventure|Children|Comedy');
-insert into Genre (genre_name) values ('Horror|Sci-Fi');
-insert into Genre (genre_name) values ('Drama|Musical');
-insert into Genre (genre_name) values ('Drama');
 insert into Genre (genre_name) values ('Children|Crime|Drama');
 insert into Genre (genre_name) values ('Adventure|Romance|War');
 insert into Genre (genre_name) values ('Adventure|Children|Drama');
 insert into Genre (genre_name) values ('Documentary');
-insert into Genre (genre_name) values ('Documentary');
 
 --CINEMA GENRE INSERT
-insert into CinemaGenre (cinema_id, genre_id) values ('1', 16);
+insert into CinemaGenre (cinema_id, genre_id) values ('1', 1);
 insert into CinemaGenre (cinema_id, genre_id) values ('2', 4);
 insert into CinemaGenre (cinema_id, genre_id) values ('3', 3);
-insert into CinemaGenre (cinema_id, genre_id) values ('4', 19);
-insert into CinemaGenre (cinema_id, genre_id) values ('5', 14);
+insert into CinemaGenre (cinema_id, genre_id) values ('4', 2);
+insert into CinemaGenre (cinema_id, genre_id) values ('5', 5);
 insert into CinemaGenre (cinema_id, genre_id) values ('6', 15);
 insert into CinemaGenre (cinema_id, genre_id) values ('7', 7);
 insert into CinemaGenre (cinema_id, genre_id) values ('8', 7);
@@ -274,30 +277,32 @@ insert into Subtitle (subtitle_text, language_id, cinema_id) values ('Ut at dolo
 insert into Subtitle (subtitle_text, language_id, cinema_id) values ('Duis aliquam convallis nunc.', '26', '34');
 insert into Subtitle (subtitle_text, language_id, cinema_id) values ('Cras non velit nec nisi vulputate nonummy. Maecenas tincidunt lacus at velit. Vivamus vel nulla eget eros elementum pellentesque.', '3', '27');
 insert into Subtitle (subtitle_text, language_id, cinema_id) values ('Nullam molestie nibh in lectus.', '17', '46');
+insert into Subtitle (subtitle_text, language_id, cinema_id) values ('Nullam molestie nibh in lectus.', 32, 42);
+insert into Subtitle (subtitle_text, language_id, cinema_id) values ('Nullam molestie nibh in lectus.', 31, 40);
 
 -- USER INSERT
 insert into [User] (user_email, user_password, date_of_birth, login_attempts, is_blocked, activation_date, subscription_id, invited_by) values ('ebagby0@domainmarket.com', 'hi8zAgT', '2015-04-07', 2, 1, '2022-04-27', 1, 1);
 insert into [User] (user_email, user_password, date_of_birth, login_attempts, is_blocked, activation_date, subscription_id, invited_by) values ('vdarbon1@mtv.com', 'uAd9TOSVMCjX', '1932-01-21', 2, 1, '2022-03-20', 2, 7);
 insert into [User] (user_email, user_password, date_of_birth, login_attempts, is_blocked, activation_date, subscription_id, invited_by) values ('cnunan2@newsvine.com', 'QZqJHQgmf', '1963-10-05', 3, 0, '2022-05-27', 2, 9);
-insert into [User] (user_email, user_password, date_of_birth, login_attempts, is_blocked, activation_date, subscription_id, invited_by) values ('eatwill3@networkadvertising.org', 'zkNSsQG', '1959-11-19', 1, 1, '2021-07-04', 1, 2);
+insert into [User] (user_email, user_password, date_of_birth, login_attempts, is_blocked,  subscription_id, invited_by) values ('eatwill3@networkadvertising.org', 'zkNSsQG', '1959-11-19', 1, 1, 1, 2);
 insert into [User] (user_email, user_password, date_of_birth, login_attempts, is_blocked, activation_date, subscription_id, invited_by) values ('aabdy4@soup.io', 'fADySxvIItiS', '2011-04-24', 1, 0, '2021-09-17', 3, 2);
 insert into [User] (user_email, user_password, date_of_birth, login_attempts, is_blocked, activation_date, subscription_id, invited_by) values ('dohannigan5@census.gov', 'Pe1y6YZfhh8', '1949-10-29', 1, 0, '2022-01-06', 1, 10);
 insert into [User] (user_email, user_password, date_of_birth, login_attempts, is_blocked, activation_date, subscription_id, invited_by) values ('fmccloughlin6@reference.com', 'HwsdYPSPLfEZ', '1999-11-29', 2, 1, '2022-05-16', 3, 10);
 insert into [User] (user_email, user_password, date_of_birth, login_attempts, is_blocked, activation_date, subscription_id, invited_by) values ('escurrer7@ezinearticles.com', 'J37RvXa', '2018-01-21', 3, 1, '2021-08-10', 2, 4);
-insert into [User] (user_email, user_password, date_of_birth, login_attempts, is_blocked, activation_date, subscription_id, invited_by) values ('fpetriello8@google.com.au', 'IsQvthAgIP0', '1940-09-12', 3, 0, '2021-11-06', 1, 5);
-insert into [User] (user_email, user_password, date_of_birth, login_attempts, is_blocked, activation_date, subscription_id, invited_by) values ('rmabon9@hugedomains.com', 'CicBN19k', '1994-10-12', 1, 1, '2021-11-03', 2, 10);
+insert into [User] (user_email, user_password, date_of_birth, login_attempts, is_blocked, activation_date, subscription_id) values ('fpetriello8@google.com.au', 'IsQvthAgIP0', '1940-09-12', 3, 0, '2021-11-06', 1);
+insert into [User] (user_email, user_password, date_of_birth, login_attempts, is_blocked, activation_date) values ('rmabon9@hugedomains.com', 'CicBN19k', '1994-10-12', 1, 1, '2022-06-30');
 
 --PROFILE INSERT
-insert into Profile (profile_name, date_of_birth, photo, user_id, language_id) values ('Jeanette', '1932-12-31', null, 10, 3);
-insert into Profile (profile_name, date_of_birth, photo, user_id, language_id) values ('Dru', '1974-09-23', null, 3, 26);
-insert into Profile (profile_name, date_of_birth, photo, user_id, language_id) values ('Rubie', '1969-06-23', null, 8, 4);
-insert into Profile (profile_name, date_of_birth, photo, user_id, language_id) values ('Alasdair', '1902-07-25', null, 2, 26);
+insert into Profile (profile_name, date_of_birth, photo, user_id, language_id) values ('Jeanette', '1932-12-31', null, 2, 1);
+insert into Profile (profile_name, date_of_birth, photo, user_id, language_id) values ('Dru', '1974-09-23', null, 3, 1);
+insert into Profile (profile_name, date_of_birth, photo, user_id, language_id) values ('Rubie', '1969-06-23', null, 8, 1);
+insert into Profile (profile_name, date_of_birth, photo, user_id, language_id) values ('Alasdair', '1902-07-25', null, 2, 1);
 insert into Profile (profile_name, date_of_birth, photo, user_id, language_id) values ('Annabel', '2012-03-03', null, 2, 10);
 insert into Profile (profile_name, date_of_birth, photo, user_id, language_id) values ('Calypso', '1983-11-18', null, 2, 22);
 insert into Profile (profile_name, date_of_birth, photo, user_id, language_id) values ('Reynard', '1938-02-17', null, 5, 13);
 insert into Profile (profile_name, date_of_birth, photo, user_id, language_id) values ('Say', '2014-02-09', null, 5, 8);
 insert into Profile (profile_name, date_of_birth, photo, user_id, language_id) values ('Marlo', '1935-11-10', null, 1, 5);
-insert into Profile (profile_name, date_of_birth, photo, user_id, language_id) values ('Sharline', '2005-09-17', null, 3, 10);
+insert into Profile (profile_name, date_of_birth, photo, user_id, language_id) values ('Sharline', '2005-09-17', null, 3, 1);
 insert into Profile (profile_name, date_of_birth, photo, user_id, language_id) values ('Kerry', '1914-01-02', null, 1, 18);
 insert into Profile (profile_name, date_of_birth, photo, user_id, language_id) values ('Flory', '2000-09-27', null, 7, 20);
 insert into Profile (profile_name, date_of_birth, photo, user_id, language_id) values ('Nat', '1920-08-16', null, 2, 26);
@@ -364,8 +369,21 @@ insert into ViewedList (date_watched , profile_id, cinema_id, subtitle_id) value
 insert into ViewedList (date_watched , profile_id, cinema_id, subtitle_id) values ('2022-05-25', 9, 35, 12);
 insert into ViewedList (date_watched , profile_id, cinema_id, subtitle_id) values ('2021-09-17', 5, 36, 16);
 insert into ViewedList (date_watched , profile_id, cinema_id, subtitle_id) values ('2021-12-05', 10, 35, 4);
-insert into ViewedList (date_watched , profile_id, cinema_id, subtitle_id) values ('2021-12-11', 3, 6, 21);
+insert into ViewedList (date_watched , profile_id, cinema_id) values ('2021-12-11', 3, 6);
 insert into ViewedList (date_watched , profile_id, cinema_id, subtitle_id) values ('2022-01-12', 12, 1, 19);
+insert into ViewedList (date_watched , profile_id, cinema_id, subtitle_id) values ('2021-12-11', 3, 17, 21);
+insert into ViewedList (date_watched , profile_id, cinema_id, subtitle_id) values ('2022-01-12', 7, 32, 22);
+insert into ViewedList (date_watched , profile_id, cinema_id, subtitle_id) values ('2022-03-28', 7, 51, 10);
+insert into ViewedList (date_watched , profile_id, cinema_id) values ('2022-07-19',1, 51);
+insert into ViewedList (date_watched , profile_id, cinema_id, subtitle_id) values ('2022-02-14', 3, 17, 1);
+insert into ViewedList (date_watched , profile_id, cinema_id, subtitle_id) values ('2022-02-14', 7, 32, 2);
+insert into ViewedList (date_watched , profile_id, cinema_id, subtitle_id) values ('2022-02-14', 7, 51, 1);
+insert into ViewedList (date_watched , profile_id, cinema_id, subtitle_id) values ('2022-02-14', 7, 32, 2);
+insert into ViewedList (date_watched , profile_id, cinema_id, subtitle_id) values ('2022-02-14', 7, 51, 1);
+insert into ViewedList (date_watched , profile_id, cinema_id, subtitle_id) values ('2022-02-14', 7, 32, 3);
+insert into ViewedList (date_watched , profile_id, cinema_id, subtitle_id) values ('2022-02-14', 7, 51, 4);
+insert into ViewedList (date_watched , profile_id, cinema_id, subtitle_id) values ('2022-02-14', 7, 32, 5);
+insert into ViewedList (date_watched , profile_id, cinema_id, subtitle_id) values ('2022-02-14', 7, 51, 5);
 
 
 -- VIEWING CLASSIFICATION PREFERENCE 
