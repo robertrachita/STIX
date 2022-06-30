@@ -13,6 +13,7 @@ CREATE TABLE [Netflix].[dbo].[User] (
     is_blocked BIT NOT NULL,
     activation_date DATE NULL,
     subscription_id INT NULL,
+    invited_by INT NULL,
 )
 
 CREATE TABLE [Netflix].[dbo].[Profile] (
@@ -136,5 +137,3 @@ CREATE TABLE [Netflix].[dbo].[Subscription] (
     subscription_name VARCHAR(20),
     price float(2)
 )
-
-
