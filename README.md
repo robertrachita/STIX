@@ -1,4 +1,4 @@
-# Dabatabase 2 Innitial Briefing
+# Dabatabase 2 Initial Briefing
 
 ## About the folders in this github branch
 
