@@ -109,14 +109,20 @@ INNER JOIN Genre G
 ON GPR.genre_id = G.genre_id
 WHERE G.genre_name LIKE '%horror%';
 
--- Query #19: Which Users have no preferences :(--
-SELECT DISTINCT U.user_id AS 'Total number of users without preferences'
+-- Query #19: Which Users have no preferences --
+SELECT DISTINCT COUNT(P.user_id) AS 'Total number of users without preferences'
 FROM [User] U
-LEFT JOIN Profile P
+INNER JOIN Profile P
 ON U.user_id = P.user_id
-INNER JOIN Preference PR
+WHERE NOT EXISTS(
+SELECT * 
+FROM Profile
+LEFT JOIN Preference PR
 ON P.profile_id = PR.profile_id
-WHERE P.user_id IS NULL;
+WHERE PR.profile_id IS NULL
+)
+
+
 
 -- Query #20: Which Users are not yet activated--
 SELECT user_id AS 'Users that have not been activated'

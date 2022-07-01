@@ -15,4 +15,12 @@ RESTORE VERIFYONLY FROM  DISK = N'C:\Program Files\Microsoft SQL Server\MSSQL15.
 GO
 
 
--- 
+-- Transactional Log Backup
+BACKUP LOG [Netflix]
+TO DISK
+= 
+'C:\Program Files\Microsoft SQL Sever\MSSQL15.SQLEXPRESS\MSSQL\Backup\Netflix.trn'
+WITH
+NOFORMAT, NOINIT, MEDIANAME = 'Native_SQLSeverLogBackup', NAME = 'Log-Netflix backup',
+SKIP, NOREWIND, NOUNLOAD, STATS = 10
+GO
