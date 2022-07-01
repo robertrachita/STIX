@@ -122,8 +122,6 @@ ON P.profile_id = PR.profile_id
 WHERE PR.profile_id IS NULL
 )
 
-
-
 -- Query #20: Which Users are not yet activated--
 SELECT user_id AS 'Users that have not been activated'
 FROM [User]

@@ -39,6 +39,8 @@ GO
 ALTER TABLE [dbo].[Language]
 ADD PRIMARY KEY (language_id)
 
+ALTER TABLE 
+
 --  Indexes
     -- This clustered index will sort all the cinema the Netflix has from primary id and its cinema name on asceding order
 CREATE CLUSTERED INDEX IX__Cinema
@@ -62,12 +64,14 @@ GROUP BY series_name
 -- View 2, for all the users that have subscription, show how many profiles they have along with how many cinemas are in their watch-later list
 CREATE VIEW vw_user_subscription
 AS
-SELECT U.user_id AS user_name, COUNT(P.profile_id) AS total_profiles
-INNER JOIN [Subscription] S
-ON U.subscription_id = S.subscription_id
-INNER JOIN [Profile] P
+SELECT U.user_id, COUNT(P.profile_id) AS 'Number of Profiles' , COUNT(W.title_id) AS 'Titles on Watchlist'
+FROM [User] U
+LEFT JOIN Profile P
 ON U.user_id = P.user_id
-
+LEFT JOIN Watchlist W
+ON P.profile_id = W.profile_id
+WHERE U.subscription_id IS NOT NULL
+GROUP BY U.user_id
 
 
 -- Stored Procedure 1, Select all the cinemas which are a tv series from how many episodes and seasons they currently have
@@ -76,16 +80,29 @@ CREATE PROCEDURE spGetTvSeriesBasedOnEpisodes&Seasons
 @episode INT
 AS
 BEGIN
-    SELECT cinema_name
+    SELECT cinema_name AS tv_series, COUNT(S.season_id) AS seasons, COUNT(E.episode_id) AS episodes
     FROM [Netflix].[dbo].[Cinema] C
-    INNER JOIN 
+    INNER JOIN [Netflix].[dbo].[Season] S
+    ON C.cinema_id = S.
+    INNER JOIN [Netflix].[dbo].[Episode] E
+    ON 
+    E.season_id = S.season_id
+    WHERE (seasons = @season AND episodes = @episode)
+    GROUP BY cinema_name
+    ORDER BY cinema_name ASC
 END
 
--- Stored Procedure 2, From a specific user, count how many cinemas he wants to watch, and how many he can actually watch from the viewing classification
+-- Stored Procedure 2, For each movie, count how many available subtitles and available qualities
 CREATE PROC
 AS
 BEGIN
-
+    SELECT C.cinema_id, COUNT(CQ.cinema_id) AS 'Available Qualities', COUNT(S.cinema_id) AS 'Available Subtitles'
+    FROM Subtitle S
+    RIGHT JOIN Cinema C
+    ON S.cinema_id = C.cinema_id
+    INNER JOIN CinemaQuality CQ
+    ON C.cinema_id = CQ.cinema_id
+    GROUP BY C.cinema_id
 END
 -- Trigger 1, Checking when User has more than 3 failed attempts then automatically blocks his account
 CREATE TRIGGER tr_check_login_attempts
@@ -103,11 +120,25 @@ BEGIN
     END
 END
 
--- Trigger 2, Checking when the movie is watched, it will removed from the watchlist and added in viewed list
-CREATE 
+-- Trigger 2, Checking when the movie is watched, it will removed from the Watch Later list and added in viewed list
+CREATE TRIGGER 
+ON [Netflix].[dbo].[ViewedList]
+FOR UPDATE
+AS
+BEGIN
+    DECLARE @Id INT;
+
     SELECT *
     INTO #TempTable
     FROM INSERTED
 
-    WHILE EXISTS (SELECT )
+    WHILE (EXISTS (SELECT viewed_id FROM #TempTable))
+    BEGIN
+        SELECT TOP 1 @Id = cinema_id 
+        FROM #TempTable;
+
+        DELETE FROM [Netflix].[dbo].[WatchLater]
+        WHERE cinema_id = @Id;  
+    END
+END
 

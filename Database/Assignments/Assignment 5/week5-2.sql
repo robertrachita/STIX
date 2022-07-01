@@ -1,13 +1,19 @@
 -- Recovery
 USE [master]
+ALTER DATABASE Netflix SET RECOVERY Full
+GO
+
+USE [master]
 RESTORE DATABASE [Netflix] FROM  DISK = N'C:\Program Files\Microsoft SQL Server\MSSQL15.SQLEXPRESS\MSSQL\Backup\Netflix.bak' WITH  FILE = 1,  NOUNLOAD,  STATS = 5
 GO
 
+
+
 -- Transaction, Adding a new language to the database and set it with a cinema to make a new subtitle
-SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
 CREATE PROCEDURE sp_add_language_insert_subtitle
 @lang VARCHAR(255),
 @name VARCHAR(255)
+AS
 BEGIN TRY
     BEGIN TRANSACTION
         BEGIN
