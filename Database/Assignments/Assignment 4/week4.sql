@@ -2,27 +2,59 @@
 ALTER TABLE [dbo].[Cinema]
 ADD CONSTRAINT pk_Cinema_id PRIMARY KEY CLUSTERED(cinema_id)
 
+ALTER TABLE [dbo].[Season]
+ADD CONSTRAINT fk_season_id PRIMARY KEY (season_id),
+CONSTRAINT fk_cinema_id FOREIGN KEY REFERENCES Cinema(cinema_id) ON UPDATE CASCADE ON DELETE CASCADE
+
+ALTER TABLE [dbo].[Episode]
+ADD PRIMARY KEY (episode_id),
+CONSTRAINT fk_cinema_id FOREIGN KEY REFERENCES Season(season_id) ON UPDATE CASCADE ON DELETE CASCADE
+
+ALTER TABLE [dbo].[CinemaQuality]
+ADD FOREIGN KEY (cinema_id) REFERENCES Cinema(cinema_id) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY (quality_id) REFERENCES Quality(quality_id) ON UPDATE CASCADE ON DELETE CASCADE
+
 ALTER TABLE [dbo].[Subscription]
 ADD PRIMARY KEY(subscription_id);
 
+ALTER TABLE [dbo].[CinemaViewingClassification]
+ADD FOREIGN KEY (cinema_id) REFERENCES Cinema(cinema_id) ON UPDATE CASCADE ON DELETE CASCADE
+
+ALTER TABLE 
+
+ALTER TABLE [dbo].[SubscriptionQuality]
+ADD FOREIGN KEY (quality_id) REFERENCES Quality(quality_id) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY (subscription_id) REFERENCES Subscription(subscription_id) ON UPDATE CASCADE ON DELETE CASCADE
+
 ALTER TABLE [dbo].[Quality]
 ADD PRIMARY KEY(quality_id)
+
+ALTER TABLE [dbo].[GenrePreference]
+ADD FOREIGN KEY (genre_id) REFERENCES Genre(genre_id) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY (preference_id) REFERENCES Preference(preference_id) ON UPDATE CASCADE ON DELETE CASCADE
 
 ALTER TABLE [dbo].[Genre]
 ADD PRIMARY KEY(genre_id),
 UNIQUE(genre_name)
 GO
 
+ALTER TABLE [dbo].[ViewingClassificationPreference]
+ADD CONSTRAINT fk_classification_id FOREIGN KEY REFERENCES ViewingClassification(viewing_classifciation_id) ON DELETE CASCADE ON UPDATE CASCADE,
+CONSTRAINT fk_
+
+
 ALTER TABLE [dbo].[ViewingClassification]
-ADD PRIMARY KEY(viewing_classifciation_id),
+ADD PRIMARY KEY(viewing_classifciation_id)
 
     -- User table, if a user is created and is not assigned to any subscription then it would be assumed that the specific user doesn't have a subcription yet
+ALTER TABLE [dbo].[User] ALTER COLUMN user_email VARCHAR(255) NOT NULL;
+ALTER TABLE [dbo].[User] ALTER COLUMN user_password VARCHAR(255) NOT NULL;
 ALTER TABLE [dbo].[User]
 ADD  PRIMARY KEY (user_id),
 CONSTRAINT fk_user_subscription_id FOREIGN KEY(subscription_id) REFERENCES Subscription(subscription_id),
 CONSTRAINT df_user_subscription_id DEFAULT 0 FOR subscription_id,
 CHECK(login_attempts <=4 AND login_attempts >= 0),
-MODIFY user_email VARCHAR(255) NOT NULL
+
 GO
 
 ALTER TABLE [dbo].[Profile]
@@ -39,7 +71,23 @@ GO
 ALTER TABLE [dbo].[Language]
 ADD PRIMARY KEY (language_id)
 
-ALTER TABLE 
+ALTER TABLE [dbo].[Subtitle]
+ADD PRIMARY KEY(subtitle_id)
+
+ALTER TABLE [dbo].[WatchList]
+ADD FOREIGN KEY (profile_id) REFERENCES Profile(profile_id) ON UPDATE CASCADE ON DELETE CASCADE
+FOREIGN KEY (title_id) REFERENCES Cinema(cinema_id) ON UPDATE CASCADE ON DELETE CASCADE
+
+ALTER TABLE [dbo].[WatchLater]
+ADD FOREIGN KEY (profile_id) REFERENCES Profile(profile_id) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY (cinema_id) REFERENCES Cinema(cinema_id) ON UPDATE CASCADE ON DELETE CASCADE
+
+ALTER TABLE [dbo].[ViewiedList]
+ADD FOREIGN KEY (profile_id) REFERENCES Profile(profile_id) ON UPDATE CASCADE ON DELETE CASCADE,
+FOREIGN KEY (cinema_id) REFERENCES Cinema(cinema_id) ON UPDATE CASCADE ON DELETE CASCADE
+
+
+
 
 --  Indexes
     -- This clustered index will sort all the cinema the Netflix has from primary id and its cinema name on asceding order

@@ -183,18 +183,18 @@ ON Sub.subtitle_id = VL.subtitle_id
 GROUP BY Sub.subtitle_id;
 
 -- Query #26: Most Used Subtitle per User - Excluding Native language :( --
-SELECT TOP 1 P.profile_id, Sub.subtitle_id, COUNT(Sub.subtitle_id) AS 'Count of the most used subtitle of the user'
+SELECT  Sub.subtitle_id, COUNT(Sub.subtitle_id) AS 'Frequency of use'
 FROM Profile P
-INNER JOIN ViewedList VL 
+INNER JOIN ViewedList VL
 ON P.profile_id = VL.profile_id
 INNER JOIN Subtitle Sub
 ON VL.subtitle_id = Sub.subtitle_id
 WHERE Sub.language_id != P.language_id
 GROUP BY Sub.subtitle_id
-ORDER BY 'Count of the most used subtitle of the user';
+ORDER BY 'Frequency of use' DESC
 
--- Query #27: Most watched genre for a specific user :(--
-SELECT IF(COUNT(*) > 0 ? 'true' : 'false') AS 'Most watched genre is part of prefered genre list for user 1'
+-- Query #27: Most watched genre for a specific user (Doesn't work) :(--
+SELECT COUNT(*) AS 'Most watched genre is part of prefered genre list for user 1'
 FROM Profile P
 INNER JOIN Preference PR
 ON P.profile_id = PR.profile_id
