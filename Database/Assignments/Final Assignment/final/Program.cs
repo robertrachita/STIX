@@ -23,456 +23,233 @@ namespace final
             string conn = "Data Source = .\\SQLEXPRESS; Initial Catalog = Netflix; Integrated Security = True";
             try
             {
-/*                using (var connection = new SqlConnection(conn))
-                {*/
-                    //connection.Open();
-                    /*string nonQuery1 = "INSERT INTO [Netflix].[dbo].[User] (user_email, user_password, date_of_birth, is_blocked, subscription_id) " +
-            "VALUES ('student@hotmail.com', 'abc', '11-09-2001', 0, 1)";
-                    using (SqlCommand cmd = new SqlCommand(nonQuery1, connection))
-                    {
-                        DateTime before1 = DateTime.Now;
-                        cmd.ExecuteNonQuery();
-                        DateTime after1 = DateTime.Now;
-                        double miliSeconds = (after1 - before1).TotalMilliseconds;
-                        Console.WriteLine("Duration in miliseconds: {0}", miliSeconds);
-                    }
-
-                    Console.WriteLine("-----------------* Inserting 1,000 rows of data");
-                    SqlCommand command = connection.CreateCommand();
-                    using (command)
-                    {
-                        DateTime before1 = DateTime.Now;
-                        for (int i = 0; i < 1000; i++)
-                        {
-                            string nonQuery = "INSERT INTO [Netflix].[dbo].[User] (user_email, user_password, date_of_birth, is_blocked, subscription_id) " +
-                                "VALUES ('student@hotmail.com', 'abc', '11-09-2001', 0, 1)";
-                            command.CommandText = nonQuery;
-                            command.ExecuteNonQuery();
-                        }
-                        DateTime after1 = DateTime.Now;
-                        TimeSpan duration = after1 - before1;
-                        Console.WriteLine("Duration in miliseconds: " + duration.TotalMilliseconds);
-                    }
-
-                    Console.WriteLine("-------* Inserting 100,000 rows of data");
-                    using (command)
-                    {
-                        DateTime before1 = DateTime.Now;
-                        for (int i = 0; i < 100000; i++)
-                        {
-                            string nonQuery = "INSERT INTO [Netflix].[dbo].[User] (user_email, user_password, date_of_birth, is_blocked, subscription_id) " +
-                                "VALUES ('student@hotmail.com', 'abc', '11-09-2001', 0, 1)";
-                            command.CommandText = nonQuery;
-                            command.ExecuteNonQuery();
-                        }
-                        DateTime after1 = DateTime.Now;
-                        TimeSpan duration = after1 - before1;
-                        Console.WriteLine("Duration in miliseconds: " + duration.TotalMilliseconds);
-                    }
-
-                    Console.WriteLine("------------------* Inserting 1,000,000 rows of data");
-                    using (command)
-                    {
-                        DateTime before1 = DateTime.Now;
-                        for (int i = 0; i < 1000000; i++)
-                        {
-                            string nonQuery = "INSERT INTO [Netflix].[dbo].[User] (user_email, user_password, date_of_birth, is_blocked, subscription_id) " +
-                                "VALUES ('student@hotmail.com', 'abc', '11-09-2001', 0, 1)";
-                            command.CommandText = nonQuery;
-                            command.ExecuteNonQuery();
-                        }
-                        DateTime after1 = DateTime.Now;
-                        TimeSpan duration = after1 - before1;
-                        Console.WriteLine("Duration in miliseconds: " + duration.TotalMilliseconds);
-                    }
+                /*                using (var connection = new SqlConnection(conn))
+                                {*/
+                //connection.Open();
+                /*string nonQuery1 = "INSERT INTO [Netflix].[dbo].[User] (user_email, user_password, date_of_birth, is_blocked, subscription_id) " +
+        "VALUES ('student@hotmail.com', 'abc', '11-09-2001', 0, 1)";
+                using (SqlCommand cmd = new SqlCommand(nonQuery1, connection))
+                {
+                    DateTime before1 = DateTime.Now;
+                    cmd.ExecuteNonQuery();
+                    DateTime after1 = DateTime.Now;
+                    double miliSeconds = (after1 - before1).TotalMilliseconds;
+                    Console.WriteLine("Duration in miliseconds: {0}", miliSeconds);
                 }
 
-                string connOdbc = "Driver={SQL Server};SERVER=(local);Trusted_Connection=Yes;UID=admin;PWD=admin123;DATABASE=Netflix;";
-                Console.WriteLine("----------------* Reading 1 row of data");
-
-                DateTime before2 = DateTime.Now;
-                using (OdbcConnection odbcConnection = new OdbcConnection(connOdbc))
+                Console.WriteLine("-----------------* Inserting 1,000 rows of data");
+                SqlCommand command = connection.CreateCommand();
+                using (command)
                 {
-                    string queryString = "SELECT TOP 1 * FROM [Netflix].[dbo].[User]";
-                    odbcConnection.Open();
-                    OdbcCommand odbcCommand = odbcConnection.CreateCommand();
-                    odbcCommand.Connection = odbcConnection;
-                    using (odbcCommand)
+                    DateTime before1 = DateTime.Now;
+                    for (int i = 0; i < 1000; i++)
                     {
-                        odbcCommand.CommandText = queryString;
-                        OdbcDataReader reader = odbcCommand.ExecuteReader();
-                        while (reader.Read())
-                        {
-                            Console.WriteLine("{0}: {1}", reader[0], reader[1]);
-                        }
-                        reader.Close();
+                        string nonQuery = "INSERT INTO [Netflix].[dbo].[User] (user_email, user_password, date_of_birth, is_blocked, subscription_id) " +
+                            "VALUES ('student@hotmail.com', 'abc', '11-09-2001', 0, 1)";
+                        command.CommandText = nonQuery;
+                        command.ExecuteNonQuery();
                     }
-
-                    DateTime after2 = DateTime.Now;
-                    Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
-                    Console.WriteLine("-------* Reading 1,000 rows of data");
-                    string query = "SELECT TOP 1000 * FROM [Netflix].[dbo].[User]";
-                    before2 = DateTime.Now;
-                    using (odbcCommand)
-                    {
-                        odbcCommand.CommandText = query;
-                        odbcCommand.Connection = odbcConnection;
-                        OdbcDataReader reader = odbcCommand.ExecuteReader();
-                        reader.Close();
-                    }
-                    after2 = DateTime.Now;
-                    Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
-
-                    Console.WriteLine("--------------* Reading 100,000 rows of data");
-                    query = "SELECT TOP 100000 * FROM [Netflix].[dbo].[User]";
-                    before2 = DateTime.Now;
-                    using (odbcCommand)
-                    {
-                        odbcCommand.CommandText = query;
-                        odbcCommand.Connection = odbcConnection;
-                        OdbcDataReader reader = odbcCommand.ExecuteReader();
-                        reader.Close();
-                    }
-                    after2 = DateTime.Now;
-                    Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
-                    Console.WriteLine("---------------* Reading 1,000,000 rows of data");
-                    query = "SELECT TOP 1000000 * FROM [Netflix].[dbo].[User]";
-                    before2 = DateTime.Now;
-                    using (odbcCommand)
-                    {
-                        odbcCommand.CommandText = query;
-                        odbcCommand.Connection = odbcConnection;
-                        OdbcDataReader reader = odbcCommand.ExecuteReader();
-                        reader.Close();
-                    }
-                    after2 = DateTime.Now;
-                    Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
+                    DateTime after1 = DateTime.Now;
+                    TimeSpan duration = after1 - before1;
+                    Console.WriteLine("Duration in miliseconds: " + duration.TotalMilliseconds);
                 }
 
-                Console.WriteLine("-------------------* Updating 1 row of data");
-                using (SqlConnection sqlConnection1 = new SqlConnection(conn))
+                Console.WriteLine("-------* Inserting 100,000 rows of data");
+                using (command)
                 {
-                    sqlConnection1.Open();
-                    string updateQuery = "UPDATE TOP(1) [Netflix].[dbo].[User] SET user_email = 'hot@hotmail.com'";
-                    SqlCommand cmd = sqlConnection1.CreateCommand();
-                    cmd.Connection = sqlConnection1;
-                    before2 = DateTime.Now;
-                    using (cmd)
+                    DateTime before1 = DateTime.Now;
+                    for (int i = 0; i < 100000; i++)
                     {
-                        cmd.CommandText = updateQuery;
-                        cmd.ExecuteNonQuery();
+                        string nonQuery = "INSERT INTO [Netflix].[dbo].[User] (user_email, user_password, date_of_birth, is_blocked, subscription_id) " +
+                            "VALUES ('student@hotmail.com', 'abc', '11-09-2001', 0, 1)";
+                        command.CommandText = nonQuery;
+                        command.ExecuteNonQuery();
                     }
-                    DateTime after2 = DateTime.Now;
-                    Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
-
-                    Console.WriteLine("------------------* Updating 1,000 rows of data");
-                    updateQuery = "UPDATE TOP(1000) [Netflix].[dbo].[User] SET user_email = 'hot#hotmail.com'";
-                    before2 = DateTime.Now;
-                    using (cmd)
-                    {
-                        cmd.CommandText = updateQuery;
-                        cmd.ExecuteNonQuery();
-                    }
-                    after2 = DateTime.Now;
-                    Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
-
-                    Console.WriteLine("------------------* Updating 100,000 rows of data");
-                    updateQuery = "UPDATE TOP(100000) [Netflix].[dbo].[User] SET user_email = 'hot#hotmail.com'";
-                    before2 = DateTime.Now;
-                    using (cmd)
-                    {
-                        cmd.CommandText = updateQuery;
-                        cmd.ExecuteNonQuery();
-                    }
-                    after2 = DateTime.Now;
-                    Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
-
-                    Console.WriteLine("------------------* Updating 1,000,000 rows of data");
-                    updateQuery = "UPDATE TOP(1000000) [Netflix].[dbo].[User] SET user_email = 'hot#hotmail.com'";
-                    before2 = DateTime.Now;
-                    using (cmd)
-                    {
-                        cmd.CommandText = updateQuery;
-                        cmd.ExecuteNonQuery();
-                    }
-                    after2 = DateTime.Now;
-                    Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
+                    DateTime after1 = DateTime.Now;
+                    TimeSpan duration = after1 - before1;
+                    Console.WriteLine("Duration in miliseconds: " + duration.TotalMilliseconds);
                 }
 
-                Console.WriteLine("--------------------* Deleting 1 row of data");
-                using (SqlConnection sqlConnection = new SqlConnection(conn))
+                Console.WriteLine("------------------* Inserting 1,000,000 rows of data");
+                using (command)
                 {
-                    sqlConnection.Open();
-                    string deleteQuery = "DELETE TOP(1) FROM [dbo].[User]";
-                    SqlCommand sqlCommand = new SqlCommand();
-                    sqlCommand.Connection = sqlConnection;
-                    before2 = DateTime.Now;
-                    using (sqlCommand)
-                    {
-                        sqlCommand.CommandText = deleteQuery;
-                        sqlCommand.ExecuteNonQuery();
-                    }
-                    DateTime after2 = DateTime.Now;
-                    Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
-                    Console.WriteLine("---------------* Deleting 1,000 rows of data");
-                    deleteQuery = "DELETE TOP(1000) FROM [dbo].[User]";
-                    before2 = DateTime.Now;
-                    using (sqlCommand)
-                    {
-                        sqlCommand.CommandText = deleteQuery;
-                        sqlCommand.ExecuteNonQuery();
-                    }
-                    after2 = DateTime.Now;
-                    Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
-                    Console.WriteLine("---------------* Deleting 100,000 rows of data");
-                    deleteQuery = "DELETE TOP(100000) FROM [dbo].[User]";
-                    before2 = DateTime.Now;
-                    using (sqlCommand)
-                    {
-                        sqlCommand.CommandText = deleteQuery;
-                        sqlCommand.ExecuteNonQuery();
-                    }
-                    after2 = DateTime.Now;
-                    Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
-                    Console.WriteLine("---------------* Deleting 1,000,000 rows of data");
-                    deleteQuery = "DELETE TOP(1000000) FROM [dbo].[User]";
-                    before2 = DateTime.Now;
-                    using (sqlCommand)
-                    {
-                        sqlCommand.CommandText = deleteQuery;
-                        sqlCommand.ExecuteNonQuery();
-                    }
-                    after2 = DateTime.Now;
-                    Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
-                }*/
-
-                Console.WriteLine("\nEntity Framework Code-First Approach\n -------------------* Inserting 1 row of data");
-
-                DateTime before3 = DateTime.Now;
-                SubscriptionEntity subscriptionEntity = new SubscriptionEntity();
-                subscriptionEntity.subscription_id = 1;
-                UserEntity user = new UserEntity();
-                user.user_email = "studentEF@hotmail.com";
-                user.subscription_id = 1;
-                user.login_attempts = 0;
-
-                using (var _context = new DatabaseContext())
-                {
-                    _context.Users.Add(user);
-                    _context.SaveChanges();
-                }
-                DateTime after3 = DateTime.Now;
-                Console.WriteLine("Duration in miliseconds: {0}", (after3 - before3).TotalMilliseconds);
-                /*                Console.WriteLine("------------* Inserting 1,000 rows of data");
-                                using (var _context = new DatabaseContext())
-                                {
-                                    before3 = DateTime.Now;
-                                    for (int i = 0; i < 1000; i++)
-                                    {
-                                        _context.Users.Add(user);
-                                        _context.SaveChanges();
-                                    }
-                                    after3 = DateTime.Now;
-                                }
-                                Console.WriteLine("Duration in miliseconds: {0}", (after3 - before3).TotalMilliseconds);*/
-
-                Console.WriteLine("----------* Inserting 100,000 rows of data");
-/*                using (DatabaseContext databaseEF = new DatabaseContext())
-                {
-                    before3 = DateTime.Now;
-                    List<UserEntity> list = new List<UserEntity>();
+                    DateTime before1 = DateTime.Now;
                     for (int i = 0; i < 1000000; i++)
                     {
-                        list.Add(user);
+                        string nonQuery = "INSERT INTO [Netflix].[dbo].[User] (user_email, user_password, date_of_birth, is_blocked, subscription_id) " +
+                            "VALUES ('student@hotmail.com', 'abc', '11-09-2001', 0, 1)";
+                        command.CommandText = nonQuery;
+                        command.ExecuteNonQuery();
                     }
-                    databaseEF.Configuration.AutoDetectChangesEnabled = false;
-                    databaseEF.Configuration.ValidateOnSaveEnabled = false;
-
-                    databaseEF.Users.AddRange(list);
-                    databaseEF.SaveChanges();
-                    after3 = DateTime.Now;
-                    Console.WriteLine("Duration in miliseconds: {0}", (after3 - before3).TotalMilliseconds);
+                    DateTime after1 = DateTime.Now;
+                    TimeSpan duration = after1 - before1;
+                    Console.WriteLine("Duration in miliseconds: " + duration.TotalMilliseconds);
                 }
-                Console.WriteLine("----------* Inserting 5,000,000 rows of data");
-                using (DatabaseContext databaseEF = new DatabaseContext())
-                {
-                    before3 = DateTime.Now;
-                    List<UserEntity> list = new List<UserEntity>();
-                    for (int i = 0; i < 500000; i++)
-                    {
-                        list.Add(user);
-                    }
-                    databaseEF.Configuration.AutoDetectChangesEnabled = false;
-                    databaseEF.Configuration.ValidateOnSaveEnabled = false;
-
-                    databaseEF.Users.AddRange(list);
-                    databaseEF.SaveChanges();
-                    after3 = DateTime.Now;
-                    Console.WriteLine("Duration in miliseconds: {0}", (after3 - before3).TotalMilliseconds);
-                }*/
-                /*                Console.WriteLine("----------* Inserting 1,000,000 rows of data");
-                                using (var _context = new DatabaseContext())
-                                {
-                                    before3 = DateTime.Now;
-                                    List<UserEntity> list = new List<UserEntity>();
-                                    for (int i = 0; i < 1000000; i++)
-                                    {
-                                        list.Add(user);
-                                    }
-                                    _context.Configuration.AutoDetectChangesEnabled = false;
-                                    _context.Configuration.ValidateOnSaveEnabled = false;
-
-                                    _context.Users.AddRange(list);
-                                    _context.SaveChanges();
-                                    after3 = DateTime.Now;
-                                }
-                                Console.WriteLine("Duration in miliseconds: {0}", (after3 - before3).TotalMilliseconds);*/
-
-                Console.WriteLine("----------* Reading 1 row of data");
-                before3 = DateTime.Now;
-                using (var dbContext = new DatabaseContext())
-                {
-                    string query = "SELECT * FROM [dbo].[User]";
-                    var result = dbContext.Users.SqlQuery(query).First();
-                }
-                after3 = DateTime.Now;
-                Console.WriteLine("Duration in miliseconds: {0}", (after3 - before3).TotalMilliseconds);
-                Console.WriteLine("----------* Reading 1,000 rows of data");
-                before3 = DateTime.Now;
-                using (var dbContext = new DatabaseContext())
-                {
-                    var user1 = (from user2 in dbContext.Users
-                                 select user2).Take(1000);
-                }
-                after3 = DateTime.Now;
-                Console.WriteLine("Duration in miliseconds: {0}", (after3 - before3).TotalMilliseconds);
-                Console.WriteLine("----------* Reading 100,000 rows of data");
-                before3 = DateTime.Now;
-                using (var dbContext = new DatabaseContext())
-                {
-                    var user1 = (from user2 in dbContext.Users
-                                 select user2).Take(100000);
-                }
-                after3 = DateTime.Now;
-                Console.WriteLine("Duration in miliseconds: {0}", (after3 - before3).TotalMilliseconds);
-                Console.WriteLine("----------* Reading 1,000,000 rows of data");
-                before3 = DateTime.Now;
-                using (var dbContext = new DatabaseContext())
-                {
-                    var user1 = (from user2 in dbContext.Users
-                                 select user2).Take(1000000);
-                }
-                after3 = DateTime.Now;
-                Console.WriteLine("Duration in miliseconds: {0}", (after3 - before3).TotalMilliseconds);
-                Console.WriteLine("----------* Updating 1 row of data");
-                before3 = DateTime.Now;
-                using (var dbContext = new DatabaseContext())
-                {
-                    var user1 = (from user2 in dbContext.Users
-                                 select user2).First();
-                    user1.user_password = "abcd123";
-                    dbContext.SaveChanges();
-                }
-                after3 = DateTime.Now;
-                Console.WriteLine("Duration in miliseconds: {0}", (after3 - before3).TotalMilliseconds);
-                Console.WriteLine("----------* Updating 1,000 rows of data");
-                before3 = DateTime.Now;
-                using (var dbContext = new DatabaseContext())
-                {
-                    var user1 = (from user2 in dbContext.Users
-                                 select user2).Take(100);
-                    foreach(var entity in user1)
-                    {
-                        entity.user_password = "abcd123";
-                    }
-                    dbContext.SaveChanges();
-                }
-                after3 = DateTime.Now;
-                Console.WriteLine("Duration in miliseconds: {0}", (after3 - before3).TotalMilliseconds);
-                Console.WriteLine("----------* Updating 100,000 rows of data");
-                before3 = DateTime.Now;
-                using (var dbContext = new DatabaseContext())
-                {
-                    var user1 = (from user2 in dbContext.Users
-                                 select user2).Take(100);
-                    foreach (var entity in user1)
-                    {
-                        entity.user_password = "abcd123";
-                    }
-                    dbContext.SaveChanges();
-                }
-                after3 = DateTime.Now;
-                Console.WriteLine("Duration in miliseconds: {0}", (after3 - before3).TotalMilliseconds);
-                Console.WriteLine("----------* Updating 1,000,000 row of data");
-                before3 = DateTime.Now;
-                using (var dbContext = new DatabaseContext())
-                {
-                    var user1 = (from user2 in dbContext.Users
-                                 select user2).Take(100);
-                    foreach (var entity in user1)
-                    {
-                        entity.user_password = "abcd123";
-                    }
-                    dbContext.SaveChanges();
-                }
-                after3 = DateTime.Now;
-                Console.WriteLine("Duration in miliseconds: {0}", (after3 - before3).TotalMilliseconds);
-                Console.WriteLine("----------* Deleting 1 row of data");
-                before3 = DateTime.Now;
-                using (var dbContext = new DatabaseContext())
-                {
-                   var testing = (from user69 in dbContext.Users
-                                   select user69).First();
-                    dbContext.Users.Remove(testing);
-                    dbContext.SaveChanges();
-                }
-                after3 = DateTime.Now;
-                Console.WriteLine("Duration in miliseconds: {0}", (after3 - before3).TotalMilliseconds);
-
-                Console.WriteLine("----------* Deleting 1,000 rows of data");
-                before3 = DateTime.Now;
-                using (var dbContext = new DatabaseContext())
-                {
-                    var testing = (from e in dbContext.Users
-                                   select e).Take(1000);
-                    dbContext.Configuration.AutoDetectChangesEnabled = false;
-                    dbContext.Configuration.ValidateOnSaveEnabled = false;
-                    dbContext.Users.RemoveRange(testing);
-                    dbContext.SaveChanges();
-                }
-                after3 = DateTime.Now;
-                Console.WriteLine("Duration in miliseconds: {0}", (after3 - before3).TotalMilliseconds);
-                Console.WriteLine("----------* Deleting 100,000 rows of data"); // 483.9975
-                before3 = DateTime.Now;
-                using (var dbContext = new DatabaseContext())
-                {
-                    string query = "SELECT TOP 100000 * FROM [dbo].[User]";
-                    List<UserEntity> human = dbContext.Users.SqlQuery(query).ToList();
-                    dbContext.Configuration.AutoDetectChangesEnabled = false;
-                    dbContext.Configuration.ValidateOnSaveEnabled = false;
-                    dbContext.Users.RemoveRange(human);
-                    dbContext.SaveChanges();
-                }
-                after3 = DateTime.Now;
-                Console.WriteLine("Duration in miliseconds: {0}", (after3 - before3).TotalMilliseconds);
-                Console.WriteLine("----------* Deleting 1,000,000 rows of data");
-                before3 = DateTime.Now;
-                using (var dbContext = new DatabaseContext())
-                {
-                    var testing = (from e in dbContext.Users
-                                   select e).Take(1000000);
-                    dbContext.Configuration.AutoDetectChangesEnabled = false;
-                    dbContext.Configuration.ValidateOnSaveEnabled = false;
-                    dbContext.Users.RemoveRange(testing);
-                    dbContext.SaveChanges();
-                }
-                after3 = DateTime.Now;
-                Console.WriteLine("Duration in miliseconds: {0}", (after3 - before3).TotalMilliseconds);
             }
-            catch (SqlException ex)
+
+            string connOdbc = "Driver={SQL Server};SERVER=(local);Trusted_Connection=Yes;UID=admin;PWD=admin123;DATABASE=Netflix;";
+            Console.WriteLine("----------------* Reading 1 row of data");
+
+            DateTime before2 = DateTime.Now;
+            using (OdbcConnection odbcConnection = new OdbcConnection(connOdbc))
             {
-                Console.WriteLine(ex.Message);
+                string queryString = "SELECT TOP 1 * FROM [Netflix].[dbo].[User]";
+                odbcConnection.Open();
+                OdbcCommand odbcCommand = odbcConnection.CreateCommand();
+                odbcCommand.Connection = odbcConnection;
+                using (odbcCommand)
+                {
+                    odbcCommand.CommandText = queryString;
+                    OdbcDataReader reader = odbcCommand.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Console.WriteLine("{0}: {1}", reader[0], reader[1]);
+                    }
+                    reader.Close();
+                }
+
+                DateTime after2 = DateTime.Now;
+                Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
+                Console.WriteLine("-------* Reading 1,000 rows of data");
+                string query = "SELECT TOP 1000 * FROM [Netflix].[dbo].[User]";
+                before2 = DateTime.Now;
+                using (odbcCommand)
+                {
+                    odbcCommand.CommandText = query;
+                    odbcCommand.Connection = odbcConnection;
+                    OdbcDataReader reader = odbcCommand.ExecuteReader();
+                    reader.Close();
+                }
+                after2 = DateTime.Now;
+                Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
+
+                Console.WriteLine("--------------* Reading 100,000 rows of data");
+                query = "SELECT TOP 100000 * FROM [Netflix].[dbo].[User]";
+                before2 = DateTime.Now;
+                using (odbcCommand)
+                {
+                    odbcCommand.CommandText = query;
+                    odbcCommand.Connection = odbcConnection;
+                    OdbcDataReader reader = odbcCommand.ExecuteReader();
+                    reader.Close();
+                }
+                after2 = DateTime.Now;
+                Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
+                Console.WriteLine("---------------* Reading 1,000,000 rows of data");
+                query = "SELECT TOP 1000000 * FROM [Netflix].[dbo].[User]";
+                before2 = DateTime.Now;
+                using (odbcCommand)
+                {
+                    odbcCommand.CommandText = query;
+                    odbcCommand.Connection = odbcConnection;
+                    OdbcDataReader reader = odbcCommand.ExecuteReader();
+                    reader.Close();
+                }
+                after2 = DateTime.Now;
+                Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
             }
+
+            Console.WriteLine("-------------------* Updating 1 row of data");
+            using (SqlConnection sqlConnection1 = new SqlConnection(conn))
+            {
+                sqlConnection1.Open();
+                string updateQuery = "UPDATE TOP(1) [Netflix].[dbo].[User] SET user_email = 'hot@hotmail.com'";
+                SqlCommand cmd = sqlConnection1.CreateCommand();
+                cmd.Connection = sqlConnection1;
+                before2 = DateTime.Now;
+                using (cmd)
+                {
+                    cmd.CommandText = updateQuery;
+                    cmd.ExecuteNonQuery();
+                }
+                DateTime after2 = DateTime.Now;
+                Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
+
+                Console.WriteLine("------------------* Updating 1,000 rows of data");
+                updateQuery = "UPDATE TOP(1000) [Netflix].[dbo].[User] SET user_email = 'hot#hotmail.com'";
+                before2 = DateTime.Now;
+                using (cmd)
+                {
+                    cmd.CommandText = updateQuery;
+                    cmd.ExecuteNonQuery();
+                }
+                after2 = DateTime.Now;
+                Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
+
+                Console.WriteLine("------------------* Updating 100,000 rows of data");
+                updateQuery = "UPDATE TOP(100000) [Netflix].[dbo].[User] SET user_email = 'hot#hotmail.com'";
+                before2 = DateTime.Now;
+                using (cmd)
+                {
+                    cmd.CommandText = updateQuery;
+                    cmd.ExecuteNonQuery();
+                }
+                after2 = DateTime.Now;
+                Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
+
+                Console.WriteLine("------------------* Updating 1,000,000 rows of data");
+                updateQuery = "UPDATE TOP(1000000) [Netflix].[dbo].[User] SET user_email = 'hot#hotmail.com'";
+                before2 = DateTime.Now;
+                using (cmd)
+                {
+                    cmd.CommandText = updateQuery;
+                    cmd.ExecuteNonQuery();
+                }
+                after2 = DateTime.Now;
+                Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
+            }
+
+            Console.WriteLine("--------------------* Deleting 1 row of data");
+            using (SqlConnection sqlConnection = new SqlConnection(conn))
+            {
+                sqlConnection.Open();
+                string deleteQuery = "DELETE TOP(1) FROM [dbo].[User]";
+                SqlCommand sqlCommand = new SqlCommand();
+                sqlCommand.Connection = sqlConnection;
+                before2 = DateTime.Now;
+                using (sqlCommand)
+                {
+                    sqlCommand.CommandText = deleteQuery;
+                    sqlCommand.ExecuteNonQuery();
+                }
+                DateTime after2 = DateTime.Now;
+                Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
+                Console.WriteLine("---------------* Deleting 1,000 rows of data");
+                deleteQuery = "DELETE TOP(1000) FROM [dbo].[User]";
+                before2 = DateTime.Now;
+                using (sqlCommand)
+                {
+                    sqlCommand.CommandText = deleteQuery;
+                    sqlCommand.ExecuteNonQuery();
+                }
+                after2 = DateTime.Now;
+                Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
+                Console.WriteLine("---------------* Deleting 100,000 rows of data");
+                deleteQuery = "DELETE TOP(100000) FROM [dbo].[User]";
+                before2 = DateTime.Now;
+                using (sqlCommand)
+                {
+                    sqlCommand.CommandText = deleteQuery;
+                    sqlCommand.ExecuteNonQuery();
+                }
+                after2 = DateTime.Now;
+                Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
+                Console.WriteLine("---------------* Deleting 1,000,000 rows of data");
+                deleteQuery = "DELETE TOP(1000000) FROM [dbo].[User]";
+                before2 = DateTime.Now;
+                using (sqlCommand)
+                {
+                    sqlCommand.CommandText = deleteQuery;
+                    sqlCommand.ExecuteNonQuery();
+                }
+                after2 = DateTime.Now;
+                Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
+            }*/
+                //==================== EF SECTION
+
+                EntityFramework.EfInsert(100);
+
+             //==================== END OF EF SECTION    
             Console.WriteLine("\nMongoDB\n------------* Inserting 1 row of data");
             MongoClient mongoClient = new MongoClient("mongodb://localhost:27017");
             IMongoDatabase db = mongoClient.GetDatabase("Netflix");

@@ -143,6 +143,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DatabaseContext.cs" />
+    <Compile Include="EntityFramework.cs" />
     <Compile Include="Model\SubscriptionEntity.cs" />
     <Compile Include="Model\UserEntity.cs" />
     <Compile Include="Model\UserMongo.cs" />
