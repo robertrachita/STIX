@@ -251,10 +251,19 @@ namespace final
             {
                 Console.WriteLine(ex.Message);
             }
-                EntityFramework.EfInsert(100);
+            try
+            {
+
+                UserEntity newUser = new UserEntity();
+                EntityFramework.EfInsert(5, newUser);
+            } catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            Console.WriteLine("Succesful");
 
              //==================== END OF EF SECTION    
-            Console.WriteLine("\nMongoDB\n------------* Inserting 1 row of data");
+            /*Console.WriteLine("\nMongoDB\n------------* Inserting 1 row of data");
             MongoClient mongoClient = new MongoClient("mongodb://localhost:27017");
             IMongoDatabase db = mongoClient.GetDatabase("Netflix");
             IMongoCollection<BsonDocument> collection = db.GetCollection<BsonDocument>("User");
@@ -420,7 +429,7 @@ namespace final
                 }
             );
             after = DateTime.Now;
-            Console.WriteLine("Duration in miliseconds: {0}", (after - before).Milliseconds);
+            Console.WriteLine("Duration in miliseconds: {0}", (after - before).Milliseconds);*/
             Console.ReadKey();
         }
     }

@@ -12,21 +12,19 @@ namespace final
     {
         public static DateTime before;
         public static DateTime after;
+        public static DatabaseContext _context;
  
         // insert x amount of rows
-        public static void EfInsert(int rows) 
+        public static void EfInsert(int rows, UserEntity user) 
         {
             SubscriptionEntity subscriptionEntity = new SubscriptionEntity();
             subscriptionEntity.subscription_id = 1;
-            UserEntity user = new UserEntity();
-            user.user_email = "studentEF@hotmail.com";
-            user.subscription_id = 1;
-            user.login_attempts = 0;
+
 
             try
             {
                 Console.WriteLine("----------* Inserting " + rows +" rows of data");
-                using (var _context = new DatabaseContext())
+                using (_context = new DatabaseContext())
                 {
                     before = DateTime.Now;
                     List<UserEntity> list = new List<UserEntity>();
