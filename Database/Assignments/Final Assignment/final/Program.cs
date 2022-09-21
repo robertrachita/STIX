@@ -21,6 +21,7 @@ namespace final
         {
             Console.WriteLine("ADO.NET\n-----------------* Inserting 1 row of data");
             string conn = "Data Source = .\\SQLEXPRESS; Initial Catalog = Netflix; Integrated Security = True";
+            AdoNet.AdoInsert(2, conn);
             
                 /*                using (var connection = new SqlConnection(conn))
                                 {*/
@@ -94,6 +95,7 @@ namespace final
             {
                 string queryString = "SELECT TOP 1 * FROM [Netflix].[dbo].[User]";
                 odbcConnection.Open();
+
                 OdbcCommand odbcCommand = odbcConnection.CreateCommand();
                 odbcCommand.Connection = odbcConnection;
                 using (odbcCommand)

@@ -142,6 +142,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdoNet.cs" />
     <Compile Include="DatabaseContext.cs" />
     <Compile Include="EntityFramework.cs" />
     <Compile Include="Model\SubscriptionEntity.cs" />
