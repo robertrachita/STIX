@@ -246,7 +246,11 @@ namespace final
                 Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
             }*/
                 //==================== EF SECTION
-
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
                 EntityFramework.EfInsert(100);
 
              //==================== END OF EF SECTION    
