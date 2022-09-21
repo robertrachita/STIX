@@ -21,8 +21,7 @@ namespace final
         {
             Console.WriteLine("ADO.NET\n-----------------* Inserting 1 row of data");
             string conn = "Data Source = .\\SQLEXPRESS; Initial Catalog = Netflix; Integrated Security = True";
-            try
-            {
+            
                 /*                using (var connection = new SqlConnection(conn))
                                 {*/
                 //connection.Open();
@@ -246,20 +245,15 @@ namespace final
                 Console.WriteLine("Duration in miliseconds: {0}", (after2 - before2).TotalMilliseconds);
             }*/
                 //==================== EF SECTION
-            }
-            catch (SqlException ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-            try
-            {
-
-                UserEntity newUser = new UserEntity();
-                EntityFramework.EfInsert(5, newUser);
-            } catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            
+            SubscriptionEntity subscription = new SubscriptionEntity();
+            subscription.subscription_id = 99;
+            UserEntity newUser = new UserEntity();
+            newUser.user_email = "momchill@gmail.com";
+            newUser.subscription_id = 2;
+            newUser.login_attempts = 0;
+            EntityFramework.EfUpdate(4);
+            
             Console.WriteLine("Succesful");
 
              //==================== END OF EF SECTION    

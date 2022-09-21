@@ -17,14 +17,10 @@ namespace final
         // insert x amount of rows
         public static void EfInsert(int rows, UserEntity user) 
         {
-            SubscriptionEntity subscriptionEntity = new SubscriptionEntity();
-            subscriptionEntity.subscription_id = 1;
-
-
             try
             {
                 Console.WriteLine("----------* Inserting " + rows +" rows of data");
-                using (_context = new DatabaseContext())
+                using (var _context = new DatabaseContext())
                 {
                     before = DateTime.Now;
                     List<UserEntity> list = new List<UserEntity>();
@@ -72,6 +68,10 @@ namespace final
                 {
                     var user1 = (from user2 in dbContext.Users
                                  select user2).Take(rows);
+                    foreach (var user in user1)
+                    {
+                        Console.WriteLine(user.user_email + ": " + user.user_password);
+                    }
                 }
             }
             after = DateTime.Now;
@@ -91,7 +91,7 @@ namespace final
                                  select user2).Take(rows);
                     foreach (var entity in user1)
                     {
-                        entity.user_password = "abcd123";
+                        entity.user_password = "Tromp123";
                     }
                     dbContext.SaveChanges();
                 }
