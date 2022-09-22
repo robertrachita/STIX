@@ -1,5 +1,4 @@
 ﻿using final.Model;
-using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
 using System.Data.Odbc;
@@ -14,26 +13,25 @@ namespace final
     {
         public static DateTime before;
         public static DateTime after;
+        public static string conn = "Data Source = .\\SQLEXPRESS; Initial Catalog = Netflix; Integrated Security = True";
 
 
         // insert x amount of rows
-        public static void AdoInsert(int rows, string conn)
+        public static void AdoInsert(int rows)
         {
-            //string conn = "Data Source = .\\SQLEXPRESS; Initial Catalog = Netflix; Integrated Security = True";
             try
             {
                 Console.WriteLine("----------* Inserting " + rows + " rows of data");
                 before = DateTime.Now;
                 using (var connection = new SqlConnection(conn))
                 {
-                    //connection.Open();
+                    connection.Open();
                     string nonQuery = "INSERT INTO [Netflix].[dbo].[User] (user_email, user_password, date_of_birth, is_blocked, subscription_id) " +
                     "VALUES ('student@hotmail.com', 'abc', '11-09-2001', 0, 1)";
                     using (SqlCommand cmd = new SqlCommand(nonQuery, connection))
                     {
                         for (int i = 0; i < rows; i++)
                         {
-                            cmd.CommandText = nonQuery;
                             cmd.ExecuteNonQuery();
                         }
                         TimeSpan duration = after - before;
@@ -50,20 +48,21 @@ namespace final
         }
 
         // Read x amount of rows
-        public static void AdoRead(int rows, string conn)
+        public static void AdoRead(int rows)
         {
-            //string conn = "Driver={SQL Server};SERVER=(local);Trusted_Connection=Yes;UID=admin;PWD=admin123;DATABASE=Netflix;";
+            string connOdbc = "Driver={SQL Server};SERVER=(local);Trusted_Connection=Yes;UID=admin;PWD=admin123;DATABASE=Netflix;";
             Console.WriteLine("----------* Reading " + rows + " rows of data");
             before = DateTime.Now;
-            using (OdbcConnection odbcConnection = new OdbcConnection(conn))
+            if (rows <= 0)
             {
-                if (rows <= 0)
+                Console.WriteLine("No rows selected");
+            }
+            else
+            {
+                using (OdbcConnection odbcConnection = new OdbcConnection(connOdbc))
                 {
-                    Console.WriteLine("No rows selected");
-                }
-                else
-                {
-                    string query = "SELECT TOP" + rows +  "* FROM [Netflix].[dbo].[User]";
+                    odbcConnection.Open();
+                    string query = "SELECT TOP " + rows + " * FROM [Netflix].[dbo].[User]";
                     OdbcCommand odbcCommand = odbcConnection.CreateCommand();
                     odbcCommand.Connection = odbcConnection;
                     before = DateTime.Now;
@@ -74,22 +73,24 @@ namespace final
                         OdbcDataReader reader = odbcCommand.ExecuteReader();
                         reader.Close();
                     }
+
+                    odbcConnection.Close();
                 }
-                odbcConnection.Close();
+                after = DateTime.Now;
+                Console.WriteLine("Duration in miliseconds: {0}", (after - before).TotalMilliseconds);
             }
-            after = DateTime.Now;
-            Console.WriteLine("Duration in miliseconds: {0}", (after - before).TotalMilliseconds);
+
         }
 
         // update x amount of rows
-        public static void AdoUpdate(int rows, string conn)
+        public static void AdoUpdate(int rows)
         {
             Console.WriteLine("----------* Updating" + rows + "rows of data");
             before = DateTime.Now;
             using (var connection = new SqlConnection(conn))
             {
                 connection.Open();
-                string updateQuery = "UPDATE " + rows + " [Netflix].[dbo].[User] SET user_email = 'hot@hotmail.com'";
+                string updateQuery = "UPDATE TOP(" + rows + ") [Netflix].[dbo].[User] SET user_email = 'hot@hotmail.com'";
                 SqlCommand cmd = connection.CreateCommand();
                 cmd.Connection = connection;
                 if (rows > 0)
@@ -107,7 +108,7 @@ namespace final
         }
 
         // delete x amount of rows
-        public static void AdoDelete(int rows, string conn)
+        public static void AdoDelete(int rows)
         {
             Console.WriteLine("----------* Deleting " + rows + " rows of data");
             before = DateTime.Now;
@@ -118,14 +119,14 @@ namespace final
                 sqlCommand.Connection = connection;
                 if (rows > 0)
                 {
-                    string deleteQuery = "DELETE " + rows + " FROM [dbo].[User]";
+                    string deleteQuery = "DELETE TOP(" + rows + ") FROM [dbo].[User]";
                     using (sqlCommand)
                     {
                         sqlCommand.CommandText = deleteQuery;
                         sqlCommand.ExecuteNonQuery();
                     }
                 }
-                connection.Close(); 
+                connection.Close();
             }
             after = DateTime.Now;
             Console.WriteLine("Duration in miliseconds: {0}", (after - before).TotalMilliseconds);

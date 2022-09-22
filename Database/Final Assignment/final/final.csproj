@@ -148,6 +148,7 @@
     <Compile Include="Model\SubscriptionEntity.cs" />
     <Compile Include="Model\UserEntity.cs" />
     <Compile Include="Model\UserMongo.cs" />
+    <Compile Include="NoSQL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
